@@ -1,0 +1,6 @@
+<form {{action 'signup' on='submit'}}>
+  {{input type="username" required="true" autofocus="true" placeholder="Username" value=username}}
+  {{input type="password" required="true" autofocus="true" placeholder="Password" value=password}}
+  <button type="submit">Sign up</button>
+  {{#if error}}<div>Error: {{error}}.</div>{{/if}}
+</form>
