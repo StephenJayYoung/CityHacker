@@ -131,6 +131,16 @@ App.SignupController = Ember.ObjectController.extend({
   }
 });
 
+//This stuff below is for the navigation controller
+
+// var NavigationController = Ember.ArrayController.extend({
+//   content: Ember.A([
+//     Ember.Object.create({title: "About", location: 'about', active: null}),
+//   ]),
+// });
+
+// export default NavigationController;
+
 
 // expose App globally
 window.App = App;
