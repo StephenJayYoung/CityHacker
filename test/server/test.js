@@ -1,7 +1,5 @@
 'use strict';
 
-'use strict';
-
 process.env.NODE_ENV = 'testing';
 // NODE_ENV=testing ./node_modules/.bin/knex migrate:latest
 
