@@ -53,7 +53,8 @@ App.ProfileController = Ember.ObjectController.extend({
 
 App.User = DS.Model.extend({
   username: DS.attr('string'),
-  password: DS.attr('string')
+  password: DS.attr('string'),
+  user_email: DS.attr('string')
 });
 
 
