@@ -52,7 +52,7 @@ describe('app', function() {
       });
     });
 
-    it.skip('allows user to create handle for their profile', function() {
+    it('allows user to create handle for their profile', function() {
       var nameBody = 'Fake Name';
       var responseJSON = {
         visibleName: {
@@ -95,24 +95,27 @@ describe('app', function() {
       });
     });
 
-    it('shows an error when the server fails to respond to commenting properly', function() {
-      var commentBody = 'fakecomment';
-      var responseJSON = {
-        error: {
-          message: 'Terrible error!'
-        }
-      };
-      var responseBody = JSON.stringify(responseJSON);
-      server.respondWith('POST', '/api/comments',
-        [400, { 'Content-Type': 'application/json' }, responseBody]);
 
-      visit('/profile');
-      fillIn('input.comment', commentBody);
-      click('button.submit');
-      andThen(function(){
-        expect(find('.error').text()).to.eql('Terrible error!');
-      });
-    });
+
+  //This was an error test for adding comments
+    // it.skip('shows an error when the server fails to respond to commenting properly', function() {
+    //   var commentBody = 'fakecomment';
+    //   var responseJSON = {
+    //     error: {
+    //       message: 'Terrible error!'
+    //     }
+    //   };
+    //   var responseBody = JSON.stringify(responseJSON);
+    //   server.respondWith('POST', '/api/comments',
+    //     [400, { 'Content-Type': 'application/json' }, responseBody]);
+
+    //   visit('/profile');
+    //   fillIn('input.comment', commentBody);
+    //   click('button.submit');
+    //   andThen(function(){
+    //     expect(find('.error').text()).to.eql('Terrible error!');
+    //   });
+    // });
 
   });
 });

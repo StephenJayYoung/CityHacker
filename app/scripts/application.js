@@ -25,7 +25,7 @@ App.ApplicationAdapter = DS.RESTAdapter.extend({
 
 App.ProfileRoute = Ember.Route.extend(Ember.AdmitOne.AuthenticatedRouteMixin, {
   model: function() {
-    return this.store.createRecord('comment');
+    return this.store.createRecord('visibleName');
  //   return {};
   }
 });
@@ -33,7 +33,7 @@ App.ProfileRoute = Ember.Route.extend(Ember.AdmitOne.AuthenticatedRouteMixin, {
 
 App.ProfileController = Ember.ObjectController.extend({
   actions: {
-    addComment: function() {
+    addVisibleName: function() {
       var session = this.get('session');
       var self = this;
 
@@ -60,7 +60,7 @@ App.User = DS.Model.extend({
 });
 
 
-App.Comment = DS.Model.extend({
+App.VisibleName = DS.Model.extend({
   body: DS.attr('string')
 });
 
