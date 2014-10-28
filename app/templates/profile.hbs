@@ -1,6 +1,6 @@
 <form>
-  {{input class="comment" type="text" required="true" autofocus="true" placeholder="Comment" value=body}}
-  <button class="submit" {{action 'addComment'}}>Post</button>
+  {{input class="visibleName" type="text" required="true" autofocus="true" placeholder="User Handle" value=body}}
+  <button class="submit" {{action 'addVisibleName'}}>Post</button>
   {{#if error}}<div class="error">{{error.message}}</div>{{/if}}
   <br>
   {{body}}
