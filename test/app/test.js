@@ -52,12 +52,12 @@ describe('app', function() {
       });
     });
 
-    it('allows user to create comment from profile', function() {
-      var commentBody = 'fakecomment';
+    it.skip('allows user to create handle for their profile', function() {
+      var nameBody = 'Fake Name';
       var responseJSON = {
-        comment: {
+        visibleName: {
           id: 1,
-          body: commentBody
+          body: nameBody
         }
       };
       var responseBody = JSON.stringify(responseJSON);
@@ -69,20 +69,20 @@ describe('app', function() {
         [200, { 'Content-Type': 'application/json' }, responseBody]);
 
       visit('/profile');
-      fillIn('input.comment', commentBody);
+      fillIn('input.visibleName', nameBody);
       click('button.submit');
 
       andThen(function(){
         var requestBody = server.requests[0].requestBody;
         var requestJSON = JSON.parse(requestBody);
         expect(requestJSON).to.eql({
-          comment: {
+          visibleName: {
             // when the client made a request, it didn't have an id. it was a
             // new object, so it couldn't have an id yet. the server is
             // responsible for assigning ids. so we send it without one, and
             // the server does its thing & responds eventually with an id.
             // when we implement our server, we should do that same stuff.
-            body: commentBody
+            body: nameBody
           }
         });
         expect(server.requests.length).to.eql(1);

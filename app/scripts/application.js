@@ -6,6 +6,7 @@ App.AdmitOneContainers = {};
 Ember.AdmitOne.setup({ containers: App.AdmitOneContainers });
 
 App.Router.map(function() {
+  this.route('cityhackers');
   this.route('signup');
   this.route('login');
   this.route('logout');
