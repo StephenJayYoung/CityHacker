@@ -3,4 +3,11 @@
 #PLAN:
 
 1. Use google maps to get the api address. Then use that address to get a longitude and a latitude.
-1. Use the google maps geolocation API in order to do this.
+
+#Steps
+1. Figure out which google api to use (Gelocation api?)
+1. Create a route
+1. Plug in the api using ajax and ember syntax
+1. Console log and pull up the appropriate path in order to obtain the long and lat
+1. Return the path, access it through the handlebars api
+1. Test the API to make sure that it is functioning properly. Set up a fake server in order to do this. 
