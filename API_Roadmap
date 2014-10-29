@@ -6,7 +6,7 @@
 
 
 ##Steps
-1. Use the browser method to access the user's current location. This will create an object
+1. Use the browser method to access the user's current location. This will create an object.
 1. Use a callback, and plug this into the gmap api in order to return the name of that location.
 
 1. Figure out which google api to use (Gelocation api?)
