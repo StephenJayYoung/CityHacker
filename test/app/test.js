@@ -23,22 +23,22 @@ describe('app', function() {
     });
   });
   it('will have a home link', function(){
-    visit('/')
+    visit('/');
     andThen(function(){
       expect(find('a.home').length).to.equal(1);
-    })
+    });
   });
   it('will have a signup link ', function(){
-    visit('/')
+    visit('/');
     andThen(function(){
       expect(find('a.signup').length).to.equal(1);
-    })
+    });
   });
   it('will have a login link', function(){
-    visit('/')
+    visit('/');
     andThen(function(){
       expect(find('a.login').length).to.equal(1);
-    })
+    });
   });
 
   describe('when signed in', function() {
