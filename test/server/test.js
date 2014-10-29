@@ -14,5 +14,8 @@
 //   it('has one passing test', function() {
 //     expect(app).to.exist;
 //   });
-//   it('will have more tests');
+//   it('handles PUT /api/users:visibleName', function(){
+//     expect(response.body)to.eql()
+//     expect
+//   });
 // });
