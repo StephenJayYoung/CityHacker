@@ -34,7 +34,6 @@ App.ProfileRoute = Ember.Route.extend(Ember.AdmitOne.AuthenticatedRouteMixin, {
 App.ProfileController = Ember.ObjectController.extend({
   actions: {
     addVisibleName: function() {
-      var session = this.get('session');
       var self = this;
 
       this.set('error', undefined);
