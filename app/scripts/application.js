@@ -141,14 +141,14 @@ var findGmapLocation = function() {
   console.log('Finding location via "browser method"...');
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {
-      console.log("Latitude: " + position.coords.latitude +
-      ", Longitude: " + position.coords.longitude);
+      console.log('Latitude: ' + position.coords.latitude +
+      ', Longitude: ' + position.coords.longitude);
       doSomethingWithPosition(
         position.coords.latitude,
         position.coords.longitude);
     });
   } else {
-    console.log("Geolocation is not supported by this browser.");
+    console.log('Geolocation is not supported by this browser.');
   }
 };
 
