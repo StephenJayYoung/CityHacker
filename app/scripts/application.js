@@ -27,7 +27,7 @@ App.ProfileRoute = Ember.Route.extend(Ember.AdmitOne.AuthenticatedRouteMixin, {
   model: function() {
     // TODO: is this really the right place to do this?
     // whit put some doubt in what he said about this.
-    findGmapLocation();
+    App._findGmapLocation();
     return this.store.createRecord('visibleName');
  //   return {};
   }
@@ -137,30 +137,29 @@ App.SignupController = Ember.ObjectController.extend({
   }
 });
 
-var findGmapLocation = function() {
+App._findGmapLocation = function() {
   console.log('Finding location via "browser method"...');
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {
-      console.log("Latitude: " + position.coords.latitude +
-      ", Longitude: " + position.coords.longitude);
-      doSomethingWithPosition(
+      console.log('Latitude: ' + position.coords.latitude +
+      ', Longitude: ' + position.coords.longitude);
+      App._doSomethingWithPosition(
         position.coords.latitude,
         position.coords.longitude);
     });
   } else {
-    console.log("Geolocation is not supported by this browser.");
+    console.log('Geolocation is not supported by this browser.');
   }
 };
 
 //potentially plug the api in here to access the lat long object
 
-CityHacker.gmapAPIRoute = Ember.Route.extend({
 
 
-var doSomethingWithPosition = function(lat, lng) {
+App._doSomethingWithPosition = function(lat, lng) {
   console.log('Will do something else...');
+  console.log(lat, lng);
 };
 
-});
 // expose App globally
 window.App = App;
