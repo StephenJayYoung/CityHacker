@@ -58,7 +58,7 @@ app.use(methodOverride());
 var api = express.Router();
 
 api.post('/users', admit.create, function(req, res) {
-    console.log(req)
+    console.log(req);
   // user representations accessible via
   // req.auth.user & req.auth.db.user
   res.json({ user: req.auth.user });

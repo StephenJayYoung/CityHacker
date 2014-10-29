@@ -147,7 +147,7 @@ App.SignupController = Ember.ObjectController.extend({
 
 //Code below is for integrating the gmap API
 
-CityHacker.gmapAPIRoute = Ember.Route.extend({
+// CityHacker.gmapAPIRoute = Ember.Route.extend({
   
 //   // Code from previous project
 //   // model: function()
@@ -161,13 +161,13 @@ CityHacker.gmapAPIRoute = Ember.Route.extend({
 //     //   client_id: 'THF0PIAQPEPL3UJZJGVVXKL5S1FM4P54MGZARXUFJ1ZGBENP',
 //     //   client_secret: 'PAY5FKCOQB4NI0CSL5XDXNL1AOA2CA2CWTACTYILINBMK4S0'
 //     // }; --}}
-    var url = "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyDk7gb7P3R4gyAbx_p2MeiTwc90BAxDIWM;
-    return Ember.$.ajax"({
-      type: 'GET',
-      url: url,
-      data: data,
-      dataType: 'JSON'
-    })
+    // var url = "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyDk7gb7P3R4gyAbx_p2MeiTwc90BAxDIWM;
+    // return Ember.$.ajax"({
+    //   type: 'GET',
+    //   url: url,
+    //   data: data,
+    //   dataType: 'JSON'
+    // })
 //     // .then(function(data) {
 //      // var url = data.response.groups[0].items[0].venue.photos.groups[0].items[0].prefix;
 //      //  console.log(data);
@@ -192,7 +192,7 @@ CityHacker.gmapAPIRoute = Ember.Route.extend({
 //       // var url = 'https://www.google.com/images/srpr/logo11w.png';
 //       // return {photoURL: url};
 //     });
-  })
+  // });
 // // });
 
 
