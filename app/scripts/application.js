@@ -162,30 +162,30 @@ CityHacker.gmapAPIRoute = Ember.Route.extend({
 //     //   client_id: 'THF0PIAQPEPL3UJZJGVVXKL5S1FM4P54MGZARXUFJ1ZGBENP',
 //     //   client_secret: 'PAY5FKCOQB4NI0CSL5XDXNL1AOA2CA2CWTACTYILINBMK4S0'
 //     // }; --}}
-    var url = "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyDk7gb7P3R4gyAbx_p2MeiTwc90BAxDIWM;
-    return Ember.$.ajax"({
-      type: 'GET',
-      url: url,
-      data: data,
-      dataType: 'JSON'
-    })
-//     // .then(function(data) {
-//      // var url = data.response.groups[0].items[0].venue.photos.groups[0].items[0].prefix;
-//      //  console.log(data);
-//      //  console.log(data.response);
-//      //  console.log(data.response.groups[0]);
-//      //  console.log(data.response.groups[0].items);
-//       // console.log(data.response.groups[0].items[0]);
-//       // console.log(data.response.groups[0].items[0].venue);
-//       // console.log(data.response.groups[0].items[0].venue.photos);
-//       // console.log(data.response.groups[0].items[0].venue.photos.groups[0]);
-//       // console.log(data.response.groups[0].items[0].venue.photos.groups[0].items[0].prefix;
+//     var url = "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyDk7gb7P3R4gyAbx_p2MeiTwc90BAxDIWM;
+//     return Ember.$.ajax"({
+//       type: 'GET',
+//       url: url,
+//       data: data,
+//       dataType: 'JSON'
+//     })
+// //     // .then(function(data) {
+// //      // var url = data.response.groups[0].items[0].venue.photos.groups[0].items[0].prefix;
+// //      //  console.log(data);
+// //      //  console.log(data.response);
+// //      //  console.log(data.response.groups[0]);
+// //      //  console.log(data.response.groups[0].items);
+// //       // console.log(data.response.groups[0].items[0]);
+// //       // console.log(data.response.groups[0].items[0].venue);
+// //       // console.log(data.response.groups[0].items[0].venue.photos);
+// //       // console.log(data.response.groups[0].items[0].venue.photos.groups[0]);
+// //       // console.log(data.response.groups[0].items[0].venue.photos.groups[0].items[0].prefix;
 
-//       // var photoInfo = data.response.groups[0].items[0].venue.photos.groups[0].items[0];
-//       // var prefix = photoInfo.prefix;
-//       // var suffix = photoInfo.suffix;
-//       // var size = "300x300";
-//       // var url = prefix + size + suffix;
+// //       // var photoInfo = data.response.groups[0].items[0].venue.photos.groups[0].items[0];
+// //       // var prefix = photoInfo.prefix;
+// //       // var suffix = photoInfo.suffix;
+// //       // var size = "300x300";
+// //       // var url = prefix + size + suffix;
 
 
 //       //console log the path, get a url, make sure that url works, set that path equal to url, it will show up in browser
