@@ -153,9 +153,14 @@ var findGmapLocation = function() {
 };
 
 //potentially plug the api in here to access the lat long object
+
+CityHacker.gmapAPIRoute = Ember.Route.extend({
+
+
 var doSomethingWithPosition = function(lat, lng) {
   console.log('Will do something else...');
 };
 
+});
 // expose App globally
 window.App = App;
