@@ -1,0 +1,6 @@
+##gmapAPI
+
+#PLAN:
+
+1. Use google maps to get the api address. Then use that address to get a longitude and a latitude.
+1. Use the google maps geolocation API in order to do this.
