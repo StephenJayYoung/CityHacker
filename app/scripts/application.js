@@ -143,7 +143,11 @@ App._findGmapLocation = function() {
     navigator.geolocation.getCurrentPosition(function(position) {
       console.log('Latitude: ' + position.coords.latitude +
       ', Longitude: ' + position.coords.longitude);
+<<<<<<< HEAD
       App._doSomethingWithPosition(
+=======
+      doSomethingWithPosition(
+>>>>>>> dcb93fef8ad00b0e62d0620a4378c224d8af64e1
         position.coords.latitude,
         position.coords.longitude);
     });
