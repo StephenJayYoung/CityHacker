@@ -3,6 +3,7 @@
 process.env.NODE_ENV = 'test';
 
 require('chai').use(require('sinon-chai'));
+require('bluebird').longStackTraces();
 
 GLOBAL.__fixture = function(name) {
   var _ = require('lodash');

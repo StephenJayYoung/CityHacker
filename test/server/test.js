@@ -4,7 +4,8 @@
 
 // var _ = require('lodash');
 var expect = require('chai').expect;
-var request = require('request');
+var bluebird = require('bluebird');
+var request = bluebird.promisifyAll(require('request'));
 var util = require('util');
 var app = require('../../server/application');
 var server;
@@ -38,12 +39,14 @@ describe('app', function() {
   it.skip('handles PUT /api/users/1', function(done) {
     var data = {
       username: 'Milo',
-      password: 'bark',
+      passwordDigest: 'not-real-digest',
       visibleName: 'Awesome Milo'
     };
     User.forge(data).save().then(function() {
       return request.putAsync(baseURL + '/api/users');
     }).spread(function(response, body) {
+      console.log(response);
+      console.log(body);
       expect(JSON.parse(body)).to.eql({
         users: [{
           id: 1,
