@@ -43,10 +43,10 @@ describe('app', function() {
       visibleName: 'Awesome Milo'
     };
     User.forge(data).save().then(function() {
-      return request.putAsync(baseURL + '/api/users');
+      return request.putAsync(baseURL + '/api/users/1');
     }).spread(function(response, body) {
-      console.log(response);
-      console.log(body);
+      // console.log(response);
+      // console.log(body);
       expect(JSON.parse(body)).to.eql({
         users: [{
           id: 1,

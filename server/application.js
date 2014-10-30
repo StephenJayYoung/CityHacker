@@ -42,7 +42,6 @@ app.use(methodOverride());
 var api = express.Router();
 
 api.post('/users', admit.create, function(req, res) {
-    console.log(req);
   // user representations accessible via
   // req.auth.user & req.auth.db.user
   res.json({ user: req.auth.user });
@@ -51,6 +50,24 @@ api.post('/users', admit.create, function(req, res) {
 api.post('/sessions', admit.authenticate, function(req, res) {
   // user accessible via req.auth
   res.json({ session: req.auth.user });
+});
+
+api.put('/users/:id', function(req, res) {
+  console.log('hi');
+  return User({id: req.body.id}).fetch()
+  .then(function(user) {
+    console.log('the user is %j', user);
+  //   console.log(req.body);
+  //   user.visibleName = req.body.visibleName;
+  //   return user.save();
+  })
+  // .then(function(user) {
+  //   res.send(user);
+  // })
+  // .catch(function(e) {
+  //   res.status(500);
+  //   res.send({ error: e });
+   res.send({});
 });
 
 api.use(admit.authorize);
