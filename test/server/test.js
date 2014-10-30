@@ -36,7 +36,7 @@ describe('app', function() {
     expect(app).to.exist;
   });
 
-  it.skip('handles PUT /api/users/1', function(done) {
+  it('handles PUT /api/users/1', function(done) {
     var data = {
       passwordDigest: 'not-real-digest',
       username: 'Milo',

@@ -58,6 +58,7 @@ api.put('/users/:id', function(req, res) {
   var id = parseInt(params.id);
   return User.where({ id: id }).fetch()
   .then(function(user) {
+    user.set(req.body);
     return user.save();
   })
   .then(function(user) {
