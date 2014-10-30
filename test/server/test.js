@@ -36,30 +36,38 @@ describe('app', function() {
     expect(app).to.exist;
   });
 
-  it('handles PUT /api/users/1', function(done) {
+  it.skip('handles PUT /api/users/1', function(done) {
     var data = {
+      passwordDigest: 'not-real-digest',
+      username: 'Milo',
+    };
+
+    var putData = {
       interests: null,
       location_latitude: null,
       location_longitude: null,
-      passwordDigest: 'not-real-digest',
       picture: null,
       user_email: null,
-      username: 'Milo',
+      username: 'Sir Flops Alot',
       visibleName: 'Awesome Milo'
     };
+
     User.forge(data).save().then(function() {
-      return request.putAsync(baseURL + '/api/users/1');
+      return request.putAsync({
+        url: baseURL + '/api/users/1',
+        json: putData
+      });
     }).spread(function(response, body) {
       // console.log(response);
       // console.log(body);
-      expect(JSON.parse(body)).to.eql({
+      expect(body).to.eql({
           id: 1,
           interests: null,
           location_latitude: null,
           location_longitude: null,
           picture: null,
           user_email: null,
-          username: 'Milo',
+          username: 'Sir Flops Alot',
           visibleName: 'Awesome Milo'
       });
     })
