@@ -54,8 +54,9 @@ api.post('/sessions', admit.authenticate, function(req, res) {
 });
 
 api.put('/users/:id', function(req, res) {
-  return User.where(req.params).fetch()
-  // security stuff
+  var params = req.params;
+  var id = parseInt(params.id);
+  return User.where({ id: id }).fetch()
   .then(function(user) {
     return user.save();
   })
