@@ -8,31 +8,15 @@ var methodOverride = require('method-override');
 var compression = require('compression');
 var favicon = require('serve-favicon');
 var config = require('./config');
+var models = require('./models'),
+  User = models.User;
 
-var knexConfig = require('../knexfile.js')[config.env];
-var knex = require('knex')(knexConfig);
-var bookshelf = require('bookshelf')(knex);
 
 var app = express();
 var api = express.Router();
 var resources = express();
 
 resources.use(express.static(config.public));
-
-
-var User, Token;
-User = bookshelf.Model.extend({
-  tokens: function() {
-    return this.hasMany(Token);
-  },
-  tableName: 'users'
-});
-Token = bookshelf.Model.extend({
-  user: function() {
-    return this.belongsTo(User);
-  },
-  tableName: 'tokens'
-});
 
 var admit = require('admit-one')('bookshelf', {
   bookshelf: { modelClass: User }
