@@ -8,6 +8,7 @@ var methodOverride = require('method-override');
 var compression = require('compression');
 var favicon = require('serve-favicon');
 var config = require('./config');
+var _ = require('lodash');
 var models = require('./models'),
   User = models.User;
 
@@ -53,21 +54,18 @@ api.post('/sessions', admit.authenticate, function(req, res) {
 });
 
 api.put('/users/:id', function(req, res) {
-  console.log('hi');
-  return User({id: req.body.id}).fetch()
+  return User.where(req.params).fetch()
+  // security stuff
   .then(function(user) {
-    console.log('the user is %j', user);
-  //   console.log(req.body);
-  //   user.visibleName = req.body.visibleName;
-  //   return user.save();
+    return user.save();
   })
-  // .then(function(user) {
-  //   res.send(user);
-  // })
-  // .catch(function(e) {
-  //   res.status(500);
-  //   res.send({ error: e });
-   res.send({});
+  .then(function(user) {
+    res.send(_.omit(user.toJSON(), 'passwordDigest'));
+  })
+  .catch(function(e) {
+    res.status(500);
+    res.send({ error: e });
+ });
 });
 
 api.use(admit.authorize);
