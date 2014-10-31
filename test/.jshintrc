@@ -21,6 +21,8 @@
     "App": true,
     "Ember": true,
     "DS": true,
+    "__app": true,
+    "__fixture": true,
 
     "describe": true,
     "it": true,
