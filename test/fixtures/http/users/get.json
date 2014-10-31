@@ -1,0 +1,32 @@
+{
+  "database-users": [{
+    "id": 1,
+    "username": "Andrea"
+  },
+   {
+    "id": 2,
+    "username": "Steve"
+  },
+  {
+    "id": 3,
+    "username": "Leslie"
+  }],
+  "database-friendships": [{
+    "id": 1,
+    "requestUser": null,
+    "recipientUser": null,
+    "acceptID": null,
+    "accepted": null,
+  }, {
+  	"id": 2,
+    "requestUser": null,
+    "recipientUser": null,
+    "acceptID": null,
+    "accepted": null,
+  }, {
+    "id": 3,
+    "requestUser": null,
+    "recipientUser": null,
+    "acceptID": null,
+    "accepted": null,
+	}],
