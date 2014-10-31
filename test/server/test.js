@@ -70,8 +70,22 @@ describe('app', function() {
           username: 'Sir Flops Alot',
           visibleName: 'Awesome Milo'
       });
+      return User.fetchAll();
     })
-    .then(done, done);
+    .then(function(users){
+      expect(users.toJSON()).to.eql([{
+          id: 1,
+          interests: null,
+          location_latitude: null,
+          location_longitude: null,
+          passwordDigest: 'not-real-digest',
+          picture: null,
+          user_email: null,
+          username: 'Sir Flops Alot',
+          visibleName: 'Awesome Milo'
+        }]);
+    })
+    .done(done, done);
 // creates new user
 // adds or changes visible name, interests, location, email, and pictures
   });
