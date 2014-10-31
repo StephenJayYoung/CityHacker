@@ -1,0 +1,57 @@
+{
+  "request": {
+    "url": "/api/users/1",
+    "method": "put",
+    "json": {
+      "interests": null,
+      "location_latitude": null,
+      "location_longitude": null,
+      "picture": null,
+      "user_email": null,
+      "username": "Sir Flops Alot",
+      "visibleName": "Awesome Milo"
+    }
+  },
+  "response": {
+    "json": {
+        "id": 1,
+        "interests": null,
+        "location_latitude": null,
+        "location_longitude": null,
+        "picture": null,
+        "user_email": null,
+        "username": "Sir Flops Alot",
+        "visibleName": "Awesome Milo"
+    }
+  },
+  "database-users": [{
+    "id": 1,
+    "passwordDigest": "not-real-digest",
+    "username": "Milo"
+  }, {
+    "id": 3,
+    "passwordDigest": "not-real-digest",
+    "username": "Tobi"
+  }],
+  "database-users-result": [{
+    "id": 1,
+    "interests": null,
+    "location_latitude": null,
+    "location_longitude": null,
+    "passwordDigest": "not-real-digest",
+    "picture": null,
+    "user_email": null,
+    "username": "Sir Flops Alot",
+    "visibleName": "Awesome Milo"
+  }, {
+    "id": 3,
+    "interests": null,
+    "location_latitude": null,
+    "location_longitude": null,
+    "passwordDigest": "not-real-digest",
+    "picture": null,
+    "user_email": null,
+    "username": "Tobi",
+    "visibleName": null
+  }]
+}
