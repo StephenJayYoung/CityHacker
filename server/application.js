@@ -58,7 +58,9 @@ api.put('/users/:id', function(req, res) {
   var id = parseInt(params.id);
   return User.where({ id: id }).fetch()
   .then(function(user) {
-    user.set(req.body.user); // TODO: discuss security
+    // TODO: what should we do about password, do we want to change passwords?
+    // if so, how?
+    user.set(_.omit(req.body.user, 'password')); // TODO: discuss security
     return user.save();
   })
   .then(function(user) {

@@ -1,19 +1,7 @@
 {
   "request": {
     "url": "/api/users/1",
-    "method": "PUT",
-    "json": {
-      "user": {
-        "interests": null,
-        "location_latitude": null,
-        "location_longitude": null,
-        "picture": null,
-        "password": null,
-        "user_email": null,
-        "username": "Sir Flops Alot",
-        "visibleName": "Awesome Milo"
-      }
-    }
+    "method": "GET"
   },
   "response": {
     "json": {
@@ -30,15 +18,6 @@
     }
   },
   "database-users": [{
-    "id": 1,
-    "passwordDigest": "not-real-digest",
-    "username": "Milo"
-  }, {
-    "id": 3,
-    "passwordDigest": "not-real-digest",
-    "username": "Tobi"
-  }],
-  "database-users-result": [{
     "id": 1,
     "interests": null,
     "location_latitude": null,

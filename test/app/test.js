@@ -2,6 +2,19 @@
 
 var server;
 
+var mockAPI = function(fixturePath) {
+  var fixture = __fixture('http/' + fixturePath);
+  // console.log(JSON.stringify(fixture, undefined, 2));
+  var responseBody = JSON.stringify(fixture.response.json);
+
+  // respondWith is not causing anything to respond RIHGT NOW.
+  // it would have been better named server.respondWhenARequestIsMadeFor,
+  // but everyone would have hated the person who gave that long of a name.
+  server.respondWith(fixture.request.method, fixture.request.url,
+    [200, { 'Content-Type': 'application/json' }, responseBody]);
+  return fixture;
+};
+
 describe('app', function() {
   before(function() { // before all tests, not each test
     server = sinon.fakeServer.create();
@@ -52,29 +65,32 @@ describe('app', function() {
       });
     });
 
-    it.skip('allows user to create handle for their profile', function() {
-      var fixture = __fixture('http/users/put');
-      // console.log(JSON.stringify(fixture, undefined, 2));
-      var nameBody = fixture.request.json.user.visibleName;
-      var responseBody = JSON.stringify(fixture.response.json);
+    it('allows user to create handle for their profile', function() {
 
-      // respondWith is not causing anything to respond RIHGT NOW.
-      // it would have been better named server.respondWhenARequestIsMadeFor,
-      // but everyone would have hated the person who gave that long of a name.
-      server.respondWith(fixture.request.method, fixture.request.url,
-        [200, { 'Content-Type': 'application/json' }, responseBody]);
+      var putFixture = mockAPI('users/put');
+      var getFixture = mockAPI('users/get');
+      var nameBody = putFixture.request.json.user.visibleName;
 
       visit('/profile');
+
+      andThen(function(){
+        var getRequest = server.requests[0];
+        expect(getRequest.url).to.eql(getFixture.request.url);
+        expect(getRequest.method).to.eql(getFixture.request.method);
+      });
+
       fillIn('input.visibleName', nameBody);
       click('button.submit');
 
       andThen(function(){
-        var requestBody = server.requests[0].requestBody;
-        var requestJSON = JSON.parse(requestBody);
-        console.log('The current request: ', JSON.stringify(requestJSON, undefined, 2));
-        console.log('The expected request: ', JSON.stringify(fixture.request.json, undefined, 2));
-        expect(requestJSON).to.eql(fixture.request.json);
-        expect(server.requests.length).to.eql(1);
+        var putRequest = server.requests[1];
+        var putJSON = JSON.parse(putRequest.requestBody);
+        console.log('The current put: ', JSON.stringify(putJSON, undefined, 2));
+        console.log('The expected put: ', JSON.stringify(putFixture.request.json, undefined, 2));
+        expect(putRequest.url).to.eql(putFixture.request.url);
+        expect(putRequest.method).to.eql(putFixture.request.method);
+        expect(putJSON).to.eql(putFixture.request.json);
+        expect(server.requests.length).to.eql(2);
 
         // TODO: add more good expectations. for instance:
         // that you ended up on another page
