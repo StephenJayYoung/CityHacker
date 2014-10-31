@@ -52,20 +52,16 @@ describe('app', function() {
       });
     });
 
-    it('allows user to create handle for their profile', function() {
-      var nameBody = 'Fake Name';
-      var responseJSON = {
-        visibleName: {
-          id: 1,
-          body: nameBody
-        }
-      };
-      var responseBody = JSON.stringify(responseJSON);
+    it.skip('allows user to create handle for their profile', function() {
+      var fixture = __fixture('http/users/put');
+      // console.log(JSON.stringify(fixture, undefined, 2));
+      var nameBody = fixture.request.json.user.visibleName;
+      var responseBody = JSON.stringify(fixture.response.json);
 
       // respondWith is not causing anything to respond RIHGT NOW.
       // it would have been better named server.respondWhenARequestIsMadeFor,
       // but everyone would have hated the person who gave that long of a name.
-      server.respondWith('POST', '/api/comments',
+      server.respondWith(fixture.request.method, fixture.request.url,
         [200, { 'Content-Type': 'application/json' }, responseBody]);
 
       visit('/profile');
@@ -75,16 +71,9 @@ describe('app', function() {
       andThen(function(){
         var requestBody = server.requests[0].requestBody;
         var requestJSON = JSON.parse(requestBody);
-        expect(requestJSON).to.eql({
-          visibleName: {
-            // when the client made a request, it didn't have an id. it was a
-            // new object, so it couldn't have an id yet. the server is
-            // responsible for assigning ids. so we send it without one, and
-            // the server does its thing & responds eventually with an id.
-            // when we implement our server, we should do that same stuff.
-            body: nameBody
-          }
-        });
+        console.log('The current request: ', JSON.stringify(requestJSON, undefined, 2));
+        console.log('The expected request: ', JSON.stringify(fixture.request.json, undefined, 2));
+        expect(requestJSON).to.eql(fixture.request.json);
         expect(server.requests.length).to.eql(1);
 
         // TODO: add more good expectations. for instance:
