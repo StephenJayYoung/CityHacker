@@ -2,6 +2,19 @@
 
 var server;
 
+var mockAPI = function(fixturePath) {
+  var fixture = __fixture('http/' + fixturePath);
+  // console.log(JSON.stringify(fixture, undefined, 2));
+  var responseBody = JSON.stringify(fixture.response.json);
+
+  // respondWith is not causing anything to respond RIHGT NOW.
+  // it would have been better named server.respondWhenARequestIsMadeFor,
+  // but everyone would have hated the person who gave that long of a name.
+  server.respondWith(fixture.request.method, fixture.request.url,
+    [200, { 'Content-Type': 'application/json' }, responseBody]);
+  return fixture;
+};
+
 describe('app', function() {
   before(function() { // before all tests, not each test
     server = sinon.fakeServer.create();
@@ -53,39 +66,31 @@ describe('app', function() {
     });
 
     it('allows user to create handle for their profile', function() {
-      var nameBody = 'Fake Name';
-      var responseJSON = {
-        visibleName: {
-          id: 1,
-          body: nameBody
-        }
-      };
-      var responseBody = JSON.stringify(responseJSON);
 
-      // respondWith is not causing anything to respond RIHGT NOW.
-      // it would have been better named server.respondWhenARequestIsMadeFor,
-      // but everyone would have hated the person who gave that long of a name.
-      server.respondWith('POST', '/api/comments',
-        [200, { 'Content-Type': 'application/json' }, responseBody]);
+      var putFixture = mockAPI('users/put');
+      var getFixture = mockAPI('users/get');
+      var nameBody = putFixture.request.json.user.visibleName;
 
       visit('/profile');
+
+      andThen(function(){
+        var getRequest = server.requests[0];
+        expect(getRequest.url).to.eql(getFixture.request.url);
+        expect(getRequest.method).to.eql(getFixture.request.method);
+      });
+
       fillIn('input.visibleName', nameBody);
       click('button.submit');
 
       andThen(function(){
-        var requestBody = server.requests[0].requestBody;
-        var requestJSON = JSON.parse(requestBody);
-        expect(requestJSON).to.eql({
-          visibleName: {
-            // when the client made a request, it didn't have an id. it was a
-            // new object, so it couldn't have an id yet. the server is
-            // responsible for assigning ids. so we send it without one, and
-            // the server does its thing & responds eventually with an id.
-            // when we implement our server, we should do that same stuff.
-            body: nameBody
-          }
-        });
-        expect(server.requests.length).to.eql(1);
+        var putRequest = server.requests[1];
+        var putJSON = JSON.parse(putRequest.requestBody);
+        console.log('The current put: ', JSON.stringify(putJSON, undefined, 2));
+        console.log('The expected put: ', JSON.stringify(putFixture.request.json, undefined, 2));
+        expect(putRequest.url).to.eql(putFixture.request.url);
+        expect(putRequest.method).to.eql(putFixture.request.method);
+        expect(putJSON).to.eql(putFixture.request.json);
+        expect(server.requests.length).to.eql(2);
 
         // TODO: add more good expectations. for instance:
         // that you ended up on another page

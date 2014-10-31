@@ -55,7 +55,7 @@ GLOBAL.__app = function(app, fn) {
     helpers.testAPI = function(fixtureName) {
       var fixture = __fixture(path.join('http', fixtureName));
       var method = fixture.request.method;
-      var methodName = method + 'Async';
+      var methodName = method.toLowerCase() + 'Async';
       var url = baseURL + fixture.request.url;
       var jsonData = fixture.request.json;
       return request[methodName]({ url: url, json: jsonData })

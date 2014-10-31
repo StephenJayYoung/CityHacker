@@ -28,7 +28,8 @@ App.ProfileRoute = Ember.Route.extend(Ember.AdmitOne.AuthenticatedRouteMixin, {
     // TODO: is this really the right place to do this?
     // whit put some doubt in what he said about this.
     App._findGmapLocation();
-    return this.store.createRecord('visibleName');
+    // TODO: we don't always want the user with id 1
+    return this.store.find('user', 1);
  //   return {};
   }
 });
@@ -40,7 +41,7 @@ App.ProfileController = Ember.ObjectController.extend({
       var self = this;
 
       this.set('error', undefined);
-      this.get('model').save() // create the comment
+      this.get('model').save() // change the visible name to input
       .then(function() {
         // still need to figure out if anything is going to happen here.
       })
@@ -54,16 +55,15 @@ App.ProfileController = Ember.ObjectController.extend({
 });
 
 
-
 App.User = DS.Model.extend({
+  interests: DS.attr('string'),
+  location_latitude: DS.attr('string'),
+  location_longitude: DS.attr('string'),
+  picture: DS.attr('string'),
+  user_email: DS.attr('string'),
   username: DS.attr('string'),
   password: DS.attr('string'),
-  user_email: DS.attr('string')
-});
-
-
-App.VisibleName = DS.Model.extend({
-  body: DS.attr('string')
+  visibleName: DS.attr('string')
 });
 
 App.LoginRoute = Ember.Route.extend({

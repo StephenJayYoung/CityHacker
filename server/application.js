@@ -58,11 +58,13 @@ api.put('/users/:id', function(req, res) {
   var id = parseInt(params.id);
   return User.where({ id: id }).fetch()
   .then(function(user) {
-    user.set(req.body);
+    // TODO: what should we do about password, do we want to change passwords?
+    // if so, how?
+    user.set(_.omit(req.body.user, 'password')); // TODO: discuss security
     return user.save();
   })
   .then(function(user) {
-    res.send(_.omit(user.toJSON(), 'passwordDigest'));
+    res.send({ user: _.omit(user.toJSON(), 'passwordDigest') });
   })
   .catch(function(e) {
     res.status(500);
