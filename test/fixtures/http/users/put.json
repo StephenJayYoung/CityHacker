@@ -3,17 +3,20 @@
     "url": "/api/users/1",
     "method": "put",
     "json": {
-      "interests": null,
-      "location_latitude": null,
-      "location_longitude": null,
-      "picture": null,
-      "user_email": null,
-      "username": "Sir Flops Alot",
-      "visibleName": "Awesome Milo"
+      "user": {
+        "interests": null,
+        "location_latitude": null,
+        "location_longitude": null,
+        "picture": null,
+        "user_email": null,
+        "username": "Sir Flops Alot",
+        "visibleName": "Awesome Milo"
+      }
     }
   },
   "response": {
     "json": {
+      "user": {
         "id": 1,
         "interests": null,
         "location_latitude": null,
@@ -22,6 +25,7 @@
         "user_email": null,
         "username": "Sir Flops Alot",
         "visibleName": "Awesome Milo"
+      }
     }
   },
   "database-users": [{
