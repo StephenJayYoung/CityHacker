@@ -8,31 +8,16 @@ var methodOverride = require('method-override');
 var compression = require('compression');
 var favicon = require('serve-favicon');
 var config = require('./config');
+var _ = require('lodash');
+var models = require('./models'),
+  User = models.User;
 
-var knexConfig = require('../knexfile.js')[config.env];
-var knex = require('knex')(knexConfig);
-var bookshelf = require('bookshelf')(knex);
 
 var app = express();
 var api = express.Router();
 var resources = express();
 
 resources.use(express.static(config.public));
-
-
-var User, Token;
-User = bookshelf.Model.extend({
-  tokens: function() {
-    return this.hasMany(Token);
-  },
-  tableName: 'users'
-});
-Token = bookshelf.Model.extend({
-  user: function() {
-    return this.belongsTo(User);
-  },
-  tableName: 'tokens'
-});
 
 var admit = require('admit-one')('bookshelf', {
   bookshelf: { modelClass: User }
@@ -66,6 +51,25 @@ api.post('/users', admit.create, function(req, res) {
 api.post('/sessions', admit.authenticate, function(req, res) {
   // user accessible via req.auth
   res.json({ session: req.auth.user });
+});
+
+api.put('/users/:id', function(req, res) {
+  var params = req.params;
+  var id = parseInt(params.id);
+  return User.where({ id: id }).fetch()
+  .then(function(user) {
+    // TODO: what should we do about password, do we want to change passwords?
+    // if so, how?
+    user.set(_.omit(req.body.user, 'password')); // TODO: discuss security
+    return user.save();
+  })
+  .then(function(user) {
+    res.send({ user: _.omit(user.toJSON(), 'passwordDigest') });
+  })
+  .catch(function(e) {
+    res.status(500);
+    res.send({ error: e });
+ });
 });
 
 api.use(admit.authorize);

@@ -10,7 +10,7 @@ App.Router.map(function() {
   this.route('signup');
   this.route('login');
   this.route('logout');
-  this.route('profile');
+  this.route('profile');//TODO:resource? nesting the routes in the 
   this.route('gmapAPI');
 
 });
@@ -25,7 +25,11 @@ App.ApplicationAdapter = DS.RESTAdapter.extend({
 
 App.ProfileRoute = Ember.Route.extend(Ember.AdmitOne.AuthenticatedRouteMixin, {
   model: function() {
-    return this.store.createRecord('comment');
+    // TODO: is this really the right place to do this?
+    // whit put some doubt in what he said about this.
+    App._findGmapLocation();
+    // TODO: we don't always want the user with id 1
+    return this.store.find('user', 1);
  //   return {};
   }
 });
@@ -33,12 +37,11 @@ App.ProfileRoute = Ember.Route.extend(Ember.AdmitOne.AuthenticatedRouteMixin, {
 
 App.ProfileController = Ember.ObjectController.extend({
   actions: {
-    addComment: function() {
-      var session = this.get('session');
+    addVisibleName: function() {
       var self = this;
 
       this.set('error', undefined);
-      this.get('model').save() // create the comment
+      this.get('model').save() // change the visible name to input
       .then(function() {
         // still need to figure out if anything is going to happen here.
       })
@@ -52,15 +55,15 @@ App.ProfileController = Ember.ObjectController.extend({
 });
 
 
-
 App.User = DS.Model.extend({
+  interests: DS.attr('string'),
+  location_latitude: DS.attr('string'),
+  location_longitude: DS.attr('string'),
+  picture: DS.attr('string'),
+  user_email: DS.attr('string'),
   username: DS.attr('string'),
-  password: DS.attr('string')
-});
-
-
-App.Comment = DS.Model.extend({
-  body: DS.attr('string')
+  password: DS.attr('string'),
+  visibleName: DS.attr('string')
 });
 
 App.LoginRoute = Ember.Route.extend({
@@ -134,16 +137,26 @@ App.SignupController = Ember.ObjectController.extend({
   }
 });
 
-//This stuff below is for the navigation controller
+App._findGmapLocation = function() {
+  console.log('Finding location via "browser method"...');
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      console.log('Latitude: ' + position.coords.latitude +
+      ', Longitude: ' + position.coords.longitude);
+    });
+  } else {
+    console.log('Geolocation is not supported by this browser.');
+  }
+};
 
-// var NavigationController = Ember.ArrayController.extend({
-//   content: Ember.A([
-//     Ember.Object.create({title: "About", location: 'about', active: null}),
-//   ]),
-// });
+//potentially plug the api in here to access the lat long object
 
-// export default NavigationController;
 
+
+App._doSomethingWithPosition = function(lat, lng) {
+  console.log('Will do something else...');
+  console.log(lat, lng);
+};
 
 // expose App globally
 window.App = App;

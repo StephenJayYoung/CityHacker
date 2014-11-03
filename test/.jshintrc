@@ -2,7 +2,7 @@
   "node": true,
   "browser": true,
   "bitwise": true,
-  "camelcase": true,
+  "camelcase": false,
   "curly": true,
   "eqeqeq": true,
   "immed": true,
@@ -18,9 +18,11 @@
   "trailing": true,
   "smarttabs": true,
   "globals": {
-    "SetupPractise": true,
+    "App": true,
     "Ember": true,
     "DS": true,
+    "__app": true,
+    "__fixture": true,
 
     "describe": true,
     "it": true,
@@ -36,6 +38,7 @@
     "click": true,
     "fillIn": true,
     "andThen": true,
+    "applicationContainer": true,
     "currentRouteName": true,
     "currentPath": true,
     "currentURL": true

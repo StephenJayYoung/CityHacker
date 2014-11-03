@@ -1,0 +1,17 @@
+##gmapAPI Roadmap
+
+#PLAN:
+1. Show the users current location so that users can be matched based on location. Create a button that enables the user to manipulate their desired location.
+1. From the users perspective: the current location will automatically be entered into the app via the browser method. The user will be able to manipulate this by entering a desired location in their profile.
+
+
+##Steps
+1. Use the browser method to access the user's current location. This will create an object.
+1. Use a callback, and plug this into the gmap api in order to return the name of that location.
+
+1. Figure out which google api to use (Gelocation api?)
+1. Create a route
+1. Plug in the api using ajax and ember syntax
+1. Console log and pull up the appropriate path in order to obtain the long and lat
+1. Return the path, access it through the handlebars api
+1. Test the API to make sure that it is functioning properly. Set up a fake server in order to do this.
