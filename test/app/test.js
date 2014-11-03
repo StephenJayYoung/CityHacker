@@ -85,8 +85,6 @@ describe('app', function() {
       andThen(function(){
         var putRequest = server.requests[1];
         var putJSON = JSON.parse(putRequest.requestBody);
-        console.log('The current put: ', JSON.stringify(putJSON, undefined, 2));
-        console.log('The expected put: ', JSON.stringify(putFixture.request.json, undefined, 2));
         expect(putRequest.url).to.eql(putFixture.request.url);
         expect(putRequest.method).to.eql(putFixture.request.method);
         expect(putJSON).to.eql(putFixture.request.json);
