@@ -51,14 +51,12 @@ describe('API for Users', __app(app, function(H) {
     .done(done, done);
   });
 
-  it.skip('handles GET /api/users/1', function(done) {
-    // TODO: un-skip and implement this. steve is pretty sure the test and the
-    // fixture data is 100% right.
+  it('handles GET /api/users/1', function(done) {
     H.setupDatabase(User, 'users/get', 'database-users')
     .then(function() { return H.testAPI('users/get'); })
     .then(function() {
       return H.testDatabaseContents(User, 'users/get',
-        'database-users-result');
+        'database-users');
     })
     .done(done, done);
   });

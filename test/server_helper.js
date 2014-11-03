@@ -58,7 +58,7 @@ GLOBAL.__app = function(app, fn) {
       var methodName = method.toLowerCase() + 'Async';
       var url = baseURL + fixture.request.url;
       var jsonData = fixture.request.json;
-      return request[methodName]({ url: url, json: jsonData })
+      return request[methodName]({ url: url, json: jsonData || true })
       .then(function(args) {
         var body = args[1];
         expect(body).to.eql(fixture.response.json);

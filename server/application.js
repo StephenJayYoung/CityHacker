@@ -52,6 +52,18 @@ api.post('/sessions', admit.authenticate, function(req, res) {
   // user accessible via req.auth
   res.json({ session: req.auth.user });
 });
+api.get('/users/:id', function(req, res) {
+  var params = req.params;
+  var id = parseInt(params.id);
+  User.where({ id: id }).fetch()
+  .then(function(user) {
+    res.send({ user: _.omit(user.toJSON(), 'passwordDigest') });
+  })
+  .catch(function(e) {
+    res.status(500);
+    res.send({ error: e });
+ });
+});
 
 api.put('/users/:id', function(req, res) {
   var params = req.params;

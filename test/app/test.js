@@ -65,7 +65,7 @@ describe('app', function() {
       });
     });
 
-    it.skip('allows user to create handle for their profile', function() {
+    it('allows user to create handle for their profile', function() {
 
       var putFixture = mockAPI('users/put');
       var getFixture = mockAPI('users/get');
