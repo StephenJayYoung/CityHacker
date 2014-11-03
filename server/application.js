@@ -72,6 +72,33 @@ api.put('/users/:id', function(req, res) {
  });
 });
 
+//This coincides with the GET request for the server friendship test (/api/users/2/friends) --to be modified accordingly
+
+api.get('/users/:id/friends', function(req, res) {
+  console.log('hey');
+ //  var params = req.params;
+ //  var id = parseInt(params.id);
+ //  return User.where({ id: id }).fetch()
+ //  .then(function(user) {
+ //    // TODO: what should we do about password, do we want to change passwords?
+ //    // if so, how?
+ //    user.set(_.omit(req.body.user, 'password')); // TODO: discuss security
+ //    return user.save();
+ //  })
+ //  .then(function(user) {
+ //    res.send({ user: _.omit(user.toJSON(), 'passwordDigest') });
+ //  })
+ //  .catch(function(e) {
+ //    res.status(500);
+ //    res.send({ error: e });
+ // });
+});
+
+
+
+
+
+
 api.use(admit.authorize);
 
 api.delete('/sessions/current', admit.invalidate, function(req, res) {
