@@ -25,7 +25,7 @@ App.ApplicationAdapter = DS.RESTAdapter.extend({
 
 App.ProfileRoute = Ember.Route.extend(Ember.AdmitOne.AuthenticatedRouteMixin, {
   model: function() {
-    // TODO: is this really the right place to do this?
+    // TODO: Not sure this is where to do this?
     // whit put some doubt in what he said about this.
     App._findGmapLocation();
     // TODO: we don't always want the user with id 1
