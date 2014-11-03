@@ -27,7 +27,10 @@ App.ProfileRoute = Ember.Route.extend(Ember.AdmitOne.AuthenticatedRouteMixin, {
   model: function() {
     // TODO: is this really the right place to do this?
     // whit put some doubt in what he said about this.
-    App._findGmapLocation();
+    // TODO: Kali and Whit took this out because it's currently not doing
+    // anything and it's visually complex (a.k.a really annoying in Whit-speak)
+    // in the test ouput.
+    // App._findGmapLocation();
     // TODO: we don't always want the user with id 1
     return this.store.find('user', 1);
  //   return {};

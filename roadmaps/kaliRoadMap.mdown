@@ -1,0 +1,36 @@
+KALI'S ROADMAP
+
+###My Job:
+I will be working on the “user” portion of our app. My job is to write client tests primarily, and make sure our server tests keep working. We need to have the ability to post, get, put, delete for the basic user options, including name, username, interests, location (lat), location (long), email, password, user photo, and friends.I’ll also need to make sure there is an attractive front end, but that will come secondary to making sure we have working functionality by Friday.
+
+
+##TODO:
+
+1. Test to make sure all the boxes are on the page (the invisible one)
+1. Test that when you go to the profile page, and you're already logged in as Kali, that it fills in the values for Kali
+
+
+
+##User Behaviors
+
+- Sign In
+- Click CityHackers
+- Click Profile
+- On profile, expect to exist and be able to edit...
+  name
+  username
+  interests
+  location (lat)
+  location (long)
+  email
+  password
+  user photo - jpg with max file size? dimensions?
+  pending friend requests
+  friends
+
+###Questions for Whit
+
+- Can I have one test that checks that each one of the 10 pieces of user data exists?
+- And another test that they are editable?
+- Do I want special file for profile page tests?
+

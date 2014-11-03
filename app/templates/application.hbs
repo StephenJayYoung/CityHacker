@@ -2,9 +2,9 @@
  	{{#link-to 'index' class='home navbar-brand'}}Home{{/link-to}}
   {{#link-to 'signup' class='signup navbar-brand'}}Signup{{/link-to}}
 	{{#if session.isAuthenticated }}
-  {{#link-to 'profile' class='navbar-brand'}}Profile{{ session.username }}{{/link-to}}
- 	{{#link-to 'cityhackers' class='home navbar-brand'}}CityHackers{{/link-to}}
- 	{{#link-to 'logout' class='navbar-brand'}}Logout{{/link-to}}
+  {{#link-to 'profile' class='profile navbar-brand'}}Profile{{ session.username }}{{/link-to}}
+ 	{{#link-to 'cityhackers' class='cityhackers navbar-brand'}}CityHackers{{/link-to}}
+ 	{{#link-to 'logout' class='logout navbar-brand'}}Logout{{/link-to}}
 	{{else}}
   {{#link-to 'login'class='login navbar-brand'}}Login{{/link-to}}
 	{{/if}}

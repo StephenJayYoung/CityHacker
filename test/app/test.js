@@ -98,7 +98,53 @@ describe('app', function() {
       });
     });
 
+    // TODO: once a few more tests have been written, come back and talk to
+    // Whit about how to properly set up the fixtures for all of the tests
+    // below this so that it's not based on the DS cache.
 
+    it('has a profile page', function() {
+      visit('profile');
+      andThen(function() {
+        expect(currentRouteName()).to.equal('profile');
+      });
+    });
+
+    it('will have a home link', function(){
+      visit('profile');
+      andThen(function(){
+        expect(find('a.home').length).to.equal(1);
+      });
+    });
+
+    it('will have a logout link', function(){
+      visit('profile');
+      andThen(function(){
+        expect(find('a.logout').length).to.equal(1);
+      });
+    });
+
+    it('will have a cityHackers link', function(){
+      visit('profile');
+      andThen(function(){
+        expect(find('a.cityhackers').length).to.equal(1);
+      });
+    });
+
+    it('will have a profile link', function(){
+      visit('profile');
+      andThen(function(){
+        expect(find('a.profile').length).to.equal(1);
+      });
+    });
+
+// Ask Whit - Can I make a line or something here to break it up visually?
+
+    it('will display Name as part of user info', function(){
+      visit('profile');
+      andThen(function(){
+        expect(find('input.visibleName').length).to.equal(1);
+      });
+    });
 
   //This was an error test for adding comments
     // it.skip('shows an error when the server fails to respond to commenting properly', function() {
