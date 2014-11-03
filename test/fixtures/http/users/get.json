@@ -6,7 +6,7 @@
   "response": {
     "json": {
       "user": {
-        "id": 1,
+        "id": 2,
         "interests": null,
         "location_latitude": null,
         "location_longitude": null,
@@ -18,7 +18,7 @@
     }
   },
   "database-users": [{
-    "id": 1,
+    "id": 2,
     "interests": null,
     "location_latitude": null,
     "location_longitude": null,
