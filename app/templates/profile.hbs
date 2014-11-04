@@ -1,8 +1,46 @@
 <form>
   {{input class="visibleName" type="text" required="true" autofocus="true" placeholder="User Handle" value=body}}
-  <button class="submit" {{action 'addVisibleName'}}>Post</button>
+  <button class="submit visibleName" {{action 'addVisibleName'}}>Post</button>
   {{#if error}}<div class="error">{{error.message}}</div>{{/if}}
   <br>
   {{body}}
+
+  {{input class="userName" type="text" required="true" autofocus="true" placeholder="User Name" value=body}}
+  <button class="submit" {{action 'addUserName'}}>Post</button>
+  {{#if error}}<div class="error">{{error.message}}</div>{{/if}}
+  <br>
+  {{body}}
+
+  {{input class="interest1" type="text" required="true" autofocus="true" placeholder="Interest1" value=body}}
+  <button class="submit" {{action 'interest1'}}>Post</button>
+  {{#if error}}<div class="error">{{error.message}}</div>{{/if}}
+  <br>
+  {{body}}
+
+  {{input class="interest2" type="text" required="true" autofocus="true" placeholder="Interest2" value=body}}
+  <button class="submit" {{action 'interest2'}}>Post</button>
+  {{#if error}}<div class="error">{{error.message}}</div>{{/if}}
+  <br>
+  {{body}}
+
+
+  {{input class="interest3" type="text" required="true" autofocus="true" placeholder="Interest3" value=body}}
+  <button class="submit" {{action 'interest3'}}>Post</button>
+  {{#if error}}<div class="error">{{error.message}}</div>{{/if}}
+  <br>
+  {{body}}
+
+  {{input class="email" type="text" required="true" autofocus="true" placeholder="email" value=body}}
+  <button class="submit" {{action 'email'}}>Post</button>
+  {{#if error}}<div class="error">{{error.message}}</div>{{/if}}
+  <br>
+  {{body}}
+
+  {{input class="password" type="text" required="true" autofocus="true" placeholder="password" value=body}}
+  <button class="submit" {{action 'password'}}>Post</button>
+  {{#if error}}<div class="error">{{error.message}}</div>{{/if}}
+  <br>
+  {{body}}
+
 </form>
 

@@ -80,7 +80,7 @@ describe('app', function() {
       });
 
       fillIn('input.visibleName', nameBody);
-      click('button.submit');
+      click('button.submit.visibleName');
 
       andThen(function(){
         var putRequest = server.requests[1];
@@ -137,7 +137,7 @@ describe('app', function() {
       });
     });
 
-// Ask Whit - Can I make a line or something here to break it up visually?
+    //---------------------------------------------------------
 
     it('will display Name as part of user info', function(){
       visit('profile');
@@ -146,12 +146,48 @@ describe('app', function() {
       });
     });
 
-    // it('will display User Name as part of user info', function(){
-    //   visit('profile');
-    //   andThen(function(){
-    //     expect(find('input.userName').length).to.equal(1);
-    //   });
-    // });
+    it('will display User Name as part of user info', function(){
+      visit('profile');
+      andThen(function(){
+        expect(find('input.userName').length).to.equal(1);
+      });
+    });
+
+    it('will display Interest1 as part of user info', function(){
+      visit('profile');
+      andThen(function(){
+        expect(find('input.interest1').length).to.equal(1);
+      });
+    });
+
+    it('will display Interest2 as part of user info', function(){
+      visit('profile');
+      andThen(function(){
+        expect(find('input.interest2').length).to.equal(1);
+      });
+    });
+
+    it('will display Interest3 as part of user info', function(){
+      visit('profile');
+      andThen(function(){
+        expect(find('input.interest3').length).to.equal(1);
+      });
+    });
+
+    it('will display email as part of user info', function(){
+      visit('profile');
+      andThen(function(){
+        expect(find('input.email').length).to.equal(1);
+      });
+    });
+
+    it('will display password as part of user info', function(){
+      visit('profile');
+      andThen(function(){
+        expect(find('input.password').length).to.equal(1);
+      });
+    });
+
 
   //This was an error test for adding comments
     // it.skip('shows an error when the server fails to respond to commenting properly', function() {
