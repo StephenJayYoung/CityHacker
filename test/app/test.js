@@ -146,6 +146,13 @@ describe('app', function() {
       });
     });
 
+    // it('will display User Name as part of user info', function(){
+    //   visit('profile');
+    //   andThen(function(){
+    //     expect(find('input.userName').length).to.equal(1);
+    //   });
+    // });
+
   //This was an error test for adding comments
     // it.skip('shows an error when the server fails to respond to commenting properly', function() {
     //   var commentBody = 'fakecomment';
