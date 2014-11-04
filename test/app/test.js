@@ -54,6 +54,8 @@ describe('app', function() {
     });
   });
 
+  // ----------------------------------------------------
+
   describe('when signed in', function() {
     beforeEach(function() {
       // log in a fake user
@@ -137,6 +139,20 @@ describe('app', function() {
       });
     });
 
+    it('will NOT have a login link', function(){
+      visit('profile');
+      andThen(function(){
+        expect(find('a.login').length).to.equal(0);
+      });
+    });
+
+    it('will NOT have a signup link', function(){
+      visit('profile');
+      andThen(function(){
+        expect(find('a.signup').length).to.equal(0);
+      });
+    });
+
     //---------------------------------------------------------
 
     it('will display Name as part of user info', function(){
@@ -150,6 +166,20 @@ describe('app', function() {
       visit('profile');
       andThen(function(){
         expect(find('input.userName').length).to.equal(1);
+      });
+    });
+
+    it('will display email as part of user info', function(){
+      visit('profile');
+      andThen(function(){
+        expect(find('input.email').length).to.equal(1);
+      });
+    });
+
+    it('will display password as part of user info', function(){
+      visit('profile');
+      andThen(function(){
+        expect(find('input.password').length).to.equal(1);
       });
     });
 
@@ -174,19 +204,15 @@ describe('app', function() {
       });
     });
 
-    it('will display email as part of user info', function(){
+    //---------------------------------------------------------
+
+    it.skip('fills in User Info', function(){
       visit('profile');
       andThen(function(){
-        expect(find('input.email').length).to.equal(1);
+        expect(find('input.interest3').length).to.equal(1);
       });
     });
 
-    it('will display password as part of user info', function(){
-      visit('profile');
-      andThen(function(){
-        expect(find('input.password').length).to.equal(1);
-      });
-    });
 
 
   //This was an error test for adding comments

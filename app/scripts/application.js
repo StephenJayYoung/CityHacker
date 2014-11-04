@@ -12,7 +12,7 @@ App.Router.map(function() {
   this.route('logout');
   this.route('profile');//TODO:resource? nesting the routes in the 
   this.route('gmapAPI');
-
+  this.route('picture');
 });
 
 App.Router.reopen({
@@ -55,6 +55,9 @@ App.ProfileController = Ember.ObjectController.extend({
       });
     }
   }
+});
+
+App.PictureRoute = Ember.Route.extend({
 });
 
 
