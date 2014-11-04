@@ -6,8 +6,10 @@ I will be working on the “user” portion of our app. My job is to write clien
 
 ##TODO:
 
-1. Test to make sure all the boxes are on the page (the invisible one)
+1. Test to make sure all the boxes are on the page (the invisible one) X
+1. One submit button X
 1. Test that when you go to the profile page, and you're already logged in as Kali, that it fills in the values for Kali
+1. Gravatar for profile pic
 
 
 
@@ -17,16 +19,16 @@ I will be working on the “user” portion of our app. My job is to write clien
 - Click CityHackers
 - Click Profile
 - On profile, expect to exist and be able to edit...
-  name
-  username
-  interests
-  location (lat)
-  location (long)
-  email
-  password
-  user photo - jpg with max file size? dimensions?
-  pending friend requests
-  friends
+  * name X
+  * username X
+  * interests X
+  * location (lat)
+  * location (long)
+  * email X
+  * password X
+  * user photo - jpg with max file size? dimensions?
+  * pending friend requests
+  * friends
 
 ###Questions for Whit
 
