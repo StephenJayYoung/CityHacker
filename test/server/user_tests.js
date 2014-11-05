@@ -40,7 +40,7 @@ describe('API for Users', __app(app, function(H) {
     // adds or changes visible name, interests, location, email, and pictures
   });
 
-  it('handles GET /api/users/2/friends', function(done) {
+  it.skip('handles GET /api/users/2/friends', function(done) {
     var api = 'users/2/friends';
     H.setupDatabase(User, api, 'database-users')
     .then(function() {
