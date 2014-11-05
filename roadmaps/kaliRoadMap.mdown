@@ -48,3 +48,9 @@ I will be working on the “user” portion of our app. My job is to write clien
 - Am I going to just use a Bootstrap form? I don't want to do the work twice
 - Can I cut and paste Bootstrap profile page?
 
+###Nov 4
+
+- Gravatar image
+- Make profile page pretty
+- Make cityhackers page show all people
+

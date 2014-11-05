@@ -26,12 +26,12 @@
   {{interests}}<br>
 
 
-  {{input class="username" type="text" required="true" autofocus="true" placeholder="User Name" value=username}}<br>
+  {{input class="username form-control" type="text" required="true" autofocus="true" placeholder="User Name" value=username}}<br>
 
-  {{input class="visibleName" type="text" required="true" autofocus="true" placeholder="User Handle" value=visibleName}}
+  {{input class="visibleName form-control" type="text" required="true" autofocus="true" placeholder="User Handle" value=visibleName}}
   <br>
 
-   {{input class="user_email" type="text" required="true" autofocus="true" placeholder="email" value=user_email}}
+   {{input class="user_email form-control" type="text" required="true" autofocus="true" placeholder="email" value=user_email}}
   <br>
 
   {{input class="interests" type="text" required="true" autofocus="true" placeholder="interests" value=interests}}
@@ -43,3 +43,27 @@
 </form>
 
 </div>
+
+
+
+<form role="form">
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputFile">File input</label>
+    <input type="file" id="exampleInputFile">
+    <p class="help-block">Example block-level help text here.</p>
+  </div>
+  <div class="checkbox">
+    <label>
+      <input type="checkbox"> Check me out
+    </label>
+  </div>
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>

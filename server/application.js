@@ -105,7 +105,7 @@ api.get('/users/:id/friends', function(req, res) {
         friendship.accepted === true;
     }
     var filtered = allFriendships.filter(importantThings);
-    console.log(filtered)
+    console.log(filtered);
 
     // we need to get all of the users based on filtered.
 
