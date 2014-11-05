@@ -105,9 +105,31 @@ api.get('/users/:id/friends', function(req, res) {
         friendship.accepted === true;
     }
     var filtered = allFriendships.filter(importantThings);
-    console.log(filtered)
+    console.log(filtered);
 
     // we need to get all of the users based on filtered.
+    // console.log something that has [3,4,5] by looking at filtered.
+
+
+    var userIDs = filtered.map(function(friendship) {
+      if (friendship.requestUser === id) {
+      return friendship.recipientUser;
+    }
+      else if (friendship.recipientUser === id) {
+      return friendship.requestUser;
+    }
+    });
+    console.log(userIDs);
+
+
+
+    // next step:
+    // Users.fetchAll()
+    // .then(function(collection) {
+
+    // };
+
+
 
   })
   .then(function() {
