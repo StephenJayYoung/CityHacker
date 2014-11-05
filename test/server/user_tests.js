@@ -51,6 +51,18 @@ describe('API for Users', __app(app, function(H) {
     .done(done, done);
   });
 
+
+  it.skip('handles GET /api/users with location', function(done) {
+    H.setupDatabase(User, 'users/get-by-location', 'database-users')
+    .then(function(){return H.testAPI('users/get-by-location');})
+    .then(function(){
+      return H.testDatabaseContents(User,
+        'users/get-by-location',
+        'database-users');
+    })
+    .done(done, done);
+  });
+
   it('handles GET /api/users/1', function(done) {
     H.setupDatabase(User, 'users/get', 'database-users')
     .then(function() { return H.testAPI('users/get'); })
