@@ -10,7 +10,8 @@ var favicon = require('serve-favicon');
 var config = require('./config');
 var _ = require('lodash');
 var models = require('./models'),
-  User = models.User;
+  User = models.User,
+  Friendship = models.Friendship;
 
 
 var app = express();
@@ -83,6 +84,71 @@ api.put('/users/:id', function(req, res) {
     res.send({ error: e });
  });
 });
+
+//This coincides with the GET request for the server friendship test (/api/users/2/friends) --to be modified accordingly
+//will need to return a friendship where it accesses a 2 from requestuser or recipientuser
+//and also returns a true. It should log this return in the console.
+
+//Steps: 
+// 1. Access the friends json file - use req.params to do this
+// 2. return all of the info in that gile
+
+api.get('/users/:id/friends', function(req, res) {
+  var params = req.params;  //this checks route params -- /user/:id/friends
+  var id = parseInt(params.id); //this is an id integer from the params
+
+  Friendship.fetchAll()
+  .then(function(collection) {
+    var allFriendships = collection.toJSON();
+    function importantThings(friendship) {
+      return (friendship.requestUser === id || friendship.recipientUser === id) &&
+        friendship.accepted === true;
+    }
+    var filtered = allFriendships.filter(importantThings);
+    console.log(filtered)
+
+    // we need to get all of the users based on filtered.
+
+  })
+  .then(function() {
+    // come back to this later...
+    var users = [];
+    res.json({users: users});
+  });
+  // .then(function(collection) {
+  //   res.send({friends.filtered});
+  // });
+
+
+// console.log(importantThings(things));
+
+
+  // return friends.where({ id: id }).fetchall()
+  // .then(function(friends) {
+  //   // TODO: what should we do about password, do we want to change passwords?
+  //   // if so, how?
+  //   friends.set(_.omit(req.body.friends, 'password')); // TODO: discuss security
+  //   return friends.save();
+
+
+//   .then(function(friends) {
+//     // TODO: what should we do about password, do we want to change passwords?
+//     // if so, how?
+//     friends.set(_.omit(req.body.friends, 'password')); // TODO: discuss security
+//     return friends.save();
+//   })
+//   .then(function(user) {
+//     res.send({ user: _.omit(user.toJSON()) });
+//   })
+//   .catch(function(e) {
+//     res.status(500);
+//     res.send({ error: e });
+//  });
+
+  // this is temporary to make the test not timeout
+  // res.send({});
+});
+
 
 api.use(admit.authorize);
 
