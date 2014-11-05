@@ -1,0 +1,75 @@
+{
+  "request": {
+    "url": "/api/users/getLocation",
+    "method": "GET"
+  },
+  "response": {
+    "json": {
+      "users": [{
+        "id": 3,
+        "interests": null,
+        "location_latitude": 45,
+        "location_longitude": 121,
+        "passwordDigest": "mock-digest",
+        "picture": null,
+        "user_email": null,
+        "username": "Leslie",
+        "visibleName": null
+      }, {
+        "id": 4,
+        "interests": null,
+        "location_latitude": 45,
+        "location_longitude": 122,
+        "passwordDigest": "mock-digest",
+        "picture": null,
+        "user_email": null,
+        "username": "Kali",
+        "visibleName": null
+      }, {
+        "id": 5,
+        "interests": null,
+        "location_latitude": 46,
+        "location_longitude": 122,
+        "passwordDigest": "mock-digest",
+        "picture": null,
+        "user_email": null,
+        "username": "Austin",
+        "visibleName": null
+      }]
+    }
+  },
+  "database-users": [{
+    "id": 1,
+    "location_latitude": 34,
+    "location_longitude": 81,
+    "passwordDigest": "mock-digest",
+    "username": "Andrea"
+  },
+  {
+    "id": 2,
+    "location_latitude": 38,
+    "location_longitude": 121,
+    "passwordDigest": "mock-digest",
+    "username": "Steve"
+  },
+  {
+    "id": 3,
+    "location_latitude": 45,
+    "location_longitude": 121,
+    "passwordDigest": "mock-digest",
+    "username": "Leslie"
+  },
+  {
+    "id": 4,
+    "location_latitude": 45,
+    "location_longitude": 122,
+    "passwordDigest": "mock-digest",
+    "username": "Kali"
+  },
+  {
+    "id": 5,
+    "location_latitude": 46,
+    "location_longitude": 122,
+    "passwordDigest": "mock-digest",
+    "username": "Austin"
+  }],
