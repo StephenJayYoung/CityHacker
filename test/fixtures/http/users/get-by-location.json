@@ -1,6 +1,6 @@
 {
   "request": {
-    "url": "/api/users/getLocation",
+    "url": "/api/users?lat=7&lng=9&radius=9",
     "method": "GET"
   },
   "response": {
@@ -72,4 +72,5 @@
     "location_longitude": 122,
     "passwordDigest": "mock-digest",
     "username": "Austin"
-  }],
+  }]
+}
