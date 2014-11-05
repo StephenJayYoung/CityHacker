@@ -1,7 +1,7 @@
 KALI'S ROADMAP
 
 ###My Job:
-I will be working on the “user” portion of our app. My job is to write client tests primarily, and make sure our server tests keep working. We need to have the ability to post, get, put, delete for the basic user options, including name, username, interests, location (lat), location (long), email, password, user photo, and friends.I’ll also need to make sure there is an attractive front end, but that will come secondary to making sure we have working functionality by Friday.
+I will be working on the “user” portion of our app. My job is to write client tests primarily, and make sure our server tests keep working. We need to have the ability to post, get, put, delete for the basic user options, including name, username, interests, location (lat), location (long), email, password, user photo, and friends. I’ll also need to make sure there is an attractive front end, but that will come secondary to making sure we have working functionality by Friday.
 
 
 ##TODO:
@@ -11,6 +11,16 @@ I will be working on the “user” portion of our app. My job is to write clien
 1. Test that when you go to the profile page, and you're already logged in as Kali, that it fills in the values for Kali
 1. Gravatar for profile pic
 
+##Filling in User Info in order to Test
+
+1. Write a test that ensures the user is logged in
+1. When you access the profile page, the profile page is going to make an ajax request to your server for info about the logged in user
+  - need to make interests one field, not 3 X
+  - fill out get-full-profile-info.json
+  - write failing tests for filling in all user info
+  - condense tests into new describe
+1. Fake response for request being made from step 2
+1. At that point you can test - does the box contain the user name? etc
 
 
 ##User Behaviors
@@ -35,4 +45,6 @@ I will be working on the “user” portion of our app. My job is to write clien
 - Can I have one test that checks that each one of the 10 pieces of user data exists?
 - And another test that they are editable?
 - Do I want special file for profile page tests?
+- Am I going to just use a Bootstrap form? I don't want to do the work twice
+- Can I cut and paste Bootstrap profile page?
 

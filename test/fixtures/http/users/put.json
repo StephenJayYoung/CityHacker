@@ -9,7 +9,7 @@
         "location_longitude": null,
         "picture": null,
         "password": null,
-        "user_email": null,
+        "user_email": "flopsy@milo.com",
         "username": "Sir Flops Alot",
         "visibleName": "Awesome Milo"
       }
@@ -23,7 +23,7 @@
         "location_latitude": null,
         "location_longitude": null,
         "picture": null,
-        "user_email": null,
+        "user_email": "flopsy@milo.com",
         "username": "Sir Flops Alot",
         "visibleName": "Awesome Milo"
       }
