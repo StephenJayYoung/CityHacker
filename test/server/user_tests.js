@@ -47,14 +47,18 @@ describe('API for Users', __app(app, function(H) {
       return H.setupDatabase(Friendship, api,
         'database-friendships');
     })
-    .then(function() { return H.testAPI(api); })
+    .then(function() {
+      return H.testAPI(api, { order: 'users.id' });
+    })
     .done(done, done);
   });
 
 
-  it.skip('handles GET /api/users with location', function(done) {
+  it('handles GET /api/users with location', function(done) {
     H.setupDatabase(User, 'users/get-by-location', 'database-users')
-    .then(function(){return H.testAPI('users/get-by-location');})
+    .then(function(){
+      return H.testAPI('users/get-by-location', { order: 'users.id' });
+    })
     .then(function(){
       return H.testDatabaseContents(User,
         'users/get-by-location',
