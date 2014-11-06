@@ -8,7 +8,6 @@ var methodOverride = require('method-override');
 var compression = require('compression');
 var favicon = require('serve-favicon');
 var config = require('./config');
-var BPromise = require('bluebird');
 var _ = require('lodash');
 var models = require('./models'),
   User = models.User,
@@ -95,7 +94,6 @@ api.get('/users', function(req, res) {
   var findRange = function(qb) {
     qb.whereRaw('("location_latitude" >= ?) and ("location_latitude" <= ?) and ("location_longitude" >= ?) and ("location_longitude" <= ?)',
      [lat-radius, lat+radius, lng-radius, lng+radius]);
-    qb.orderBy('id'); // TODO: do we really want to order here? discuss with steve and whit
   };
   return User.query(findRange).fetchAll()
   .then(function(users) {
@@ -104,7 +102,6 @@ api.get('/users', function(req, res) {
       return _.omit(user, 'passwordDigest');
     });
     res.send({ users: usersWithoutPasswords });
-  //  console.log({ users: usersWithoutPasswords })
   });
 });
 
@@ -122,7 +119,7 @@ api.get('/users/:id/friends', function(req, res) {
 
   var where = function(qb) {
     qb.whereRaw('("requestUser" = ? or "recipientUser" = ?) and ("accepted" = ?)',
-      [id, id, true])
+      [id, id, true]);
   };
 
   Friendship.query(where).fetchAll()

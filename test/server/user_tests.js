@@ -40,22 +40,25 @@ describe('API for Users', __app(app, function(H) {
     // adds or changes visible name, interests, location, email, and pictures
   });
 
-  it.skip('handles GET /api/users/2/friends', function(done) {
-    // TODO: if this test fails, talk to whit about ordering of results
+  it('handles GET /api/users/2/friends', function(done) {
     var api = 'users/2/friends';
     H.setupDatabase(User, api, 'database-users')
     .then(function() {
       return H.setupDatabase(Friendship, api,
         'database-friendships');
     })
-    .then(function() { return H.testAPI(api); })
+    .then(function() {
+      return H.testAPI(api, { order: 'users.id' });
+    })
     .done(done, done);
   });
 
 
   it('handles GET /api/users with location', function(done) {
     H.setupDatabase(User, 'users/get-by-location', 'database-users')
-    .then(function(){return H.testAPI('users/get-by-location');})
+    .then(function(){
+      return H.testAPI('users/get-by-location', { order: 'users.id' });
+    })
     .then(function(){
       return H.testDatabaseContents(User,
         'users/get-by-location',

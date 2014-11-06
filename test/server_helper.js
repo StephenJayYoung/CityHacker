@@ -50,9 +50,16 @@ GLOBAL.__app = function(app, fn) {
      * Test an API using fixture data.
      *
      * @param {String} fixtureName - The fixture (without `fixture/http` in it).
+     * @param {Object} [options] - Options
+     * @param {String} [options.order] - A way to order the response JSON data.
+     * The initial part of the string is expected to be a key through which to
+     * access data to sort & the final part of the string is the key to use to
+     * sort. Example: `users.id` would access `users` in the response data &
+     * sort it by `id`.
      * @return {Promise} The promise for when the API has been tested.
      */
-    helpers.testAPI = function(fixtureName) {
+    helpers.testAPI = function(fixtureName, options) {
+      var opts = options || {};
       var fixture = __fixture(path.join('http', fixtureName));
       var method = fixture.request.method;
       var methodName = method.toLowerCase() + 'Async';
@@ -61,6 +68,14 @@ GLOBAL.__app = function(app, fn) {
       return request[methodName]({ url: url, json: jsonData || true })
       .then(function(args) {
         var body = args[1];
+
+        if (opts.order) {
+          var keys = opts.order.split('.');
+          var objectKey = keys[0];
+          var sortKey = keys[1];
+          body[objectKey] = _.sortBy(body[objectKey], sortKey);
+        }
+
         expect(body).to.eql(fixture.response.json);
       });
     };
