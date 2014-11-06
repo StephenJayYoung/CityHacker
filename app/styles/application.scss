@@ -1,2 +1,20 @@
 @import url(http://fonts.googleapis.com/css?family=Fugaz+One|Open+Sans:400,300);
 @import "caribou";
+
+body, h1, h2, h3, h4, h5, h6 {
+  font-family: courier;
+  font-color: #3D352A;
+}
+
+// .btn-primary {
+//   background-color: #1ab65e;
+// }
+
+// .btn-primary:hover {
+//   background-color: #1ab65e;
+// }
+
+a {
+color: #3D352A;
+text-decoration: none;
+}
