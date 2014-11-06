@@ -98,87 +98,25 @@ api.get('/users/:id/friends', function(req, res) {
   var params = req.params;  //this checks route params -- /user/:id/friends
   var id = parseInt(params.id); //this is an id integer from the params
 
-  Friendship.fetchAll()
+  var where = function(qb) {
+    qb.whereRaw('("requestUser" = ? or "recipientUser" = ?) and ("accepted" = ?)',
+      [id, id, true])
+  };
+
+  Friendship.query(where).fetchAll()
   .then(function(collection) {
-    var allFriendships = collection.toJSON();
-    function importantThings(friendship) {
-      return (friendship.requestUser === id || friendship.recipientUser === id) &&
-        friendship.accepted === true;
-    }
-    var filtered = allFriendships.filter(importantThings);
-    console.log(filtered);
-    // var userIDs = [filtered[0].recipientUser, filtered[1].recipientUser, filtered[2].requestUser];
-    // console.log(userIDs);
-
-    // we need to get all of the users based on filtered.
-    // console.log something that has [3,4,5] by looking at filtered.
-
-
-    var userIDs = filtered.map(function(friendship) {
-      if (friendship.requestUser === id) {
-        return friendship.recipientUser;
-      }
-      else if (friendship.recipientUser === id) {
-        return friendship.requestUser;
-      }
+    var userIDs = collection.toJSON().map(function(friendship) {
+      return friendship.requestUser === id ?
+        friendship.recipientUser :
+        friendship.requestUser;
     }).sort();
-    console.log(userIDs);
-
-    return BPromise.map(userIDs, function(userID) {
-      return User.where({ id: userID }).fetch()
-
-      // return a promise
-      // that promise should be calling a bookshelf method that finds a user
-      // based on the variable userID
-      // return whatever that code was
-      // return { bookshelfUserObjectWithID: userID };
-    });
-
-    // next step:
-    // Users.fetchAll()
-    // .then(function(collection) {
-
-    // };
-
-
+    var whereIDInUserIDs = function(qb) { qb.whereIn('id', userIDs); };
+    return User.query(whereIDInUserIDs).fetchAll();
 
   })
   .then(function(users) {
-    // come back to this later...
-    res.json({users: users['toJSON'] ? users.toJSON() : users });
+    res.json({users: users.toJSON() });
   });
-  // .then(function(collection) {
-  //   res.send({friends.filtered});
-  // });
-
-
-// console.log(importantThings(things));
-
-
-  // return friends.where({ id: id }).fetchall()
-  // .then(function(friends) {
-  //   // TODO: what should we do about password, do we want to change passwords?
-  //   // if so, how?
-  //   friends.set(_.omit(req.body.friends, 'password')); // TODO: discuss security
-  //   return friends.save();
-
-
-//   .then(function(friends) {
-//     // TODO: what should we do about password, do we want to change passwords?
-//     // if so, how?
-//     friends.set(_.omit(req.body.friends, 'password')); // TODO: discuss security
-//     return friends.save();
-//   })
-//   .then(function(user) {
-//     res.send({ user: _.omit(user.toJSON()) });
-//   })
-//   .catch(function(e) {
-//     res.status(500);
-//     res.send({ error: e });
-//  });
-
-  // this is temporary to make the test not timeout
-  // res.send({});
 });
 
 
