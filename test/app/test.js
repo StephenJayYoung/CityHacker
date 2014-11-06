@@ -16,12 +16,12 @@ var mockAPI = function(fixturePath) {
 };
 
 describe('app', function() {
-  before(function() { // before all tests, not each test
+  beforeEach(function() {
     server = sinon.fakeServer.create();
     server.autoRespond = true;
   });
 
-  after(function() {
+  afterEach(function() {
     server.restore();
   });
 
@@ -67,11 +67,14 @@ describe('app', function() {
       });
     });
 
-    it('allows user to create handle for their profile', function() {
+    // TODO: fix this it
+
+    it('allows user to update their profile', function() {
 
       var putFixture = mockAPI('users/put');
       var getFixture = mockAPI('users/get');
       var nameBody = putFixture.request.json.user.visibleName;
+      var email = putFixture.request.json.user.user_email;
 
       visit('/profile');
 
@@ -82,9 +85,11 @@ describe('app', function() {
       });
 
       fillIn('input.visibleName', nameBody);
+      fillIn('input.user_email', email);
       click('button.submit.visibleName');
 
       andThen(function(){
+        // TODO: document all of this
         var putRequest = server.requests[1];
         var putJSON = JSON.parse(putRequest.requestBody);
         expect(putRequest.url).to.eql(putFixture.request.url);
@@ -100,120 +105,88 @@ describe('app', function() {
       });
     });
 
-    // TODO: once a few more tests have been written, come back and talk to
-    // Whit about how to properly set up the fixtures for all of the tests
-    // below this so that it's not based on the DS cache.
+    // -------------------------------------------------------------
 
-    it('has a profile page', function() {
-      visit('profile');
-      andThen(function() {
+    describe('when visiting their profile', function() {
+      beforeEach(function() {
+        mockAPI('users/get-full-profile-info');
+        visit('/profile');
+      });
+
+      it('fills in the user name', function() {
+        expect(find('input.username').val()).to.eql('rramone');
+      });
+
+      it('fills in the visibleName', function() {
+        expect(find('input.visibleName').val()).to.eql('Adventure Pig');
+      });
+
+      it('fills in the user_email', function() {
+        expect(find('input.user_email').val()).to.eql('ramone@gmail.com');
+      });
+
+      it('fills in the user interests', function() {
+        expect(find('input.interests').val()).to.eql('carrots, lettuce, obstacle courses');
+      });
+
+    });
+
+    // -------------------------------------------------------------
+
+    describe('when visiting their profile', function() {
+      beforeEach(function() {
+        mockAPI('users/get-full-profile-info');
+        visit('/profile');
+      });
+
+      it('has a profile page', function() {
         expect(currentRouteName()).to.equal('profile');
       });
-    });
 
-    it('will have a home link', function(){
-      visit('profile');
-      andThen(function(){
+      it('will have a home link', function(){
         expect(find('a.home').length).to.equal(1);
       });
-    });
 
-    it('will have a logout link', function(){
-      visit('profile');
-      andThen(function(){
+      it('will have a logout link', function(){
         expect(find('a.logout').length).to.equal(1);
       });
-    });
 
-    it('will have a cityHackers link', function(){
-      visit('profile');
-      andThen(function(){
+      it('will have a cityHackers link', function(){
         expect(find('a.cityhackers').length).to.equal(1);
       });
-    });
 
-    it('will have a profile link', function(){
-      visit('profile');
-      andThen(function(){
+      it('will have a profile link', function(){
         expect(find('a.profile').length).to.equal(1);
       });
-    });
 
-    it('will NOT have a login link', function(){
-      visit('profile');
-      andThen(function(){
+      it('will NOT have a login link', function(){
         expect(find('a.login').length).to.equal(0);
       });
-    });
 
-    it('will NOT have a signup link', function(){
-      visit('profile');
-      andThen(function(){
+      it('will NOT have a signup link', function(){
         expect(find('a.signup').length).to.equal(0);
       });
-    });
 
-    //---------------------------------------------------------
+      //---------------------------------------------------------
 
-    it('will display Name as part of user info', function(){
-      visit('profile');
-      andThen(function(){
+      it('will display Name as part of user info', function(){
         expect(find('input.visibleName').length).to.equal(1);
       });
-    });
 
-    it('will display User Name as part of user info', function(){
-      visit('profile');
-      andThen(function(){
-        expect(find('input.userName').length).to.equal(1);
+      it('will display User Name as part of user info', function(){
+        expect(find('input.username').length).to.equal(1);
       });
-    });
 
-    it('will display email as part of user info', function(){
-      visit('profile');
-      andThen(function(){
-        expect(find('input.email').length).to.equal(1);
+      it('will display email as part of user info', function(){
+        expect(find('input.user_email').length).to.equal(1);
       });
-    });
 
-    it('will display password as part of user info', function(){
-      visit('profile');
-      andThen(function(){
-        expect(find('input.password').length).to.equal(1);
-      });
-    });
-
-    it('will display Interest1 as part of user info', function(){
-      visit('profile');
-      andThen(function(){
-        expect(find('input.interest1').length).to.equal(1);
-      });
-    });
-
-    it('will display Interest2 as part of user info', function(){
-      visit('profile');
-      andThen(function(){
-        expect(find('input.interest2').length).to.equal(1);
-      });
-    });
-
-    it('will display Interest3 as part of user info', function(){
-      visit('profile');
-      andThen(function(){
-        expect(find('input.interest3').length).to.equal(1);
+      it('will display Interests as part of user info', function(){
+        expect(find('input.interests').length).to.equal(1);
       });
     });
 
     //---------------------------------------------------------
-
-    it.skip('fills in User Info', function(){
-      visit('profile');
-      andThen(function(){
-        expect(find('input.interest3').length).to.equal(1);
-      });
-    });
-
-
 
   //This was an error test for adding comments
     // it.skip('shows an error when the server fails to respond to commenting properly', function() {

@@ -1,37 +1,40 @@
 <div>
 
+{{!--
+
+  interests
+  location_latitude
+  location_longitude
+  picture
+  user_email
+  username
+  password
+  visibleName
+
+ --}}
+
 <div>
   <img {{bind-attr src='picture'}}></img>
 </div>
 
 <form>
 
-  {{bodyUser}}<br>
-  {{bodyvisibleName}}<br>
-  {{bodyEmail}}<br>
-  {{bodyPassword}}<br>
-  {{bodyInterest1}}<br>
-  {{bodyInterest2}}<br>
-  {{bodyInterest3}}<br>
+  {{username}}<br>
+  {{visibleName}}<br>
+  {{user_email}}<br>
+  {{password}}<br>
+  {{interests}}<br>
 
-  {{input class="userName" type="text" required="true" autofocus="true" placeholder="User Name" value=bodyUser}}<br>
 
-  {{input class="visibleName" type="text" required="true" autofocus="true" placeholder="User Handle" value=bodyvisibleName}}
+  {{input class="username form-control" type="text" required="true" autofocus="true" placeholder="User Name" value=username}}<br>
+
+  {{input class="visibleName form-control" type="text" required="true" autofocus="true" placeholder="User Handle" value=visibleName}}
   <br>
 
-   {{input class="email" type="text" required="true" autofocus="true" placeholder="email" value=bodyEmail}}
+   {{input class="user_email form-control" type="text" required="true" autofocus="true" placeholder="email" value=user_email}}
   <br>
 
-  {{input class="password" type="text" required="true" autofocus="true" placeholder="password" value=bodyPassword}}
-  <br>
-
-  {{input class="interest1" type="text" required="true" autofocus="true" placeholder="Interest1" value=bodyInterest1}}
-  <br>
-
-  {{input class="interest2" type="text" required="true" autofocus="true" placeholder="Interest2" value=bodyInterest2}}
-  <br>
-
-  {{input class="interest3" type="text" required="true" autofocus="true" placeholder="Interest3" value=bodyInterest3}}
+  {{input class="interests" type="text" required="true" autofocus="true" placeholder="interests" value=interests}}
   <br>
 
   <button class="submit visibleName" {{action 'addVisibleName'}}>submit</button>
@@ -40,3 +43,27 @@
 </form>
 
 </div>
+
+
+
+<form role="form">
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputFile">File input</label>
+    <input type="file" id="exampleInputFile">
+    <p class="help-block">Example block-level help text here.</p>
+  </div>
+  <div class="checkbox">
+    <label>
+      <input type="checkbox"> Check me out
+    </label>
+  </div>
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>

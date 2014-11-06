@@ -8,6 +8,7 @@ var methodOverride = require('method-override');
 var compression = require('compression');
 var favicon = require('serve-favicon');
 var config = require('./config');
+var BPromise = require('bluebird');
 var _ = require('lodash');
 var models = require('./models'),
   User = models.User,
@@ -98,7 +99,7 @@ api.get('/users', function(req, res) {
     });
     res.send({ users: usersWithoutPasswords });
   //  console.log({ users: usersWithoutPasswords })
-  })
+  });
 });
 
 //This coincides with the GET request for the server friendship test (/api/users/2/friends) --to be modified accordingly
@@ -123,13 +124,44 @@ api.get('/users/:id/friends', function(req, res) {
     var filtered = allFriendships.filter(importantThings);
     console.log(filtered);
 
+    // var userIDs = [filtered[0].recipientUser, filtered[1].recipientUser, filtered[2].requestUser];
+    // console.log(userIDs);
     // we need to get all of the users based on filtered.
+    // console.log something that has [3,4,5] by looking at filtered.
+
+
+    var userIDs = filtered.map(function(friendship) {
+      if (friendship.requestUser === id) {
+        return friendship.recipientUser;
+      }
+      else if (friendship.recipientUser === id) {
+        return friendship.requestUser;
+      }
+    }).sort();
+    console.log(userIDs);
+
+    return BPromise.map(userIDs, function(userID) {
+      return User.where({ id: userID }).fetch();
+
+      // return a promise
+      // that promise should be calling a bookshelf method that finds a user
+      // based on the variable userID
+      // return whatever that code was
+      // return { bookshelfUserObjectWithID: userID };
+    });
+
+    // next step:
+    // Users.fetchAll()
+    // .then(function(collection) {
+
+    // };
+
+
 
   })
-  .then(function() {
+  .then(function(users) {
     // come back to this later...
-    var users = [];
-    res.json({users: users});
+    res.json({users: users['toJSON'] ? users.toJSON() : users });
   });
   // .then(function(collection) {
   //   res.send({friends.filtered});
