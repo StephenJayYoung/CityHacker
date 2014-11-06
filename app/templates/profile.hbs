@@ -1,69 +1,68 @@
 <div>
-
-{{!--
-
-  interests
-  location_latitude
-  location_longitude
-  picture
-  user_email
-  username
-  password
-  visibleName
-
- --}}
-
-<div>
-  <img {{bind-attr src='picture'}}></img>
+  <div>
+    <img {{bind-attr src='picture'}}>
+  </div>
 </div>
 
-<form>
+<div class="container">
+    <h1>Edit Profile</h1>
+    <hr>
+  <div class="row">
+      <!-- left column -->
+      <div class="col-md-3">
+        <div class="text-center">
+          <img src="//placehold.it/100" class="avatar img-circle" alt="avatar">
+        </div>
+      </div>
 
-  {{username}}<br>
-  {{visibleName}}<br>
-  {{user_email}}<br>
-  {{password}}<br>
-  {{interests}}<br>
+      <!-- edit form column -->
+      <div class="col-md-9 personal-info">
+{{!--         <div class="alert alert-info alert-dismissable">
+          <a class="panel-close close" data-dismiss="alert">×</a> 
+          <i class="fa fa-coffee"></i>
+          This is an <strong>.alert</strong>. Use this to show important messages to the user.
+        </div> --}}
+        <h3>Personal info</h3>
+
+        <form class="form-horizontal" role="form">
+          <div class="form-group">
+            <label class="col-lg-3 control-label">UserName:</label>
+            <div class="col-lg-8">
+              {{input class="username form-control" type="text" required="true" autofocus="true" placeholder="User Name" value=username}}
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Handle:</label>
+            <div class="col-lg-8">
+              {{input class="visibleName form-control" type="text" required="true" autofocus="true" placeholder="User Handle" value=visibleName}}
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Email:</label>
+            <div class="col-lg-8">
+              {{input class="user_email form-control" type="text" required="true" autofocus="true" placeholder="email" value=user_email}}
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label">Interests:</label>
+            <div class="col-md-8">
+              {{input class="interests form-control" type="text" required="true" autofocus="true" placeholder="interests" value=interests}}
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label"></label>
+            <div class="col-md-8">
+
+              <button class="submit visibleName btn btn-primary" {{action 'addVisibleName'}}>submit</button>
+              {{#if error}}<div class="error">{{error.message}}</div>{{/if}}
+              <span></span>
+              <input type="reset" class="btn btn-default" value="Cancel">
 
 
-  {{input class="username form-control" type="text" required="true" autofocus="true" placeholder="User Name" value=username}}<br>
-
-  {{input class="visibleName form-control" type="text" required="true" autofocus="true" placeholder="User Handle" value=visibleName}}
-  <br>
-
-   {{input class="user_email form-control" type="text" required="true" autofocus="true" placeholder="email" value=user_email}}
-  <br>
-
-  {{input class="interests" type="text" required="true" autofocus="true" placeholder="interests" value=interests}}
-  <br>
-
-  <button class="submit visibleName" {{action 'addVisibleName'}}>submit</button>
-  {{#if error}}<div class="error">{{error.message}}</div>{{/if}}
-
-</form>
-
+            </div>
+          </div>
+        </form>
+      </div>
+  </div>
 </div>
-
-
-
-<form role="form">
-  <div class="form-group">
-    <label for="exampleInputEmail1">Email address</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-  </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1">Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-  </div>
-  <div class="form-group">
-    <label for="exampleInputFile">File input</label>
-    <input type="file" id="exampleInputFile">
-    <p class="help-block">Example block-level help text here.</p>
-  </div>
-  <div class="checkbox">
-    <label>
-      <input type="checkbox"> Check me out
-    </label>
-  </div>
-  <button type="submit" class="btn btn-default">Submit</button>
-</form>
+<hr>

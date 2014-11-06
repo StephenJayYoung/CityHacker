@@ -1,6 +1,6 @@
 {
   "request": {
-    "url": "/api/users?lat=7&lng=9&radius=9",
+    "url": "/api/users?lat=45&lng=122&radius=9",
     "method": "GET"
   },
   "response": {
@@ -10,7 +10,6 @@
         "interests": null,
         "location_latitude": 45,
         "location_longitude": 121,
-        "passwordDigest": "mock-digest",
         "picture": null,
         "user_email": null,
         "username": "Leslie",
@@ -20,7 +19,6 @@
         "interests": null,
         "location_latitude": 45,
         "location_longitude": 122,
-        "passwordDigest": "mock-digest",
         "picture": null,
         "user_email": null,
         "username": "Kali",
@@ -30,7 +28,6 @@
         "interests": null,
         "location_latitude": 46,
         "location_longitude": 122,
-        "passwordDigest": "mock-digest",
         "picture": null,
         "user_email": null,
         "username": "Austin",

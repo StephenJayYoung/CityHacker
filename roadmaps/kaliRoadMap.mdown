@@ -50,7 +50,14 @@ I will be working on the “user” portion of our app. My job is to write clien
 
 ###Nov 4
 
-- Gravatar image
-- Make profile page pretty
+- Gravatar image, make circular if easy
+- Make profile page pretty X
 - Make cityhackers page show all people
+- don't update pw
+- discuss with group backend API for GET users for CityHackers page
+- Aestheticize profilekkiger and UserName, Personal Info, Cancel
+- MD5 google javascript ember
+
+###Nov 5
+- Name, logo, short description 2-3 sentences, gravatar images
 
