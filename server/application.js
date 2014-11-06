@@ -43,6 +43,11 @@ app.use(methodOverride());
 // api routes
 var api = express.Router();
 
+
+var sanitizeUser = function(user) {
+  return _.omit(user, 'passwordDigest');
+};
+
 api.post('/users', admit.create, function(req, res) {
   // user representations accessible via
   // req.auth.user & req.auth.db.user
@@ -58,7 +63,7 @@ api.get('/users/:id', function(req, res) {
   var id = parseInt(params.id);
   User.where({ id: id }).fetch()
   .then(function(user) {
-    res.send({ user: _.omit(user.toJSON(), 'passwordDigest') });
+    res.send({ user: sanitizeUser(user.toJSON()) });
   })
   .catch(function(e) {
     res.status(500);
@@ -77,7 +82,7 @@ api.put('/users/:id', function(req, res) {
     return user.save();
   })
   .then(function(user) {
-    res.send({ user: _.omit(user.toJSON(), 'passwordDigest') });
+    res.send({ user: sanitizeUser(user.toJSON()) });
   })
   .catch(function(e) {
     res.status(500);
@@ -98,9 +103,7 @@ api.get('/users', function(req, res) {
   return User.query(findRange).fetchAll()
   .then(function(users) {
     var usersWithoutPasswords = users.toJSON()
-    .map(function(user) {
-      return _.omit(user, 'passwordDigest');
-    });
+    .map(sanitizeUser);
     res.send({ users: usersWithoutPasswords });
   });
 });
