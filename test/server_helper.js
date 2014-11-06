@@ -80,7 +80,8 @@ GLOBAL.__app = function(app, fn) {
       return modelClass.fetchAll()
       .then(function(objects) {
         expect(_.sortBy(objects.toJSON(), 'id'))
-          .to.eql(_.sortBy(fixture[fixtureKey], 'id'));
+          .to.eql(_.sortBy(fixture[fixtureKey], 'id'),
+            'database contents do not match');
       });
     };
 

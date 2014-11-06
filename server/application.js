@@ -91,10 +91,14 @@ api.get('/users', function(req, res) {
   var lat = query.lat;
   var lng = query.lng;
   var radius = query.radius;
+
   var findRange = function(qb) {
-    qb.whereBetween('location_latitude', [lat-rad, lat+rad])
+    qb.whereRaw('("location_latitude" >= ?) and ("location_latitude" <= ?) and ("location_longitude" >= ?) and ("location_longitude" <= ?)',
+      [lat-radius, lat+radius, lng-radius, lng+radius]);
+    qb.orderBy('id'); // TODO: do we really want to order here? discuss with steve and whit
+    
   };
-  return User.where({ location_longitude: lng }).fetchAll()
+  return User.query(findRange).fetchAll()
   .then(function(users) {
     var usersWithoutPasswords = users.toJSON()
     .map(function(user) {

@@ -40,7 +40,7 @@ describe('API for Users', __app(app, function(H) {
     // adds or changes visible name, interests, location, email, and pictures
   });
 
-  it('handles GET /api/users/2/friends', function(done) {
+  it.skip('handles GET /api/users/2/friends', function(done) {
     // TODO: if this test fails, talk to whit about ordering of results
     var api = 'users/2/friends';
     H.setupDatabase(User, api, 'database-users')
@@ -53,7 +53,7 @@ describe('API for Users', __app(app, function(H) {
   });
 
 
-  it.skip('handles GET /api/users with location', function(done) {
+  it('handles GET /api/users with location', function(done) {
     H.setupDatabase(User, 'users/get-by-location', 'database-users')
     .then(function(){return H.testAPI('users/get-by-location');})
     .then(function(){
