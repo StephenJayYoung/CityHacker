@@ -109,7 +109,7 @@ api.get('/users/:id/friends', function(req, res) {
       return friendship.requestUser === id ?
         friendship.recipientUser :
         friendship.requestUser;
-    }).sort();
+    });
     var whereIDInUserIDs = function(qb) { qb.whereIn('id', userIDs); };
     return User.query(whereIDInUserIDs).fetchAll();
 

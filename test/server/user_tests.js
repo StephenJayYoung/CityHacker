@@ -41,6 +41,7 @@ describe('API for Users', __app(app, function(H) {
   });
 
   it('handles GET /api/users/2/friends', function(done) {
+    // TODO: if this test fails, talk to whit about ordering of results
     var api = 'users/2/friends';
     H.setupDatabase(User, api, 'database-users')
     .then(function() {
