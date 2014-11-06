@@ -52,7 +52,7 @@ describe('API for Users', __app(app, function(H) {
   });
 
 
-  it.skip('handles GET /api/users with location', function(done) {
+  it('handles GET /api/users with location', function(done) {
     H.setupDatabase(User, 'users/get-by-location', 'database-users')
     .then(function(){return H.testAPI('users/get-by-location');})
     .then(function(){

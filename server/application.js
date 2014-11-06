@@ -85,6 +85,22 @@ api.put('/users/:id', function(req, res) {
  });
 });
 
+api.get('/users', function(req, res) {
+  var query = req.query;
+  var lat = query.lat;
+  var lng = query.lng;
+  var radius = query.radius;
+  return User.where({ location_longitude: lng }).fetchAll()
+  .then(function(users) {
+    var usersWithoutPasswords = users.toJSON()
+    .map(function(user) {
+      return _.omit(user, 'passwordDigest');
+    });
+    res.send({ users: usersWithoutPasswords });
+  //  console.log({ users: usersWithoutPasswords })
+  })
+});
+
 //This coincides with the GET request for the server friendship test (/api/users/2/friends) --to be modified accordingly
 //will need to return a friendship where it accesses a 2 from requestuser or recipientuser
 //and also returns a true. It should log this return in the console.
@@ -105,7 +121,7 @@ api.get('/users/:id/friends', function(req, res) {
         friendship.accepted === true;
     }
     var filtered = allFriendships.filter(importantThings);
-    console.log(filtered)
+    console.log(filtered);
 
     // we need to get all of the users based on filtered.
 
