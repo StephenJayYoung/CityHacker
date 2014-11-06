@@ -91,6 +91,7 @@ api.get('/users', function(req, res) {
   var lat = query.lat;
   var lng = query.lng;
   var radius = query.radius;
+  //var findRange = function(lat, lng, radius) {};
   return User.where({ location_longitude: lng }).fetchAll()
   .then(function(users) {
     var usersWithoutPasswords = users.toJSON()
@@ -122,7 +123,7 @@ api.get('/users/:id/friends', function(req, res) {
         friendship.accepted === true;
     }
     var filtered = allFriendships.filter(importantThings);
-    console.log(filtered);
+    //console.log(filtered);
 
     // var userIDs = [filtered[0].recipientUser, filtered[1].recipientUser, filtered[2].requestUser];
     // console.log(userIDs);
