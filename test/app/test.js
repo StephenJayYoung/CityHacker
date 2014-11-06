@@ -69,7 +69,7 @@ describe('app', function() {
 
     // TODO: fix this it
 
-    it.skip('allows user to update their profile', function() {
+    it('allows user to update their profile', function() {
 
       var putFixture = mockAPI('users/put');
       var getFixture = mockAPI('users/get');
@@ -188,25 +188,6 @@ describe('app', function() {
 
     //---------------------------------------------------------
 
-  //This was an error test for adding comments
-    // it.skip('shows an error when the server fails to respond to commenting properly', function() {
-    //   var commentBody = 'fakecomment';
-    //   var responseJSON = {
-    //     error: {
-    //       message: 'Terrible error!'
-    //     }
-    //   };
-    //   var responseBody = JSON.stringify(responseJSON);
-    //   server.respondWith('POST', '/api/comments',
-    //     [400, { 'Content-Type': 'application/json' }, responseBody]);
-
-    //   visit('/profile');
-    //   fillIn('input.comment', commentBody);
-    //   click('button.submit');
-    //   andThen(function(){
-    //     expect(find('.error').text()).to.eql('Terrible error!');
-    //   });
-    // });
-
+  
   });
 });
