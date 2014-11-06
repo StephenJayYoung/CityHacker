@@ -91,7 +91,9 @@ api.get('/users', function(req, res) {
   var lat = query.lat;
   var lng = query.lng;
   var radius = query.radius;
-  //var findRange = function(lat, lng, radius) {};
+  var findRange = function(qb) {
+    qb.whereBetween('location_latitude', [lat-rad, lat+rad])
+  };
   return User.where({ location_longitude: lng }).fetchAll()
   .then(function(users) {
     var usersWithoutPasswords = users.toJSON()

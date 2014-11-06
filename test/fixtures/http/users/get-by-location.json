@@ -1,6 +1,6 @@
 {
   "request": {
-    "url": "/api/users?lat=45&lng=122&radius=9",
+    "url": "/api/users?lat=45&lng=122&radius=2",
     "method": "GET"
   },
   "response": {
