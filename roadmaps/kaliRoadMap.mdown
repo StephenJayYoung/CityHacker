@@ -59,5 +59,15 @@ I will be working on the “user” portion of our app. My job is to write clien
 - MD5 google javascript ember
 
 ###Nov 5
-- Name, logo, short description 2-3 sentences, gravatar images
-
+- Name, logo, short description 2-3 sentences, gravatar images, get started
+- CityHackers page - one image to fill screen, next button?
+- Rating for each interest, short bio
+- Brainstorm verbiage
+- Interests can be active/inactive
+- I need to make a grid for CityHackers page. Want photos to fill right and down. Want to be responsive. How many place holder profiles do I need?
+- Gravatar image placeholder needs to receive email as entered in Email box and display image
+- Read about Bootstrap grids
+- Check that there is a place for an image and image has a value
+- Test that when you are on the landing page, sign up/login in/view cityhackers, etc is appropriate 
+- Can I work with some fake data to make sure it is laying out the stuff on the grid? Will that be like a handlebars input thingy that looks for a css selector? It will do an API GET for profiles...
+- let users add URL to profiles

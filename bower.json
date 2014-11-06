@@ -9,7 +9,8 @@
     "ember": "^1.5.1",
     "handlebars": "^1.2.1",
     "ember-data": "^1.0.0-beta.8",
-    "admit-one-ember": "~0.1.4"
+    "admit-one-ember": "~0.1.4",
+    "js-md5": "~1.1.0"
   },
   "devDependencies": {
     "ember-mocha-adapter": "teddyzeenny/ember-mocha-adapter#master"

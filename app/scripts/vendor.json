@@ -6,6 +6,7 @@
     "app/bower_components/ember-data/ember-data<%= ember_suffix %>.js",
     "app/bower_components/bootstrap-sass/js/affix.js",
     "app/bower_components/admit-one-ember/dist/admit-one-ember.js",
+    "app/bower_components/js-md5/js/md5.js",
     "app/bower_components/bootstrap-sass/js/alert.js",
     "app/bower_components/bootstrap-sass/js/dropdown.js",
     "app/bower_components/bootstrap-sass/js/tooltip.js",
