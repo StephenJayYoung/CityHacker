@@ -88,15 +88,14 @@ api.put('/users/:id', function(req, res) {
 
 api.get('/users', function(req, res) {
   var query = req.query;
-  var lat = query.lat;
-  var lng = query.lng;
-  var radius = query.radius;
+  var lat = parseFloat(query.lat);
+  var lng = parseFloat(query.lng);
+  var radius = parseFloat(query.radius);
 
   var findRange = function(qb) {
     qb.whereRaw('("location_latitude" >= ?) and ("location_latitude" <= ?) and ("location_longitude" >= ?) and ("location_longitude" <= ?)',
-      [lat-radius, lat+radius, lng-radius, lng+radius]);
+     [lat-radius, lat+radius, lng-radius, lng+radius]);
     qb.orderBy('id'); // TODO: do we really want to order here? discuss with steve and whit
-    
   };
   return User.query(findRange).fetchAll()
   .then(function(users) {

@@ -89,5 +89,16 @@
     "picture": null,
     "user_email": null,
     "visibleName": null
+  },
+  {
+    "id": 6,
+    "location_latitude": 45,
+    "location_longitude": 221,
+    "passwordDigest": "mock-digest",
+    "username": "Whitney",
+    "interests": null,
+    "picture": null,
+    "user_email": null,
+    "visibleName": null
   }]
 }
