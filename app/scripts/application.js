@@ -68,9 +68,9 @@ App.GravatarImageComponent = Ember.Component.extend({
 });
 
 App.UsersRoute = Ember.Route.extend({
-  // model: function() {
-  //   return this.store.find('users');
-  // }
+  model: function() {
+    return this.store.find('user');
+  }
 });
 
 App.UserController = Ember.ObjectController.extend({
@@ -80,6 +80,7 @@ App.UserController = Ember.ObjectController.extend({
 
 App.UsersController = Ember.ArrayController.extend({
   itemController: 'user'
+  //filteBy('location')
   //store.find users omit currently signed in person (at some point find users based on location)
   // for each user we want the username, intrests, picture
 });

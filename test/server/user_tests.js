@@ -76,4 +76,14 @@ describe('API for Users', __app(app, function(H) {
     })
     .done(done, done);
   });
+
+  it('handles GET /api/users', function(done) {
+    H.setupDatabase(User, 'users/users', 'database-users')
+    .then(function() { return H.testAPI('users/users'); })
+    .then(function() {
+      return H.testDatabaseContents(User, 'users/users',
+        'database-users');
+    })
+    .done(done, done);
+  });
 }));

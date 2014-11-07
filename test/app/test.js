@@ -194,15 +194,16 @@ describe('app', function() {
         expect(currentRouteName()).to.equal('users');
       });
 
-      it('has a list of users', function(){
-      //expect ul.li user will how ever many users there are 
-        expect().to.equal();
+      // TODO: when kali finishes showing all users, this should pass. it may need
+      // to be tweaked slightly (like different css selectors).
+      it.skip('has a list of users', function(){
+        expect(find('ul li').length).to.equal(6);
       });
 
       //click('button.submit.addFriend' for user steve);
-        andThen(function(){
-          // get request for friendship steve's recipientUser key will equal 1
-          expect().to.equal();
+      andThen(function(){
+        // get request for friendship steve's recipientUser key will equal 1
+        expect().to.equal();
       });
 
       //---------------------------------------------------------

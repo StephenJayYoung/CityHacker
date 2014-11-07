@@ -58,6 +58,7 @@ api.post('/sessions', admit.authenticate, function(req, res) {
   // user accessible via req.auth
   res.json({ session: req.auth.user });
 });
+
 api.get('/users/:id', function(req, res) {
   var params = req.params;
   var id = parseInt(params.id);
@@ -96,15 +97,24 @@ api.get('/users', function(req, res) {
   var lng = parseFloat(query.lng);
   var radius = parseFloat(query.radius);
 
-  var findRange = function(qb) {
-    qb.whereRaw('("location_latitude" >= ?) and ("location_latitude" <= ?) and ("location_longitude" >= ?) and ("location_longitude" <= ?)',
-     [lat-radius, lat+radius, lng-radius, lng+radius]);
-  };
-  return User.query(findRange).fetchAll()
+  var collection = User;
+  if (lat && lng && radius) {
+    var findRange = function(qb) {
+      qb.whereRaw('("location_latitude" >= ?) and ("location_latitude" <= ?) and ("location_longitude" >= ?) and ("location_longitude" <= ?)',
+       [lat-radius, lat+radius, lng-radius, lng+radius]);
+    };
+    collection = User.query(findRange);
+  }
+
+  return collection.fetchAll()
   .then(function(users) {
     var usersWithoutPasswords = users.toJSON()
     .map(sanitizeUser);
     res.send({ users: usersWithoutPasswords });
+  })
+  .catch(function(e) {
+    res.status(500);
+    res.send({ error: e });
   });
 });
 
