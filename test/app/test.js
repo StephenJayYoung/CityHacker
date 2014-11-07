@@ -152,7 +152,7 @@ describe('app', function() {
       });
 
       it('will have a cityHackers link', function(){
-        expect(find('a.cityhackers').length).to.equal(1);
+        expect(find('a.users').length).to.equal(1);
       });
 
       it('will have a profile link', function(){
@@ -194,15 +194,17 @@ describe('app', function() {
       });
 
       it('has a cityhackers page', function() {
-        expect(currentRouteName()).to.equal('cityhackers');
+        expect(currentRouteName()).to.equal('users');
       });
 
-      it.skip('has a list of users', function(){
+      it('has a list of users', function(){
+      //expect ul.li user will how ever many users there are 
         expect().to.equal();
       });
 
-      //click('button.user');
+      //click('button.submit.addFriend' for user steve);
         andThen(function(){
+          // get request for friendship steve's recipientUser key will equal 1
           expect().to.equal();
       });
     });

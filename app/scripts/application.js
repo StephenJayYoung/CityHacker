@@ -6,7 +6,7 @@ App.AdmitOneContainers = {};
 Ember.AdmitOne.setup({ containers: App.AdmitOneContainers });
 
 App.Router.map(function() {
-  this.route('cityhackers');
+  this.route('users', { path: '/cityhackers' });
   this.route('signup');
   this.route('login');
   this.route('logout');
@@ -40,7 +40,7 @@ App.ProfileRoute = Ember.Route.extend(Ember.AdmitOne.AuthenticatedRouteMixin, {
 
 App.ProfileController = Ember.ObjectController.extend({
   actions: {
-    addVisibleName: function() {
+    updateUserProfile: function() {
       var self = this;
 
       this.set('error', undefined);
@@ -69,6 +69,20 @@ App.GravatarImageComponent = Ember.Component.extend({
   }.property('email', 'size')
 });
 
+App.UsersRoute = Ember.Route.extend({
+  // model users
+});
+
+App.UserController = Ember.ObjectController.extend({
+  // when button for each user is clicked send friend request
+  // grey out when the request has been made.
+});
+
+App.UsersController = Ember.ArrayController.extend({
+  itemController: 'user'
+  //store.find users omit currently signed in person (at some point find users based on location)
+  // for each user we want the username, intrests, picture
+});
 
 App.User = DS.Model.extend({
   interests: DS.attr('string'),
