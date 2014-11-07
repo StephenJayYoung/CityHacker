@@ -26,7 +26,7 @@
     "chalk": "^0.4.0",
     "connect-livereload": "^0.4.0",
     "coveralls": "^2.10.0",
-    "gulp": "^3.5.2",
+    "gulp": "^3.8.10",
     "gulp-cached": "^0.0.3",
     "gulp-clean": "^0.3.0",
     "gulp-concat": "^2.1.7",
