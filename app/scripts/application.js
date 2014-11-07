@@ -68,9 +68,9 @@ App.GravatarImageComponent = Ember.Component.extend({
 });
 
 App.UsersRoute = Ember.Route.extend({
-  model: function() {
-    return this.store.find('user');
-  }
+  // model: function() {
+  //   return this.store.find('users');
+  // }
 });
 
 App.UserController = Ember.ObjectController.extend({
