@@ -10,7 +10,7 @@ App.Router.map(function() {
   this.route('signup');
   this.route('login');
   this.route('logout');
-  this.route('profile');//TODO:resource? nesting the routes in the 
+  this.route('profile');
   this.route('gmapAPI');
   this.route('picture');
 });

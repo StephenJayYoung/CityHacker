@@ -187,7 +187,24 @@ describe('app', function() {
     });
 
     //---------------------------------------------------------
+    describe('when visiting the cityhackers', function() {
+      beforeEach(function() {
+        mockAPI('users/get-full-profile-info');
+        visit('/cityhackers');
+      });
 
-  
+      it('has a cityhackers page', function() {
+        expect(currentRouteName()).to.equal('cityhackers');
+      });
+
+      it.skip('has a list of users', function(){
+        expect().to.equal();
+      });
+
+      //click('button.user');
+        andThen(function(){
+          expect().to.equal();
+      });
+    });
   });
 });
