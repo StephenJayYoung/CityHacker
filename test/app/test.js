@@ -207,10 +207,6 @@ describe('app', function() {
 
       //---------------------------------------------------------
 
-      it('feeds user_email into gravatar', function() {
-        expect(find('input.user_email').val()).to.eql('ramone@gmail.com');
-      });
-
     });
   });
 });
