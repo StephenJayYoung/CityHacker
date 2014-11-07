@@ -68,6 +68,11 @@ I will be working on the “user” portion of our app. My job is to write clien
 - Gravatar image placeholder needs to receive email as entered in Email box and display image
 - Read about Bootstrap grids
 - Check that there is a place for an image and image has a value
-- Test that when you are on the landing page, sign up/login in/view cityhackers, etc is appropriate 
 - Can I work with some fake data to make sure it is laying out the stuff on the grid? Will that be like a handlebars input thingy that looks for a css selector? It will do an API GET for profiles...
 - let users add URL to profiles
+- Everyone gets logged in as user 1, that's not right
+- Ask my team if anyone has user listing functionality supported yet, alternatively fake by implementing route for cityHackers and populating with fake user data
+
+- Test that when you are on the landing page, sign up/login in/view cityhackers, etc is appropriate
+
+Make sure when we go to cityHackers it pulls all the users
