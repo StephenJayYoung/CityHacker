@@ -31,8 +31,8 @@ App.ProfileRoute = Ember.Route.extend(Ember.AdmitOne.AuthenticatedRouteMixin, {
     // anything and it's visually complex (a.k.a really annoying in Whit-speak)
     // in the test ouput.
     // App._findGmapLocation();
-    // TODO: we don't always want the user with id 1
-    return this.store.find('user', 1);
+    var id = this.get('session').get('id');
+    return this.store.find('user', id);
   }
 });
 
@@ -113,7 +113,7 @@ App.LoginController = Ember.Controller.extend({
       var credentials = this.getProperties('username', 'password');
       this.set('error', undefined);
       this.set('password', undefined);
-      session.authenticate(credentials).then(function() {
+      session.authenticate(credentials).then(function(user) {
         var attemptedTransition = self.get('attemptedTransition');
         if (attemptedTransition) {
           attemptedTransition.retry();
@@ -155,7 +155,8 @@ App.SignupController = Ember.ObjectController.extend({
       this.set('error', undefined);
       this.get('model').save() // create the user
       .then(function() {
-        session.login({ username: self.get('model.username') });
+        var user = self.get('model');
+        session.login(user.getProperties('username', 'id'));
         self.transitionToRoute('profile');
       })
       .catch(function(error) {
@@ -168,7 +169,6 @@ App.SignupController = Ember.ObjectController.extend({
 });
 
 App._findGmapLocation = function() {
-  console.log('Finding location via "browser method"...');
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {
       console.log('Latitude: ' + position.coords.latitude +

@@ -68,6 +68,7 @@ describe('app', function() {
       var container = applicationContainer();
       var session = container.lookup('auth-session:main');
       session.set('content', {
+        id: 1,
         username: 'fake-username',
         token: 'fake-token'
       });
