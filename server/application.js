@@ -49,9 +49,18 @@ var sanitizeUser = function(user) {
 };
 
 api.post('/users', admit.create, function(req, res) {
-  // user representations accessible via
-  // req.auth.user & req.auth.db.user
-  res.json({ user: req.auth.user });
+  var requestUser = req.body.user;
+  var responseUser = req.auth.user;
+  var dbUser = req.auth.db.user;
+  responseUser.user_email = requestUser.user_email;
+  dbUser.set('user_email', requestUser.user_email);
+  dbUser.save().then(function() {
+    res.json({ user: responseUser });
+  })
+  .catch(function(e) {
+    res.status(500);
+    res.send({ error: e });
+  });
 });
 
 api.post('/sessions', admit.authenticate, function(req, res) {
