@@ -33,7 +33,6 @@ App.ProfileRoute = Ember.Route.extend(Ember.AdmitOne.AuthenticatedRouteMixin, {
     // App._findGmapLocation();
     // TODO: we don't always want the user with id 1
     return this.store.find('user', 1);
- //   return {};
   }
 });
 
@@ -44,9 +43,8 @@ App.ProfileController = Ember.ObjectController.extend({
       var self = this;
 
       this.set('error', undefined);
-      this.get('model').save() // change the visible name to input
+      this.get('model').save()
       .then(function() {
-        // still need to figure out if anything is going to happen here.
       })
       .catch(function(error) {
         if (error.responseJSON) { error = error.responseJSON; }
@@ -70,7 +68,9 @@ App.GravatarImageComponent = Ember.Component.extend({
 });
 
 App.UsersRoute = Ember.Route.extend({
-  // model users
+  model: function() {
+    return this.store.find('user');
+  }
 });
 
 App.UserController = Ember.ObjectController.extend({

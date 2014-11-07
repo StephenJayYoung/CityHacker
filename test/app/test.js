@@ -1,12 +1,18 @@
 'use strict';
 
 var server;
+    /**
+     * StubAPI creates a stub server script for
+     * testing.
+     *
+     *@param {String} fixturePath - Path for type of request (get or put)
+     *@returns {Object} fixture - JSON Object that was requested from the DB.
+     *
+     */
 
-var mockAPI = function(fixturePath) {
+var stubAPI = function(fixturePath) {
   var fixture = __fixture('http/' + fixturePath);
-  // console.log(JSON.stringify(fixture, undefined, 2));
   var responseBody = JSON.stringify(fixture.response.json);
-
   // respondWith is not causing anything to respond RIHGT NOW.
   // it would have been better named server.respondWhenARequestIsMadeFor,
   // but everyone would have hated the person who gave that long of a name.
@@ -67,12 +73,10 @@ describe('app', function() {
       });
     });
 
-    // TODO: fix this it
+    it('allows client to update their profile', function() {
 
-    it('allows user to update their profile', function() {
-
-      var putFixture = mockAPI('users/put');
-      var getFixture = mockAPI('users/get');
+      var putFixture = stubAPI('users/put');
+      var getFixture = stubAPI('users/get');
       var nameBody = putFixture.request.json.user.visibleName;
       var email = putFixture.request.json.user.user_email;
 
@@ -86,22 +90,15 @@ describe('app', function() {
 
       fillIn('input.visibleName', nameBody);
       fillIn('input.user_email', email);
-      click('button.submit.visibleName');
+      click('button.submit.updateUserProfile');
 
       andThen(function(){
-        // TODO: document all of this
         var putRequest = server.requests[1];
         var putJSON = JSON.parse(putRequest.requestBody);
         expect(putRequest.url).to.eql(putFixture.request.url);
         expect(putRequest.method).to.eql(putFixture.request.method);
         expect(putJSON).to.eql(putFixture.request.json);
         expect(server.requests.length).to.eql(2);
-
-        // TODO: add more good expectations. for instance:
-        // that you ended up on another page
-        // that some content appeared somewhere
-        // expect(currentURL()).to.equal('/profile');
-        // expect(comment).to.equal('fakecomment');
       });
     });
 
@@ -109,7 +106,7 @@ describe('app', function() {
 
     describe('when visiting their profile', function() {
       beforeEach(function() {
-        mockAPI('users/get-full-profile-info');
+        stubAPI('users/get-full-profile-info');
         visit('/profile');
       });
 
@@ -135,7 +132,7 @@ describe('app', function() {
 
     describe('when visiting their profile', function() {
       beforeEach(function() {
-        mockAPI('users/get-full-profile-info');
+        stubAPI('users/get-full-profile-info');
         visit('/profile');
       });
 
@@ -189,7 +186,7 @@ describe('app', function() {
     //---------------------------------------------------------
     describe('when visiting the cityhackers', function() {
       beforeEach(function() {
-        mockAPI('users/get-full-profile-info');
+        stubAPI('users/users');
         visit('/cityhackers');
       });
 
