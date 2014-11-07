@@ -1,10 +1,11 @@
 {{!-- This is the Bootsnipp http://bootsnipp.com/snippets/featured/310-user-profile-in-modal-window --}}
+{{#each}}
 <div class="container">
     <div class="span3 well">
         <div><center>
-            <a href="#aboutModal" data-toggle="modal" data-target="#myModal"><img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRbezqZpEuwGSvitKy3wrwnth5kysKdRqBW54cAszm_wiutku3R" name="aboutme" width="140" height="140" class="img-circle"></a>
-            <h3>John Doe</h3>
-            <em>Freestyle Walker in Portland, OR</em>
+            <a href="#aboutModal" data-toggle="modal" data-target="#myModal">{{gravatar-image email=user_email width="140" height="140" class="img-circle" }}</a>
+            <h3>{{username}}</h3>
+            <em>{{interests}} in Portland, OR</em>
         </center></div>
         <p>
     </div>
@@ -18,12 +19,16 @@
                     </div>
                 <div class="modal-body">
                     <center>
-                    <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRbezqZpEuwGSvitKy3wrwnth5kysKdRqBW54cAszm_wiutku3R" name="aboutme" width="140" height="140" border="0" class="img-circle"></a>
-                    <h3 class="media-heading">John Doe<br><small>Portland, Oregon</small></h3>
-                    <span><strong>Interests: </strong></span>
-                        <span class="label label-warning">Freestyle Walker</span>
-                        <span class="label label-info">Yogi</span>
-                        <span class="label label-success">Foodie</span>
+                    {{gravatar-image email=user_email size="200"}}
+                    <h3 class="media-heading">{{username}}<br><small>Portland, Oregon</small></h3>
+                    <span><strong>Interests:</strong></span>
+                        {{#each interest in interestsList}}
+                            <span class="label label-warning">{{interest}}</span>
+                        {{/each}}
+                        {{!-- TODO: can we get beautiful colors? --}}
+                        {{!-- <span class="label label-warning">Freestyle Walker</span> --}}
+                        {{!-- <span class="label label-info">Yogi</span> --}}
+                        {{!-- <span class="label label-success">Foodie</span> --}}
                     </center>
                     <hr>
                     <center>
@@ -41,3 +46,4 @@
         </div>
     </div>
 </div>
+{{/each}}
