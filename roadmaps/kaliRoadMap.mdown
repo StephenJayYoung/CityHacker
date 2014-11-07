@@ -76,3 +76,14 @@ I will be working on the “user” portion of our app. My job is to write clien
 - Test that when you are on the landing page, sign up/login in/view cityhackers, etc is appropriate
 
 Make sure when we go to cityHackers it pulls all the users
+
+###Nov 7
+
+- link up gravatar and cityhackers page
+- friend requests as tab on profile page?
+
+For MVP
+- populate page with all people in db
+- accept a friend
+- request a friendship
+- cityhackers page, make it so you can add friend, grayed out, or friends

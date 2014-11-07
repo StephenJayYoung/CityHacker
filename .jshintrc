@@ -20,6 +20,7 @@
   "globals": {
     "SetupPractise": true,
     "Ember": true,
-    "DS": true
+    "DS": true,
+    "md5": true
   }
 }
