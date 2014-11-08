@@ -127,6 +127,10 @@ describe('app', function() {
         expect(find('input.interests').val()).to.eql('carrots, lettuce, obstacle courses');
       });
 
+      it('fills in the user bio', function() {
+        expect(find('input.bio').val()).to.eql('my bio');
+      });
+
     });
 
     // -------------------------------------------------------------
