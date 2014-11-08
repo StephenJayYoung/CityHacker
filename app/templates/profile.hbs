@@ -9,7 +9,16 @@
 <div class="container">
     <h1>Edit Profile</h1>
     <hr>
-  <div class="row">
+  <div class="well">
+    <div class="row">
+      <ul class="nav nav-tabs">
+        <li class="active"><a href="#home" data-toggle="tab">Profile</a></li>
+        <li><a href="#profile" data-toggle="tab">Friendships</a></li>
+      </ul>
+    <hr>
+    <div id="myTabContent" class="tab-content">
+      <div class="tab-pane active in" id="home">
+        <form id="tab">
       <!-- left column -->
       <div class="col-md-3">
         <div class="text-center">
@@ -53,6 +62,13 @@
             </div>
           </div>
           <div class="form-group">
+            <label class="col-md-3 control-label">Bio:</label>
+            <div class="col-md-8">
+              {{textarea value=bio rows="3" class="input-xlarge" class="interests form-control" type="text" required="true" autofocus="true" placeholder="short biography" value=interests}}
+            </div>
+          </div>
+
+          <div class="form-group">
             <label class="col-md-3 control-label"></label>
             <div class="col-md-8">
 
@@ -60,12 +76,19 @@
               {{#if error}}<div class="error">{{error.message}}</div>{{/if}}
               <span></span>
               <input type="reset" class="btn btn-default" value="Cancel">
-
-
             </div>
           </div>
+{{!-- TODO: I need the user info to hide when I'm on the Friendship tab --}}
+      <div class="tab-pane fade" id="profile">
+          <form id="tab2">
+              <div>
+                  <button class="btn btn-primary">Update</button>
+              </div>
+          </form>
+        </div>
         </form>
       </div>
+
   </div>
 </div>
 <hr>
