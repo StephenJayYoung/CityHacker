@@ -16,6 +16,7 @@ var stubAPI = function(fixturePath) {
   // respondWith is not causing anything to respond RIHGT NOW.
   // it would have been better named server.respondWhenARequestIsMadeFor,
   // but everyone would have hated the person who gave that long of a name.
+  //console.log(responseBody);
   server.respondWith(fixture.request.method, fixture.request.url,
     [200, { 'Content-Type': 'application/json' }, responseBody]);
   return fixture;
@@ -198,7 +199,7 @@ describe('app', function() {
       // TODO: when kali finishes showing all users, this should pass. it may need
       // to be tweaked slightly (like different css selectors).
       it.skip('has a list of users', function(){
-        expect(find('ul li').length).to.equal(6);
+        expect(find('ul.users ').length).to.equal(6);
       });
 
       //click('button.submit.addFriend' for user steve);
