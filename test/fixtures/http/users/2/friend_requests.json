@@ -12,7 +12,7 @@
         "location_longitude": 121,
         "picture": null,
         "user_email": null,
-        "username": "Leslie",
+        "username": "Jamie",
         "visibleName": null
       }, {
         "id": 2,
@@ -21,8 +21,19 @@
         "location_longitude": 122,
         "picture": null,
         "user_email": null,
-        "username": "Kali",
+        "username": "Susan",
         "visibleName": null
+         {
+        "id": 3,
+        "interests": null,
+        "location_latitude": null,
+        "location_longitude": null,
+        "passwordDigest": "mock-digest",
+        "picture": null,
+        "user_email": null,
+        "username": "Mark",
+        "visibleName": null
+      }
       }]
     }
   },
@@ -47,7 +58,20 @@
     "picture": null,
     "user_email": "Susan@gmail.com",
     "visibleName": "SusanisDaCoolest"
-  }],
+  }
+ 	{
+    "id": 3,
+    "location_latitude": 38,
+    "location_longitude": 121,
+    "passwordDigest": "Mark",
+    "username": "Mark",
+    "interests": "walker, swimmer, skiier",
+    "picture": null,
+    "user_email": "Mark@gmail.com",
+    "visibleName": "MarkisDaCoolest"
+  }
+
+  ],
   "database-friendships": [{
     "id": 1,
     "requestUser": 2,
@@ -60,13 +84,7 @@
     "recipientUser": 1,
     "acceptID": "something-random-9384",
     "accepted": false
-  }, {
-    "id": 3,
-    "requestUser": 2,
-    "recipientUser": 4,
-    "acceptID": "something-random-2134",
-    "accepted": true
-	}],
+  }],
 }
 
 
@@ -101,36 +119,3 @@
 
 
 
-
-
-
- {
-  "request": {
-    "url": "/users/:id/friend_requests",
-    "method": "GET"
-  },
-  "response": {
-    "json": {
-      "users": [{
-				"id": "Jamie",
-				"interests": "walker, runner, gamer",
-				"location_latitude": 123,
-				"location_longitude": 144,
-				"passwordDigest": "123456",
-				"picture": null,
-				"user_email": "Jamie1234",
-				"username": "Jamie",
-				"visibleName": "Jamie is Awesome"
-      }, {
-				"id": "Susan",
-				"interests": "swimmer, walker, runner",
-				"location_latitude": 123,
-				"location_longitude": 145,
-				"passwordDigest": "Susan234",
-				"picture": null,
-				"user_email": "Susan@gmail.com",
-				"username": "SusanIsABoss",
-				"visibleName": "SusanisDaCoolest"
-      }]
-    }
-}   
