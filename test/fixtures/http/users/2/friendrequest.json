@@ -1,0 +1,40 @@
+{
+  "request": {
+    "url": "/api/users/2/friends",
+    "method": "POST",
+    "json": {
+      "user_id": 1
+    }
+  },
+  "response": {
+    "json": {
+      "friendship": {
+        "id": 1,
+        "requestUser": 2,
+        "recipientUser": 1,
+        "acceptID": "something-random-9384",
+        "accepted": false
+      }
+    }
+  },
+  "database-users": [{
+    "id": 1,
+    "passwordDigest": "mock-digest",
+    "username": "Andrea"
+  },
+  {
+    "id": 2,
+    "passwordDigest": "mock-digest",
+    "username": "Steve"
+  }],
+  "database-friendships": [{
+     "id": 1,
+     "requestUser": 2,
+     "recipientUser": 1,
+     "acceptID": "something-random-9384",
+     "accepted": false
+  }]
+}
+
+
+

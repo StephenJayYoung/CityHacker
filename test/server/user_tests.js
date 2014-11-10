@@ -53,6 +53,15 @@ describe('API for Users', __app(app, function(H) {
     .done(done, done);
   });
 
+  it.skip('handles POST /api/users/2/friendrequest', function(done) {
+    H.setupDatabase(User, 'users/2/friendrequest', 'database-users')
+    .then(function() { return H.testAPI('users/2/friendrequest'); })
+    .then(function() {
+      return H.testDatabaseContents(Friendship, 'users/2/friendrequest', 'database-friendships');
+    })
+    .done(done, done);
+  });
+
 
   it('handles GET /api/users with location', function(done) {
     H.setupDatabase(User, 'users/get-by-location', 'database-users')
@@ -79,7 +88,7 @@ describe('API for Users', __app(app, function(H) {
 
   it('handles GET /api/users', function(done) {
     H.setupDatabase(User, 'users/users', 'database-users')
-    .then(function() { return H.testAPI('users/users'); })
+    .then(function() { return H.testAPI('users/users', { order: 'users.id' }); })
     .then(function() {
       return H.testDatabaseContents(User, 'users/users',
         'database-users');
