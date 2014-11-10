@@ -86,4 +86,18 @@ describe('API for Users', __app(app, function(H) {
     })
     .done(done, done);
   });
+
+    it.skip('handles GET /api/2/friend_requests', function(done) {
+    H.setupDatabase(User, 'users/friend_requests', 'database-users')
+    .then(function(){
+      return H.testAPI('users/friend_requests', { order: 'users.id' });
+    })
+    .then(function(){
+      return H.testDatabaseContents(User,
+        'users/friend_requests',
+        'database-users');
+    })
+    .done(done, done);
+  });
+
 }));

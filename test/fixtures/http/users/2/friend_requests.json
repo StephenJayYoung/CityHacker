@@ -1,30 +1,121 @@
+{
   "request": {
-    "url": "/users/:id/friend_requests
-
-",
+    "url": "/api/users/:id/friend_requests",
     "method": "GET"
   },
   "response": {
     "json": {
       "users": [{
-				"id": "Jamie,"
-				"interests": "walker, runner, gamer",
-				"location_latitude": 123,
-				"location_longitude": 144,
-				"passwordDigest": "123456",
-				"picture": null,
-				"user_email": "Jamie1234",
-				"username": "Jamie",
-				"visibleName": "Jamie is Awesome"
+        "id": 1,
+        "interests": null,
+        "location_latitude": 45,
+        "location_longitude": 121,
+        "picture": null,
+        "user_email": null,
+        "username": "Jamie",
+        "visibleName": null
       }, {
-				"id": "Susan",
-				"interests": "swimmer, walker, runner"
-				"location_latitude": 123,
-				"location_longitude": 145,
-				"passwordDigest": "Susan234",
-				"picture": null,
-				"user_email": "Susan@gmail.com",
-				"username": "SusanIsABoss",
-				"visibleName": "SusanisDaCoolest"
+        "id": 2,
+        "interests": null,
+        "location_latitude": 45,
+        "location_longitude": 122,
+        "picture": null,
+        "user_email": null,
+        "username": "Susan",
+        "visibleName": null
+         {
+        "id": 3,
+        "interests": null,
+        "location_latitude": null,
+        "location_longitude": null,
+        "passwordDigest": "mock-digest",
+        "picture": null,
+        "user_email": null,
+        "username": "Mark",
+        "visibleName": null
+      }
       }]
     }
+  },
+  "database-users": [{
+    "id": 1,
+    "location_latitude": 34,
+    "location_longitude": 81,
+    "passwordDigest": "123456",
+    "username": "Jamie",
+    "interests": "walker, runner, gamer",
+    "picture": null,
+    "user_email": "Jamie1234",
+    "visibleName": "Jamie is awesome"
+  },
+  {
+    "id": 2,
+    "location_latitude": 38,
+    "location_longitude": 121,
+    "passwordDigest": "Susan234",
+    "username": "Susan",
+    "interests": "walker, swimmer, gamer",
+    "picture": null,
+    "user_email": "Susan@gmail.com",
+    "visibleName": "SusanisDaCoolest"
+  }
+ 	{
+    "id": 3,
+    "location_latitude": 38,
+    "location_longitude": 121,
+    "passwordDigest": "Mark",
+    "username": "Mark",
+    "interests": "walker, swimmer, skiier",
+    "picture": null,
+    "user_email": "Mark@gmail.com",
+    "visibleName": "MarkisDaCoolest"
+  }
+
+  ],
+  "database-friendships": [{
+    "id": 1,
+    "requestUser": 2,
+    "recipientUser": 3,
+    "acceptID": "something-random-3928",
+    "accepted": true
+  }, {
+  	"id": 2,
+    "requestUser": 2,
+    "recipientUser": 1,
+    "acceptID": "something-random-9384",
+    "accepted": false
+  }],
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
