@@ -14,7 +14,8 @@
         "interests": "carrots, lettuce, obstacle courses",
         "location_latitude": null,
         "location_longitude": null,
-        "picture": "https://www.facebook.com/photo.php?fbid=10201220881791302&set=t.19705901&type=3&theater"
+        "picture": "https://www.facebook.com/photo.php?fbid=10201220881791302&set=t.19705901&type=3&theater",
+        "bio": "my bio"
       }
     }
   },
@@ -27,7 +28,8 @@
     "picture": "https://www.facebook.com/photo.php?fbid=10151756655498645&set=t.19705901&type=3&theater",
     "user_email": "q@gmail.com",
     "username": "Q",
-    "visibleName": "PumpQuin"
+    "visibleName": "PumpQuin",
+    "bio": "my bio"
   }, {
     "id": 3,
     "interests": "hot springs, barefoot running, dog training",
@@ -37,6 +39,7 @@
     "picture": "https://www.facebook.com/photo.php?fbid=10100794377997118&set=t.19705901&type=3&theater",
     "user_email": "qik@gmail.com",
     "username": "QKiger",
-    "visibleName": "Quintessential"
+    "visibleName": "Quintessential",
+    "bio": "my bio"
   }]
 }

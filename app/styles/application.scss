@@ -5,9 +5,9 @@ body, h1, h2, h3, h4, h5, h6 {
   font-color: #3D352A;
 }
 
-// h1 {
-//   font-color: #green;
-// }
+h1 {
+  font: Roboto Condensed;
+}
 
 // h2 {
 //   font-color: #4cb84f;
@@ -29,6 +29,11 @@ body, h1, h2, h3, h4, h5, h6 {
 a {
 color: #3D352A;
 text-decoration: none;
+}
+
+ul
+{
+    list-style-type: none;
 }
 
 // body {

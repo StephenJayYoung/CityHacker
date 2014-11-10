@@ -74,7 +74,7 @@ describe('app', function() {
       });
     });
 
-    it('allows client to update their profile', function() {
+    it.skip('allows client to update their profile', function() {
 
       var putFixture = stubAPI('users/put');
       var getFixture = stubAPI('users/get');
@@ -125,6 +125,10 @@ describe('app', function() {
 
       it('fills in the user interests', function() {
         expect(find('input.interests').val()).to.eql('carrots, lettuce, obstacle courses');
+      });
+
+      it.skip('fills in the user bio', function() {
+        expect(find('input.bio').val()).to.eql('my bio');
       });
 
     });

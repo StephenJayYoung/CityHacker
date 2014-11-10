@@ -1,7 +1,45 @@
-<form {{action 'signup' on='submit'}}>
-  {{input type="username" required="true" autofocus="true" placeholder="Username" value=username}}
-  {{input type="password" required="true" autofocus="true" placeholder="Password" value=password}}
-  {{input type="user_email" required="true" autofocus="true" placeholder="Email" value=user_email}}
-  <button type="submit">Sign up</button>
-  {{#if error}}<div>Error: {{error}}.</div>{{/if}}
-</form>
+<header class="business-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5">
+              <h1></h1>
+            </div>
+            <div class="col-lg-7">
+              <img src="/media/images/logo_final.jpg">
+            </div>
+        </div>
+    </div>
+</header>
+<hr>
+<div class="container-fluid">
+    <section class="container">
+    <div class="container-page">
+      <div class="col-md-4">
+        <h3 class="dark-grey">Registration</h3>
+            <form {{action 'signup' on='submit'}}>
+              {{input type="username" class="form-control" required="true" autofocus="true" placeholder="Username" value=username}}<br><p>
+              {{input type="password" class="form-control" required="true" autofocus="true" placeholder="Password" value=password}}<p>
+              {{input type="user_email" class="form-control" required="true" autofocus="true" placeholder="Email" value=user_email}}<p>
+              <button type="submit">Sign up</button>
+              {{#if error}}<div>Error: {{error}}.</div>{{/if}}
+          </form>
+      </div>
+  </div>
+
+      <div class="col-md-8">
+        <h3 class="dark-grey">Terms and Conditions</h3>
+        <p>
+          Etiam suscipit, purus sit amet placerat sodales, felis tellus mattis metus, eget finibus velit ex eu ligula. Nam condimentum ullamcorper est quis vehicula.
+        </p>
+        <p>
+          Phasellus pulvinar orci at justo malesuada rhoncus. Proin dapibus ex non porttitor ultrices. Vestibulum imperdiet aliquam tellus in vulputate. Vivamus sapien nibh, egestas sed eleifend at, gravida non diam. Donec nec elit vel nulla ultricies auctor ac at enim. Sed tempus ipsum sit amet lacus facilisis convallis. Etiam arcu urna, maximus sit amet est eu, ornare efficitur sapien. 
+        </p>
+        <p>
+          Aenean luctus dapibus sapien. Mauris vulputate orci justo, nec interdum ipsum euismod ut. Proin justo nisl, dictum at blandit sed, pellentesque at ligula. Donec vitae libero sit amet purus efficitur egestas. Suspendisse sagittis pulvinar nisi eu viverra. 
+        </p>
+        <p>
+
+      </div>
+    </div>
+  </section>
+</div>
