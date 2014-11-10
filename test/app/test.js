@@ -201,8 +201,11 @@ describe('app', function() {
 
       // TODO: when kali finishes showing all users, this should pass. it may need
       // to be tweaked slightly (like different css selectors).
-      it.skip('has a list of users', function(){
-        expect(find('ul li').length).to.equal(6);
+      it('has a list of users', function(){
+        expect(find('div.users').length).to.equal(6);
+        expect(find('center.photo').length).to.equal(6);
+        expect(find('h3.visableName').length).to.equal(6);
+        expect(find('em.interests').length).to.equal(6);
       });
 
       //click('button.submit.addFriend' for user steve);

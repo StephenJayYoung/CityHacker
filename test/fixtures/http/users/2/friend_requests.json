@@ -1,0 +1,30 @@
+  "request": {
+    "url": "/users/:id/friend_requests
+
+",
+    "method": "GET"
+  },
+  "response": {
+    "json": {
+      "users": [{
+				"id": "Jamie,"
+				"interests": "walker, runner, gamer",
+				"location_latitude": 123,
+				"location_longitude": 144,
+				"passwordDigest": "123456",
+				"picture": null,
+				"user_email": "Jamie1234",
+				"username": "Jamie",
+				"visibleName": "Jamie is Awesome"
+      }, {
+				"id": "Susan",
+				"interests": "swimmer, walker, runner"
+				"location_latitude": 123,
+				"location_longitude": 145,
+				"passwordDigest": "Susan234",
+				"picture": null,
+				"user_email": "Susan@gmail.com",
+				"username": "SusanIsABoss",
+				"visibleName": "SusanisDaCoolest"
+      }]
+    }

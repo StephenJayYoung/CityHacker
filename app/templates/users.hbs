@@ -1,12 +1,12 @@
 
 {{!-- This is the Bootsnipp http://bootsnipp.com/snippets/featured/310-user-profile-in-modal-window --}}
 {{#each}}
-<div class="container">
+<div class="container users">
     <div class="span3 well">
         <div><center>
             <a href="#aboutModal" data-toggle="modal" data-target="#myModal">{{gravatar-image email=user_email width="140" height="140" class="img-circle" }}</a>
-            <h3>{{username}}</h3>
-            <em>{{interests}} in Portland, OR</em>
+            <h3 class="visableName">{{visibleName}}</h3>
+            <em class="interests">{{interests}} in Portland, OR</em>
         </center></div>
         <p>
     </div>
@@ -19,9 +19,9 @@
                     <h4 class="modal-title" id="myModalLabel">More About User</h4>
                     </div>
                 <div class="modal-body">
-                    <center>
+                    <center class="photo">
                     {{gravatar-image email=user_email size="200"}}
-                    <h3 class="media-heading">{{username}}<br><small>Portland, Oregon</small></h3>
+                    <h3 class="media-heading">{{visibleNdame}}<br><small>Portland, Oregon</small></h3>
                     <span><strong>Interests:</strong></span>
                         {{#each interest in interestsList}}
                             <span class="label label-warning">{{interest}}</span>

@@ -1,7 +1,7 @@
 'use strict';
 
 var config = require('./config');
-var knexConfig = require('../knexfile.js')[config.env];
+var knexConfig = require('./knexfile.js')[config.env];
 var knex = require('knex')(knexConfig);
 var bookshelf = require('bookshelf')(knex);
 
