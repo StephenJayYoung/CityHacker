@@ -1,12 +1,15 @@
-@import url(http://fonts.googleapis.com/css?family=Fugaz+One|Open+Sans:400,300);
+@import url(http://fonts.googleapis.com/css?family=Fugaz+One|Open+Sans:400,300|Roboto+Condensed:700|Fjalla+One);
 
 body, h1, h2, h3, h4, h5, h6 {
   font-family: courier;
   font-color: #3D352A;
 }
 
-h1 {
-  font: Roboto Condensed;
+h2 {
+  font-family: "Fjalla One";
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 
 // h2 {

@@ -1,101 +1,25 @@
-{{!-- This is the Bootsnipp http://www.bootply.com/sY7gQy6XF7 --}}
-
-<div>
-  <div>
-    <img {{bind-attr src='picture'}}>
-  </div>
-</div>
+{{!-- This is based off of the Bootsnipp http://www.bootply.com/sY7gQy6XF7 --}}
 
 <div class="container">
-    <h1>Edit Profile</h1>
-    <hr>
+  <h1>Edit Profile</h1>
+  <hr>
   <div class="well">
     <div class="row">
       <ul class="nav nav-tabs">
         <li class="active"><a href="#home" data-toggle="tab">Profile</a></li>
         <li><a href="#profile" data-toggle="tab">Friendships</a></li>
       </ul>
-    <hr>
-    <div id="myTabContent" class="tab-content">
-      <div class="tab-pane active in" id="home">
-        <form id="tab">
-      <!-- left column -->
-      <div class="col-md-3">
-        <div class="text-center">
-          {{!--           <img src="//placehold.it/100" class="avatar img-circle" alt="avatar"> --}}
-          {{gravatar-image email=user_email size="200"}}
+      <hr>
+      <div id="myTabContent" class="tab-content">
+        <div class="tab-pane active in" id="home">
+          {{partial "profile-tab"}}
         </div>
-      </div>
 
-      <!-- edit form column -->
-      <div class="col-md-9 personal-info">
-{{!--         <div class="alert alert-info alert-dismissable">
-          <a class="panel-close close" data-dismiss="alert">×</a> 
-          <i class="fa fa-coffee"></i>
-          This is an <strong>.alert</strong>. Use this to show important messages to the user.
-        </div> --}}
-        <h3>Personal info</h3>
-
-        <form class="form-horizontal" role="form">
-          <div class="form-group">
-            <label class="col-lg-3 control-label">UserName:</label>
-            <div class="col-lg-8">
-              {{input class="username form-control" type="text" required="true" autofocus="true" placeholder="User Name" value=username}}<p>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-lg-3 control-label">Handle:</label>
-            <div class="col-lg-8">
-              {{input class="visibleName form-control" type="text" required="true" autofocus="true" placeholder="User Handle" value=visibleName}}<p>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-lg-3 control-label">Email:</label>
-            <div class="col-lg-8">
-              {{input class="user_email form-control" type="text" required="true" autofocus="true" placeholder="email" value=user_email}}<p>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-md-3 control-label">Interests:</label>
-            <div class="col-md-8">
-              {{input class="interests form-control" type="text" required="true" autofocus="true" placeholder="3 favorite things to do (separated by commas)" value=interests}}<p>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-md-3 control-label">Bio:</label>
-            <div class="col-md-8">
-              {{textarea value=bio rows="3" class="input-xlarge" class="interests form-control" type="text" required="true" autofocus="true" placeholder="short biography" value=interests}}<p>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="col-md-3 control-label"></label>
-            <div class="col-md-8">
-
-              <button class="submit updateUserProfile btn btn-primary" {{action 'updateUserProfile'}}>submit</button>
-              {{#if error}}<div class="error">{{error.message}}</div>{{/if}}
-              <span></span>
-              <input type="reset" class="btn btn-default" value="Cancel">
-            </div>
-          </div>
-{{!-- TODO: I need the user info to hide when I'm on the Friendship tab, also need to populate with Friends --}}
-      <div class="tab-pane fade" id="profile">
-          <form id="tab2">
-              <div>
-                <div>
-                <h2>Friend Requests</h2>
-                <ul>
-                  <li><input type="checkbox" class="faChkRnd" checked=""><label>Kali Kiger</label></li>
-                  <li><input type="checkbox" class="faChkRnd"><label>Steve Young</label></li>
-                  <li><input type="checkbox" class="faChkRnd" checked=""><label>Andrea Moulding</label></li>
-                </ul>
-                <button class="btn btn-primary">Update</button>
-              </div>
-          </form>
+        <div class="tab-pane fade" id="profile">
+          {{partial "profile-friendship-tab"}}
         </div>
-        </form>
-      </div>
-
-  </div>
-</div>
+      </div>{{!-- tab-content --}}
+    </div>{{!-- row --}}
+  </div>{{!-- well --}}
+</div>{{!-- container --}}
 <hr>
