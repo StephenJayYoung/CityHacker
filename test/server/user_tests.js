@@ -112,6 +112,7 @@ describe('API for Users', __app(app, function(H) {
     .done(done, done);
   });
 
+
   // TODO: once the test is passing, come back & discuss the URL for this
   it.skip('handles GET /api/2/friend_requests', function(done) {
     // there is one problem in this function. if you compare to the test
@@ -119,6 +120,10 @@ describe('API for Users', __app(app, function(H) {
     // two & be able to come up with an idea of how these things differ.
     var api = 'users/2/friend_requests';
     H.setupDatabase(User, api, 'database-users')
+    .then(function() {
+      return H.setupDatabase(Friendship, api,
+        'database-friendships');
+    })
     .then(function(){
       return H.testAPI(api, { order: 'users.id' });
     })
