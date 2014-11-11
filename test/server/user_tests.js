@@ -123,9 +123,13 @@ describe('API for Users', __app(app, function(H) {
   });
 
 
+  // these are the requests that user 2 (Steve) has made, but the other user
+  // has not yet responded to.
+  it('handles GET /api/users/2/friends?asked=me');
+
   // these are the requests that user 2 (Steve) has received, but not responded
   // to.
-  it('handles GET /api/2/friend_requests', function(done) {
+  it('handles GET /api/users/2/friends?asked=them', function(done) {
     var fixture = 'users/2/friend_requests';
     H.setupDatabase(User, fixture, 'database-users')
     .then(function() {

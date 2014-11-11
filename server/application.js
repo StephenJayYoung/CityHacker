@@ -142,36 +142,26 @@ api.get('/users/:id/friends', function(req, res) {
   var params = req.params;  //this checks route params -- /user/:id/friends
   var id = parseInt(params.id); //this is an id integer from the params
 
-  var where = function(qb) {
-    qb.whereRaw('("requestUser" = ? or "recipientUser" = ?) and ("accepted" = ?)',
-      [id, id, true]);
-  };
+  var query = req.query;
+  var asked = query.asked;
+  var where;
 
-  Friendship.query(where).fetchAll()
-  .then(function(collection) {
-    var userIDs = collection.toJSON().map(function(friendship) {
-      return friendship.requestUser === id ?
-        friendship.recipientUser :
-        friendship.requestUser;
-    });
-    var whereIDInUserIDs = function(qb) { qb.whereIn('id', userIDs); };
-    return User.query(whereIDInUserIDs).fetchAll();
-  })
-  .then(function(users) {
-    res.json({users: users.toJSON() });
-  });
-});
-
-// This is where I am going to write the Get request for the the friendship_requests
-api.get('/users/:id/friend_requests', function(req, res) {
-    var params = req.params;  //this checks route params -- /user/:id/friends
-  var id = parseInt(params.id); //this is an id integer from the params
-
-  var where = function(qb) {
-    qb.whereRaw('("recipientUser" = ?) and ("accepted" = ?)',
-      [id, false]);
-  };
-
+  if (asked === 'them') {
+    where = function(qb) {
+      qb.whereRaw('("recipientUser" = ?) and ("accepted" = ?)',
+        [id, false]);
+    };
+  }
+  else if (asked === 'me') {
+    // do stuff that's not yet written
+    throw new Error('Not yet handled');
+  }
+  else {
+    where = function(qb) {
+      qb.whereRaw('("requestUser" = ? or "recipientUser" = ?) and ("accepted" = ?)',
+        [id, id, true]);
+    };
+  }
 
   Friendship.query(where).fetchAll()
   .then(function(collection) {
