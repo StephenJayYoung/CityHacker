@@ -86,6 +86,8 @@ describe('API for Users', __app(app, function(H) {
     .done(done, done);
   });
 
+// Tests that we can retrieve User Info with password and email omitted
+
   it('handles GET /api/users', function(done) {
     H.setupDatabase(User, 'users/users', 'database-users')
     .then(function() { return H.testAPI('users/users', { order: 'users.id' }); })
@@ -96,7 +98,17 @@ describe('API for Users', __app(app, function(H) {
     .done(done, done);
   });
 
-    it.skip('handles GET /api/2/friend_requests', function(done) {
+  it('handles GET /api/users', function(done) {
+    H.setupDatabase(User, 'users/users', 'database-users')
+    .then(function() { return H.testAPI('users/users', { order: 'users.id' }); })
+    .then(function() {
+      return H.testDatabaseContents(User, 'users/users',
+        'database-users');
+    })
+    .done(done, done);
+  });
+
+  it.skip('handles GET /api/2/friend_requests', function(done) {
     H.setupDatabase(User, 'users/friend_requests', 'database-users')
     .then(function(){
       return H.testAPI('users/friend_requests', { order: 'users.id' });

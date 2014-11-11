@@ -12,9 +12,13 @@
         "username": "Andrea",
         "interests": null,
         "picture": null,
+<<<<<<< HEAD
         "user_email": null,
         "visibleName": null,
         "bio": null
+=======
+        "visibleName": null
+>>>>>>> ae68df06d8164d8b68b0ae2edcfe6574d4a17c11
       },
       {
         "id": 2,
@@ -23,9 +27,13 @@
         "username": "Steve",
         "interests": null,
         "picture": null,
+<<<<<<< HEAD
         "user_email": null,
         "visibleName": null,
         "bio": null
+=======
+        "visibleName": null
+>>>>>>> ae68df06d8164d8b68b0ae2edcfe6574d4a17c11
       },
       {
         "id": 3,
@@ -34,9 +42,13 @@
         "username": "Leslie",
         "interests": null,
         "picture": null,
+<<<<<<< HEAD
         "user_email": null,
         "visibleName": null,
         "bio": null
+=======
+        "visibleName": null
+>>>>>>> ae68df06d8164d8b68b0ae2edcfe6574d4a17c11
       },
       {
         "id": 4,
@@ -45,9 +57,13 @@
         "username": "Kali",
         "interests": null,
         "picture": null,
+<<<<<<< HEAD
         "user_email": null,
         "visibleName": null,
         "bio": null
+=======
+        "visibleName": null
+>>>>>>> ae68df06d8164d8b68b0ae2edcfe6574d4a17c11
       },
       {
         "id": 5,
@@ -56,9 +72,13 @@
         "username": "Austin",
         "interests": null,
         "picture": null,
+<<<<<<< HEAD
         "user_email": null,
         "visibleName": null,
         "bio": null
+=======
+        "visibleName": null
+>>>>>>> ae68df06d8164d8b68b0ae2edcfe6574d4a17c11
       },
       {
         "id": 6,
@@ -67,9 +87,13 @@
         "username": "Whitney",
         "interests": null,
         "picture": null,
+<<<<<<< HEAD
         "user_email": null,
         "visibleName": null,
         "bio": null
+=======
+        "visibleName": null
+>>>>>>> ae68df06d8164d8b68b0ae2edcfe6574d4a17c11
       }]
     }
   },
