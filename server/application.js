@@ -153,11 +153,10 @@ api.get('/users/:id/friends', function(req, res) {
     };
   }
   else if (asked === 'me') {
-    // where = function(qb) {
-    //   qb.whereRaw('("requestUser" = ?) and ("accepted" = ?)',
-    //     [id, false]);
-    // };
-    throw new Error('Not yet handled');
+    where = function(qb) {
+      qb.whereRaw('("requestUser" = ?) and ("accepted" = ?)',
+        [id, false]);
+    };
   }
   else {
     where = function(qb) {
