@@ -200,6 +200,15 @@ api.post('/users/:id/friendships', function(req, res) {
   });
 });
 
+api.put('/users/:id/friendship', function(req, res) {
+  return {}
+  .catch(function(e) {
+    res.status(500);
+    res.send({ error: e });
+ });
+});
+
+
 api.use(admit.authorize);
 
 api.delete('/sessions/current', admit.invalidate, function(req, res) {
