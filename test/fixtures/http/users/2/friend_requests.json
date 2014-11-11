@@ -1,4 +1,7 @@
 {
+	"notes": "take this out when done. there are at least two problems in this file.",
+	"notes2": "one should be able to be figured out by comparing to friends.json.",
+	"notes3": "the other has to do with what you're testing and what you _expect_ to happen.",
   "request": {
     "url": "/api/users/:id/friend_requests",
     "method": "GET"
@@ -72,7 +75,7 @@
   }
 
   ],
-  "database-friendships": [{
+  "database-friendship": [{
     "id": 1,
     "requestUser": 2,
     "recipientUser": 3,
