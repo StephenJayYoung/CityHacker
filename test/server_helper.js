@@ -16,7 +16,7 @@ GLOBAL.__app = function(app, fn) {
   return function() {
 
     var server;
-    var port = 38239;
+    var port = 38239; // arbitrary number that we created
     var baseURL = util.format('http://localhost:%d', port);
     var helpers = {};
 
@@ -104,6 +104,12 @@ GLOBAL.__app = function(app, fn) {
   };
 };
 
+/**
+ * Give us back the entire JSON file.
+ *
+ * @param  {String} name Path to JSON file.
+ * @return {Object} The entire JSON object.
+ */
 GLOBAL.__fixture = function(name) {
   var _ = require('lodash');
   var path = require('path');

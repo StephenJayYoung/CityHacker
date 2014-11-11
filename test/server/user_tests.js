@@ -108,15 +108,29 @@ describe('API for Users', __app(app, function(H) {
     .done(done, done);
   });
 
-  it.skip('handles GET /api/2/friend_requests', function(done) {
-    H.setupDatabase(User, 'users/friend_requests', 'database-users')
-    .then(function(){
-      return H.testAPI('users/friend_requests', { order: 'users.id' });
+  it('handles GET /api/users/2/friends', function(done) {
+    var api = 'users/2/friends';
+    H.setupDatabase(User, api, 'database-users')
+    .then(function() {
+      return H.setupDatabase(Friendship, api,
+        'database-friendships');
     })
+    .then(function() {
+      return H.testAPI(api, { order: 'users.id' });
+
+    })
+    .done(done, done);
+  });
+
+  // TODO: once the test is passing, come back & discuss the URL for this
+  it.skip('handles GET /api/2/friend_requests', function(done) {
+    // there is one problem in this function. if you compare to the test
+    // in line 43, you should have an idea of what's different between the
+    // two & be able to come up with an idea of how these things differ.
+    var api = 'users/2/friend_requests';
+    H.setupDatabase(User, api, 'database-users')
     .then(function(){
-      return H.testDatabaseContents(User,
-        'users/friend_requests',
-        'database-users');
+      return H.testAPI(api, { order: 'users.id' });
     })
     .done(done, done);
   });
