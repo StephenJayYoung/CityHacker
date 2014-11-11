@@ -109,7 +109,6 @@ api.get('/users', function(req, res) {
   var radius = parseFloat(query.radius);
 
   var collection = User;
-  console.log(User);
   if (lat && lng && radius) {
     var findRange = function(qb) {
       qb.whereRaw('("location_latitude" >= ?) and ("location_latitude" <= ?) and ("location_longitude" >= ?) and ("location_longitude" <= ?)',
