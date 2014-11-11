@@ -1,6 +1,6 @@
 {
   "request": {
-    "url": "/api/users/2/friends",
+    "url": "/api/users/2/friendships",
     "method": "POST",
     "json": {
       "user_id": 1
