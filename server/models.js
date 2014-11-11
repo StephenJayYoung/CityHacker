@@ -5,6 +5,7 @@ var knexConfig = require('./knexfile.js')[config.env];
 var knex = require('knex')(knexConfig);
 var bookshelf = require('bookshelf')(knex);
 
+
 var User, Token, Friendship;
 User = bookshelf.Model.extend({
   tokens: function() {

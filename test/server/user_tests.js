@@ -3,6 +3,8 @@
 // NODE_ENV=test ./node_modules/.bin/knex migrate:latest
 
 var expect = require('chai').expect;
+var sinon = require('sinon');
+var uuid = require('node-uuid');
 var app = require('../../server/application');
 
 var models = require('../../server/models'),
@@ -11,6 +13,14 @@ var models = require('../../server/models'),
   knex = models.knex;
 
 describe('API for Users', __app(app, function(H) {
+//creates a random id and replaces them all with fake id
+  beforeEach(function() {
+    sinon.stub(uuid, 'v4').returns('random-9384');
+  });
+
+  afterEach(function() {
+    uuid.v4.restore();
+  });
 
   beforeEach(function(done) {
     knex('friendship').delete().then(function() {
@@ -53,7 +63,7 @@ describe('API for Users', __app(app, function(H) {
     .done(done, done);
   });
 
-  it.skip('handles POST /api/users/2/post_friendship', function(done) {
+  it('handles POST /api/users/2/post_friendship', function(done) {
     H.setupDatabase(User, 'users/2/post_friendship', 'database-users')
     .then(function() { return H.testAPI('users/2/post_friendship'); })
     .then(function() {

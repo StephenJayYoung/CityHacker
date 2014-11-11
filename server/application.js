@@ -6,6 +6,7 @@ var morgan = require('morgan');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var compression = require('compression');
+var uuid = require('node-uuid');
 var favicon = require('serve-favicon');
 var config = require('./config');
 var _ = require('lodash');
@@ -109,7 +110,6 @@ api.get('/users', function(req, res) {
   var radius = parseFloat(query.radius);
 
   var collection = User;
-  console.log(User);
   if (lat && lng && radius) {
     var findRange = function(qb) {
       qb.whereRaw('("location_latitude" >= ?) and ("location_latitude" <= ?) and ("location_longitude" >= ?) and ("location_longitude" <= ?)',
@@ -188,13 +188,27 @@ api.get('/users/:id/friend_requests', function(req, res) {
   });
 });
 
+api.post('/users/:id/friends', function(req, res) {
+  var params = req.params;
+  var acceptID = uuid.v4().replace(/-/g, ''); // regex that looks for `-` globally
+  var userID = parseInt(params.id);
+  var friendID = req.body.user_id;
+  var data = {
+    acceptID: acceptID,
+    requestUser: userID,
+    recipientUser: friendID,
+    accepted: false
+  };
 
-
-
-
-
-
-
+  Friendship.forge(data).save(data)
+  .then(function(friendship) {
+    res.send({ friendship: friendship });
+  })
+  .catch(function(e) {
+    res.status(500);
+    res.send({ error: e });
+  });
+});
 
 api.use(admit.authorize);
 
