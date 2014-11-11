@@ -12,7 +12,7 @@
         "id": 1,
         "requestUser": 2,
         "recipientUser": 1,
-        "acceptID": "something-random-9384",
+        "acceptID": "random9384",
         "accepted": false
       }
     }
@@ -31,7 +31,7 @@
      "id": 1,
      "requestUser": 2,
      "recipientUser": 1,
-     "acceptID": "something-random-9384",
+     "acceptID": "random9384",
      "accepted": false
   }]
 }

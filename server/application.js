@@ -6,6 +6,7 @@ var morgan = require('morgan');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var compression = require('compression');
+var uuid = require('node-uuid');
 var favicon = require('serve-favicon');
 var config = require('./config');
 var _ = require('lodash');
@@ -164,6 +165,28 @@ api.get('/users/:id/friends', function(req, res) {
 // This is where I am going to write the Get request for the the friendship_requests
 api.get('/users/:id/friend_requests', function(req, res) {
   res.send({steve: 'will make this work'});
+});
+
+api.post('/users/:id/friends', function(req, res) {
+  var params = req.params;
+  var acceptID = uuid.v4().replace(/-/g, ''); // regex that looks for `-` globally
+  var userID = parseInt(params.id);
+  var friendID = req.body.user_id;
+  var data = {
+    acceptID: acceptID,
+    requestUser: userID,
+    recipientUser: friendID,
+    accepted: false
+  };
+
+  Friendship.forge(data).save(data)
+  .then(function(friendship) {
+    res.send({ friendship: friendship });
+  })
+  .catch(function(e) {
+    res.status(500);
+    res.send({ error: e });
+  });
 });
 
 api.use(admit.authorize);
