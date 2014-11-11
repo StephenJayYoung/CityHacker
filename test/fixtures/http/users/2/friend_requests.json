@@ -1,95 +1,81 @@
 {
-	"notes": "take this out when done. there are at least two problems in this file.",
-	"notes2": "one should be able to be figured out by comparing to friends.json.",
-	"notes3": "the other has to do with what you're testing and what you _expect_ to happen.",
   "request": {
-    "url": "/api/users/:id/friend_requests",
+    "url": "/api/users/2/friend_requests",
     "method": "GET"
   },
   "response": {
     "json": {
       "users": [{
-        "id": 1,
-        "interests": null,
-        "location_latitude": 45,
-        "location_longitude": 121,
-        "picture": null,
-        "user_email": null,
-        "username": "Jamie",
-        "visibleName": null
-      }, {
-        "id": 2,
-        "interests": null,
-        "location_latitude": 45,
-        "location_longitude": 122,
-        "picture": null,
-        "user_email": null,
-        "username": "Susan",
-        "visibleName": null
-         {
-        "id": 3,
+        "id": 5,
         "interests": null,
         "location_latitude": null,
         "location_longitude": null,
         "passwordDigest": "mock-digest",
         "picture": null,
         "user_email": null,
-        "username": "Mark",
-        "visibleName": null
-      }
+        "username": "Austin",
+        "visibleName": null,
+        "bio": null
       }]
     }
   },
   "database-users": [{
     "id": 1,
-    "location_latitude": 34,
-    "location_longitude": 81,
-    "passwordDigest": "123456",
-    "username": "Jamie",
-    "interests": "walker, runner, gamer",
-    "picture": null,
-    "user_email": "Jamie1234",
-    "visibleName": "Jamie is awesome"
+    "passwordDigest": "mock-digest",
+    "username": "Andrea"
   },
   {
     "id": 2,
-    "location_latitude": 38,
-    "location_longitude": 121,
-    "passwordDigest": "Susan234",
-    "username": "Susan",
-    "interests": "walker, swimmer, gamer",
-    "picture": null,
-    "user_email": "Susan@gmail.com",
-    "visibleName": "SusanisDaCoolest"
-  }
- 	{
+    "passwordDigest": "mock-digest",
+    "username": "Steve"
+  },
+  {
     "id": 3,
-    "location_latitude": 38,
-    "location_longitude": 121,
-    "passwordDigest": "Mark",
-    "username": "Mark",
-    "interests": "walker, swimmer, skiier",
-    "picture": null,
-    "user_email": "Mark@gmail.com",
-    "visibleName": "MarkisDaCoolest"
-  }
-
-  ],
-  "database-friendship": [{
+    "passwordDigest": "mock-digest",
+    "username": "Leslie"
+  },
+  {
+    "id": 4,
+    "passwordDigest": "mock-digest",
+    "username": "Kali"
+  },
+  {
+    "id": 5,
+    "passwordDigest": "mock-digest",
+    "username": "Austin"
+  }],
+  "database-friendships": [{
     "id": 1,
     "requestUser": 2,
     "recipientUser": 3,
     "acceptID": "something-random-3928",
     "accepted": true
   }, {
-  	"id": 2,
+    "id": 2,
     "requestUser": 2,
     "recipientUser": 1,
     "acceptID": "something-random-9384",
     "accepted": false
-  }],
+  }, {
+    "id": 3,
+    "requestUser": 2,
+    "recipientUser": 4,
+    "acceptID": "something-random-2134",
+    "accepted": true
+  }, {
+    "id": 4,
+    "requestUser": 3,
+    "recipientUser": 2,
+    "acceptID": "something-random-2134",
+    "accepted": true
+  }, {
+    "id": 5,
+    "requestUser": 5,
+    "recipientUser": 2,
+    "acceptID": "something-random-4539",
+    "accepted": false
+  }]
 }
-
 
 
 

@@ -161,6 +161,10 @@ api.get('/users/:id/friends', function(req, res) {
   });
 });
 
+// This is where I am going to write the Get request for the the friendship_requests
+api.get('/users/:id/friend_requests', function(req, res) {
+  res.send({steve: 'will make this work'});
+});
 
 api.use(admit.authorize);
 
