@@ -63,11 +63,24 @@ describe('API for Users', __app(app, function(H) {
     .done(done, done);
   });
 
-  it('handles POST /api/users/2/post_friendship', function(done) {
-    H.setupDatabase(User, 'users/2/post_friendship', 'database-users')
-    .then(function() { return H.testAPI('users/2/post_friendship'); })
+  it('handles POST /api/users/2/friendships', function(done) {
+    H.setupDatabase(User, 'users/2/post_friendships', 'database-users')
+    .then(function() { return H.testAPI('users/2/post_friendships'); })
     .then(function() {
-      return H.testDatabaseContents(Friendship, 'users/2/post_friendship', 'database-friendships');
+      return H.testDatabaseContents(Friendship, 'users/2/post_friendships', 'database-friendships');
+    })
+    .done(done, done);
+  });
+
+  it.skip('handles PUT /api/users/2/friendships', function(done) {
+    H.setupDatabase(User, 'users/2/accept_friendships', 'database-users')
+    .then(function() {
+      return H.setupDatabase(Friendship, 'users/2/accept_friendships',
+        'database-friendships');
+    })
+    .then(function() { return H.testAPI('users/2/accept_friendships'); })
+    .then(function() {
+      return H.testDatabaseContents(Friendship, 'users/2/accept_friendships', 'database-users-result');
     })
     .done(done, done);
   });

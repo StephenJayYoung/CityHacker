@@ -181,7 +181,7 @@ api.get('/users/:id/friends', function(req, res) {
   });
 });
 
-api.post('/users/:id/friends', function(req, res) {
+api.post('/users/:id/friendships', function(req, res) {
   var params = req.params;
   var acceptID = uuid.v4().replace(/-/g, ''); // regex that looks for `-` globally
   var userID = parseInt(params.id);
@@ -202,6 +202,15 @@ api.post('/users/:id/friends', function(req, res) {
     res.send({ error: e });
   });
 });
+
+api.put('/users/:id/friendship', function(req, res) {
+  return {}
+  .catch(function(e) {
+    res.status(500);
+    res.send({ error: e });
+ });
+});
+
 
 api.use(admit.authorize);
 

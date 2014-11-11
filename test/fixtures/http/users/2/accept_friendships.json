@@ -1,7 +1,7 @@
 {
   "request": {
-    "url": "/api/users/2/friends",
-    "method": "POST",
+    "url": "/api/users/2/friendships",
+    "method": "PUT",
     "json": {
       "user_id": 1
     }
@@ -10,10 +10,10 @@
     "json": {
       "friendship": {
         "id": 1,
-        "requestUser": 2,
-        "recipientUser": 1,
+        "requestUser": 1,
+        "recipientUser": 2,
         "acceptID": "random9384",
-        "accepted": false
+        "accepted": true
       }
     }
   },
@@ -29,12 +29,16 @@
   }],
   "database-friendships": [{
      "id": 1,
-     "requestUser": 2,
-     "recipientUser": 1,
+     "requestUser": 1,
+     "recipientUser": 2,
      "acceptID": "random9384",
      "accepted": false
+  }],
+  "database-users-result": [{
+     "id": 1,
+     "requestUser": 1,
+     "recipientUser": 2,
+     "acceptID": "random9384",
+     "accepted": true
   }]
 }
-
-
-
