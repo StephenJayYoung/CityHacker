@@ -151,7 +151,10 @@ api.get('/users/:id/friends', function(req, res) {
     };
   }
   else if (asked === 'me') {
-    // do stuff that's not yet written
+    // where = function(qb) {
+    //   qb.whereRaw('("requestUser" = ?) and ("accepted" = ?)',
+    //     [id, false]);
+    // };
     throw new Error('Not yet handled');
   }
   else {
