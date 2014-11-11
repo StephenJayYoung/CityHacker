@@ -89,9 +89,7 @@ api.put('/users/:id', function(req, res) {
   var id = parseInt(params.id);
   return User.where({ id: id }).fetch()
   .then(function(user) {
-    // TODO: what should we do about password, do we want to change passwords?
-    // if so, how?
-    user.set(_.omit(req.body.user, 'password')); // TODO: discuss security
+    user.set(_.omit(req.body.user, 'password'));
     return user.save();
   })
   .then(function(user) {
@@ -200,12 +198,21 @@ api.post('/users/:id/friendships', function(req, res) {
   });
 });
 
-api.put('/users/:id/friendship', function(req, res) {
-  return {}
+api.put('/users/:id/friendships', function(req, res) {
+  var userID = parseInt(req.params.id);
+  console.log();
+  return Friendship.where({ recipientUser: userID }).fetch()
+  .then(function(friendship){
+    friendship.set('accepted', true);
+    return friendship.save();
+  })
+  .then(function(friendship){
+    res.send({ friendship: friendship });
+  })
   .catch(function(e) {
     res.status(500);
     res.send({ error: e });
- });
+  });
 });
 
 

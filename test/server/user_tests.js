@@ -72,15 +72,18 @@ describe('API for Users', __app(app, function(H) {
     .done(done, done);
   });
 
-  it.skip('handles PUT /api/users/2/friendships', function(done) {
+  it('handles PUT /api/users/2/friendships', function(done) {
     H.setupDatabase(User, 'users/2/accept_friendships', 'database-users')
     .then(function() {
-      return H.setupDatabase(Friendship, 'users/2/accept_friendships',
+      return H.setupDatabase(Friendship,
+        'users/2/accept_friendships',
         'database-friendships');
     })
     .then(function() { return H.testAPI('users/2/accept_friendships'); })
     .then(function() {
-      return H.testDatabaseContents(Friendship, 'users/2/accept_friendships', 'database-users-result');
+      return H.testDatabaseContents(Friendship,
+        'users/2/accept_friendships',
+        'database-users-result');
     })
     .done(done, done);
   });
