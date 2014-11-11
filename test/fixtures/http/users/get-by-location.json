@@ -11,27 +11,27 @@
         "location_latitude": 45,
         "location_longitude": 121,
         "picture": null,
-        "user_email": null,
         "username": "Leslie",
-        "visibleName": null
+        "visibleName": null,
+        "bio": null
       }, {
         "id": 4,
         "interests": null,
         "location_latitude": 45,
         "location_longitude": 122,
         "picture": null,
-        "user_email": null,
         "username": "Kali",
-        "visibleName": null
+        "visibleName": null,
+        "bio": null
       }, {
         "id": 5,
         "interests": null,
         "location_latitude": 46,
         "location_longitude": 122,
         "picture": null,
-        "user_email": null,
         "username": "Austin",
-        "visibleName": null
+        "visibleName": null,
+        "bio": null
       }]
     }
   },
@@ -44,7 +44,8 @@
     "interests": null,
     "picture": null,
     "user_email": null,
-    "visibleName": null
+    "visibleName": null,
+    "bio": null
   },
   {
     "id": 2,
@@ -55,7 +56,8 @@
     "interests": null,
     "picture": null,
     "user_email": null,
-    "visibleName": null
+    "visibleName": null,
+    "bio": null
   },
   {
     "id": 3,
@@ -66,7 +68,8 @@
     "interests": null,
     "picture": null,
     "user_email": null,
-    "visibleName": null
+    "visibleName": null,
+    "bio": null
   },
   {
     "id": 4,
@@ -77,7 +80,8 @@
     "interests": null,
     "picture": null,
     "user_email": null,
-    "visibleName": null
+    "visibleName": null,
+    "bio": null
   },
   {
     "id": 5,
@@ -88,7 +92,8 @@
     "interests": null,
     "picture": null,
     "user_email": null,
-    "visibleName": null
+    "visibleName": null,
+    "bio": null
   },
   {
     "id": 6,
@@ -99,6 +104,7 @@
     "interests": null,
     "picture": null,
     "user_email": null,
-    "visibleName": null
+    "visibleName": null,
+    "bio": null
   }]
 }

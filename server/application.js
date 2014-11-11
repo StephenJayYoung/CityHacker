@@ -43,9 +43,9 @@ app.use(methodOverride());
 // api routes
 var api = express.Router();
 
-
+// Removes password and email from User Info
 var sanitizeUser = function(user) {
-  return _.omit(user, 'passwordDigest');
+  return _.omit(user, 'passwordDigest', 'user_email');
 };
 
 api.post('/users', admit.create, function(req, res) {
@@ -67,6 +67,8 @@ api.post('/sessions', admit.authenticate, function(req, res) {
   // user accessible via req.auth
   res.json({ session: req.auth.user });
 });
+
+// Gets by User Id, removes password and email
 
 api.get('/users/:id', function(req, res) {
   var params = req.params;
@@ -107,6 +109,7 @@ api.get('/users', function(req, res) {
   var radius = parseFloat(query.radius);
 
   var collection = User;
+  console.log(User);
   if (lat && lng && radius) {
     var findRange = function(qb) {
       qb.whereRaw('("location_latitude" >= ?) and ("location_latitude" <= ?) and ("location_longitude" >= ?) and ("location_longitude" <= ?)',

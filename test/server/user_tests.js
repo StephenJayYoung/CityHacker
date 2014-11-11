@@ -53,6 +53,15 @@ describe('API for Users', __app(app, function(H) {
     .done(done, done);
   });
 
+  it.skip('handles POST /api/users/2/post_friendship', function(done) {
+    H.setupDatabase(User, 'users/2/post_friendship', 'database-users')
+    .then(function() { return H.testAPI('users/2/post_friendship'); })
+    .then(function() {
+      return H.testDatabaseContents(Friendship, 'users/2/post_friendship', 'database-friendships');
+    })
+    .done(done, done);
+  });
+
 
   it('handles GET /api/users with location', function(done) {
     H.setupDatabase(User, 'users/get-by-location', 'database-users')
@@ -77,9 +86,11 @@ describe('API for Users', __app(app, function(H) {
     .done(done, done);
   });
 
+// Tests that we can retrieve User Info with password and email omitted
+
   it('handles GET /api/users', function(done) {
     H.setupDatabase(User, 'users/users', 'database-users')
-    .then(function() { return H.testAPI('users/users'); })
+    .then(function() { return H.testAPI('users/users', { order: 'users.id' }); })
     .then(function() {
       return H.testDatabaseContents(User, 'users/users',
         'database-users');
@@ -87,6 +98,17 @@ describe('API for Users', __app(app, function(H) {
     .done(done, done);
   });
 
+  it('handles GET /api/users', function(done) {
+    H.setupDatabase(User, 'users/users', 'database-users')
+    .then(function() { return H.testAPI('users/users', { order: 'users.id' }); })
+    .then(function() {
+      return H.testDatabaseContents(User, 'users/users',
+        'database-users');
+    })
+    .done(done, done);
+  });
+
+<<<<<<< HEAD
 
   it('handles GET /api/users/2/friends', function(done) {
     var api = 'users/2/friends';
@@ -97,6 +119,12 @@ describe('API for Users', __app(app, function(H) {
     })
     .then(function() {
       return H.testAPI(api, { order: 'users.id' });
+=======
+  it.skip('handles GET /api/2/friend_requests', function(done) {
+    H.setupDatabase(User, 'users/friend_requests', 'database-users')
+    .then(function(){
+      return H.testAPI('users/friend_requests', { order: 'users.id' });
+>>>>>>> b0d1b8184bd25c130a583e0c3b6f7c52289757e7
     })
     .done(done, done);
   });
