@@ -1,33 +1,11 @@
 {
   "request": {
-    "url": "/api/users/:id/friend_requests",
+    "url": "/api/users/2/friend_requests",
     "method": "GET"
   },
   "response": {
     "json": {
       "users": [{
-        "id": 3,
-        "interests": null,
-        "location_latitude": null,
-        "location_longitude": null,
-        "passwordDigest": "mock-digest",
-        "picture": null,
-        "user_email": null,
-        "username": "Leslie",
-        "visibleName": null,
-        "bio": null
-      }, {
-        "id": 4,
-        "interests": null,
-        "location_latitude": null,
-        "location_longitude": null,
-        "passwordDigest": "mock-digest",
-        "picture": null,
-        "user_email": null,
-        "username": "Kali",
-        "visibleName": null,
-        "bio": null
-      }, {
         "id": 5,
         "interests": null,
         "location_latitude": null,
@@ -36,7 +14,7 @@
         "picture": null,
         "user_email": null,
         "username": "Austin",
-        "visibleName": null, 
+        "visibleName": null,
         "bio": null
       }]
     }
@@ -87,7 +65,7 @@
   }, {
     "id": 4,
     "requestUser": 3,
-    "recipientUser": 4,
+    "recipientUser": 2,
     "acceptID": "something-random-2134",
     "accepted": true
   }, {
@@ -95,7 +73,7 @@
     "requestUser": 5,
     "recipientUser": 2,
     "acceptID": "something-random-4539",
-    "accepted": true
+    "accepted": false
   }]
 }
 
