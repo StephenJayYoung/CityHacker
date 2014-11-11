@@ -87,3 +87,8 @@ For MVP
 - accept a friend
 - request a friendship
 - cityhackers page, make it so you can add friend, grayed out, or friends
+
+###Nov 10
+- give me all the people who are asking to be my friend - those people are false
+- give me the email of the people whose friendship I have accepted - those are true
+

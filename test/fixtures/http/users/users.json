@@ -12,7 +12,6 @@
         "username": "Andrea",
         "interests": null,
         "picture": null,
-        "user_email": null,
         "visibleName": null
       },
       {
@@ -22,7 +21,6 @@
         "username": "Steve",
         "interests": null,
         "picture": null,
-        "user_email": null,
         "visibleName": null
       },
       {
@@ -32,7 +30,6 @@
         "username": "Leslie",
         "interests": null,
         "picture": null,
-        "user_email": null,
         "visibleName": null
       },
       {
@@ -42,7 +39,6 @@
         "username": "Kali",
         "interests": null,
         "picture": null,
-        "user_email": null,
         "visibleName": null
       },
       {
@@ -52,7 +48,6 @@
         "username": "Austin",
         "interests": null,
         "picture": null,
-        "user_email": null,
         "visibleName": null
       },
       {
@@ -62,7 +57,6 @@
         "username": "Whitney",
         "interests": null,
         "picture": null,
-        "user_email": null,
         "visibleName": null
       }]
     }
