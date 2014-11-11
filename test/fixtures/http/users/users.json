@@ -13,7 +13,8 @@
         "interests": null,
         "picture": null,
         "user_email": null,
-        "visibleName": null
+        "visibleName": null,
+        "bio": null
       },
       {
         "id": 2,
@@ -23,7 +24,8 @@
         "interests": null,
         "picture": null,
         "user_email": null,
-        "visibleName": null
+        "visibleName": null,
+        "bio": null
       },
       {
         "id": 3,
@@ -33,7 +35,8 @@
         "interests": null,
         "picture": null,
         "user_email": null,
-        "visibleName": null
+        "visibleName": null,
+        "bio": null
       },
       {
         "id": 4,
@@ -43,7 +46,8 @@
         "interests": null,
         "picture": null,
         "user_email": null,
-        "visibleName": null
+        "visibleName": null,
+        "bio": null
       },
       {
         "id": 5,
@@ -53,7 +57,8 @@
         "interests": null,
         "picture": null,
         "user_email": null,
-        "visibleName": null
+        "visibleName": null,
+        "bio": null
       },
       {
         "id": 6,
@@ -63,7 +68,8 @@
         "interests": null,
         "picture": null,
         "user_email": null,
-        "visibleName": null
+        "visibleName": null,
+        "bio": null
       }]
     }
   },
@@ -76,7 +82,8 @@
     "interests": null,
     "picture": null,
     "user_email": null,
-    "visibleName": null
+    "visibleName": null,
+    "bio": null
   },
   {
     "id": 2,
@@ -87,7 +94,8 @@
     "interests": null,
     "picture": null,
     "user_email": null,
-    "visibleName": null
+    "visibleName": null,
+    "bio": null
   },
   {
     "id": 3,
@@ -98,7 +106,8 @@
     "interests": null,
     "picture": null,
     "user_email": null,
-    "visibleName": null
+    "visibleName": null,
+    "bio": null
   },
   {
     "id": 4,
@@ -109,7 +118,8 @@
     "interests": null,
     "picture": null,
     "user_email": null,
-    "visibleName": null
+    "visibleName": null,
+    "bio": null
   },
   {
     "id": 5,
@@ -120,7 +130,8 @@
     "interests": null,
     "picture": null,
     "user_email": null,
-    "visibleName": null
+    "visibleName": null,
+    "bio": null
   },
   {
     "id": 6,
@@ -131,6 +142,7 @@
     "interests": null,
     "picture": null,
     "user_email": null,
-    "visibleName": null
+    "visibleName": null,
+    "bio": null
   }]
 }

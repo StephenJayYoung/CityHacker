@@ -14,7 +14,8 @@
         "picture": null,
         "user_email": null,
         "username": "Leslie",
-        "visibleName": null
+        "visibleName": null,
+        "bio": null
       }, {
         "id": 4,
         "interests": null,
@@ -24,7 +25,8 @@
         "picture": null,
         "user_email": null,
         "username": "Kali",
-        "visibleName": null
+        "visibleName": null,
+        "bio": null
       }, {
         "id": 5,
         "interests": null,
@@ -34,7 +36,8 @@
         "picture": null,
         "user_email": null,
         "username": "Austin",
-        "visibleName": null
+        "visibleName": null, 
+        "bio": null
       }]
     }
   },

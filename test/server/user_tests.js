@@ -53,11 +53,11 @@ describe('API for Users', __app(app, function(H) {
     .done(done, done);
   });
 
-  it.skip('handles POST /api/users/2/friendrequest', function(done) {
-    H.setupDatabase(User, 'users/2/friendrequest', 'database-users')
-    .then(function() { return H.testAPI('users/2/friendrequest'); })
+  it.skip('handles POST /api/users/2/post_friendship', function(done) {
+    H.setupDatabase(User, 'users/2/post_friendship', 'database-users')
+    .then(function() { return H.testAPI('users/2/post_friendship'); })
     .then(function() {
-      return H.testDatabaseContents(Friendship, 'users/2/friendrequest', 'database-friendships');
+      return H.testDatabaseContents(Friendship, 'users/2/post_friendship', 'database-friendships');
     })
     .done(done, done);
   });

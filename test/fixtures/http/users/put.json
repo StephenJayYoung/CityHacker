@@ -25,7 +25,8 @@
         "picture": null,
         "user_email": "flopsy@milo.com",
         "username": "Sir Flops Alot",
-        "visibleName": "Awesome Milo"
+        "visibleName": "Awesome Milo",
+        "bio": null
       }
     }
   },
@@ -47,7 +48,8 @@
     "picture": null,
     "user_email": "flopsy@milo.com",
     "username": "Sir Flops Alot",
-    "visibleName": "Awesome Milo"
+    "visibleName": "Awesome Milo", 
+    "bio": null
   }, {
     "id": 3,
     "interests": null,
@@ -57,7 +59,8 @@
     "picture": null,
     "user_email": null,
     "username": "Tobi",
-    "visibleName": null
+    "visibleName": null, 
+    "bio": null
   }]
 }
 
