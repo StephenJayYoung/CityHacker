@@ -164,8 +164,37 @@ api.get('/users/:id/friends', function(req, res) {
 
 // This is where I am going to write the Get request for the the friendship_requests
 api.get('/users/:id/friend_requests', function(req, res) {
-  res.send({steve: 'will make this work'});
+    var params = req.params;  //this checks route params -- /user/:id/friends
+  var id = parseInt(params.id); //this is an id integer from the params
+
+  var where = function(qb) {
+    qb.whereRaw('("recipientUser" = ?) and ("accepted" = ?)',
+      [id, false]);
+  };
+
+
+  Friendship.query(where).fetchAll()
+  .then(function(collection) {
+    var userIDs = collection.toJSON().map(function(friendship) {
+      return friendship.requestUser === id ?
+        friendship.recipientUser :
+        friendship.requestUser;
+    });
+    var whereIDInUserIDs = function(qb) { qb.whereIn('id', userIDs); };
+    return User.query(whereIDInUserIDs).fetchAll();
+  })
+  .then(function(users) {
+    res.json({users: users.toJSON() });
+  });
 });
+
+
+
+
+
+
+
+
 
 api.use(admit.authorize);
 

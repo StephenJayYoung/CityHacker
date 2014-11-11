@@ -113,13 +113,9 @@ describe('API for Users', __app(app, function(H) {
   });
 
 
-  // TODO: once the test is passing, come back & discuss the URL for this
   // these are the requests that user 2 (Steve) has received, but not responded
   // to.
-  it.skip('handles GET /api/2/friend_requests', function(done) {
-    // there is one problem in this function. if you compare to the test
-    // in line 43, you should have an idea of what's different between the
-    // two & be able to come up with an idea of how these things differ.
+  it('handles GET /api/2/friend_requests', function(done) {
     var fixture = 'users/2/friend_requests';
     H.setupDatabase(User, fixture, 'database-users')
     .then(function() {
