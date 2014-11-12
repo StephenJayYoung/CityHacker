@@ -1,1 +1,89 @@
-see_friends_email.json
+{
+  "request": {
+    "url": "/api/users/2/see_friends_email",
+    "method": "GET"
+  },
+  "response": {
+    "json": {
+      "users": [{
+        "id": 3,
+        "interests": null,
+        "location_latitude": null,
+        "location_longitude": null,
+        "passwordDigest": "mock-digest",
+        "picture": null,
+        "user_email": null,
+        "username": "Leslie",
+        "visibleName": null,
+        "bio": null
+      }, {
+        "id": 4,
+        "interests": null,
+        "location_latitude": null,
+        "location_longitude": null,
+        "passwordDigest": "mock-digest",
+        "picture": null,
+        "user_email": null,
+        "username": "Kali",
+        "visibleName": null,
+        "bio": null
+      }]
+    }
+  },
+  "database-users": [{
+    "id": 1,
+    "passwordDigest": "mock-digest",
+    "username": "Andrea"
+  },
+  {
+    "id": 2,
+    "passwordDigest": "mock-digest",
+    "username": "Steve"
+  },
+  {
+    "id": 3,
+    "passwordDigest": "mock-digest",
+    "username": "Leslie"
+  },
+  {
+    "id": 4,
+    "passwordDigest": "mock-digest",
+    "username": "Kali"
+  },
+  {
+    "id": 5,
+    "passwordDigest": "mock-digest",
+    "username": "Austin"
+  }],
+  "database-friendships": [{
+    "id": 1,
+    "requestUser": 2,
+    "recipientUser": 3,
+    "acceptID": "something-random-3928",
+    "accepted": true
+  }, {
+  	"id": 2,
+    "requestUser": 2,
+    "recipientUser": 1,
+    "acceptID": "something-random-9384",
+    "accepted": false
+  }, {
+    "id": 3,
+    "requestUser": 2,
+    "recipientUser": 4,
+    "acceptID": "something-random-2134",
+    "accepted": true
+	}, {
+    "id": 4,
+    "requestUser": 3,
+    "recipientUser": 4,
+    "acceptID": "something-random-2134",
+    "accepted": true
+  }, {
+    "id": 5,
+    "requestUser": 5,
+    "recipientUser": 2,
+    "acceptID": "something-random-4539",
+    "accepted": false
+  }]
+}
