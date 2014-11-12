@@ -10,6 +10,7 @@ var app = require('../../server/application');
 var models = require('../../server/models'),
   User = models.User,
   Friendship = models.Friendship,
+  Token = models.Token,
   knex = models.knex;
 
 describe('API for Users', __app(app, function(H) {
@@ -24,6 +25,9 @@ describe('API for Users', __app(app, function(H) {
 
   beforeEach(function(done) {
     knex('friendship').delete().then(function() {
+      return knex('tokens').delete();
+    })
+    .then(function() {
       return knex('users').delete();
     })
     .then(function() {
@@ -180,16 +184,16 @@ describe('API for Users', __app(app, function(H) {
         'database-friendships');
     })
     .then(function() {
-      // how do i fake logging in as user with ID 2?
+      return H.setupDatabase(Token, fixture, 'database-tokens');
     })
     .then(function(){
-      return H.testAPI(fixture, { order: 'users.id' });
+      return H.testAPI(fixture);
     })
     .done(done, done);
   });
 
   //tests that we can see a user who is a friend, and we can see their email
-  it.skip('handles GET /api/users/:id/profile_details', function(done) {
+  it('handles GET /api/users/:id/profile_details', function(done) {
     var fixture = 'users/2/see_friends_email';
     H.setupDatabase(User, fixture, 'database-users')
     .then(function() {
@@ -197,10 +201,10 @@ describe('API for Users', __app(app, function(H) {
         'database-friendships');
     })
     .then(function() {
-      // how do i fake logging in as user with ID 2?
+      return H.setupDatabase(Token, fixture, 'database-tokens');
     })
     .then(function(){
-      return H.testAPI(fixture, { order: 'users.id' });
+      return H.testAPI(fixture);
     })
     .done(done, done);
   });

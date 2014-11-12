@@ -217,8 +217,29 @@ api.put('/users/:id/friendships', function(req, res) {
   });
 });
 
-
 api.use(admit.authorize);
+
+api.get('/users/:id/profile_details', function(req, res) {
+  var loggedInUserID = req.auth.user.id;
+  var requestedUserID = parseInt(req.params.id);
+
+  console.log('I am logged in as user with id %d and details %j', loggedInUserID, req.auth.user);
+  console.log('Am I friends with the user with id %d?', requestedUserID);
+
+
+  User.where({ id: requestedUserID }).fetch()
+  .then(function(user) {
+    var response = user.toJSON();
+    response = _.omit(response, 'passwordDigest');
+    // TODO: if they're not friends, then remove the user email from the reponse
+    res.send({ user: response });
+  })
+  .catch(function(e) {
+    res.status(500);
+    res.send({ error: e });
+  });
+});
+
 
 api.delete('/sessions/current', admit.invalidate, function(req, res) {
   if (req.auth.user) { throw new Error('Session not invalidated.'); }
