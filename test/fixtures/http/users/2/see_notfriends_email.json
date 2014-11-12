@@ -1,33 +1,21 @@
 {
   "request": {
-    "url": "/api/users/2/see_notfriends_email",
+    "todo-assuming-that-we-are-logged-in-as": 2,
+    "url": "/api/users/1/profile_details",
     "method": "GET"
   },
   "response": {
     "json": {
-      "users": [{
+      "user": {
         "id": 1,
         "interests": null,
         "location_latitude": null,
         "location_longitude": null,
-        "passwordDigest": "mock-digest",
         "picture": null,
-        "user_email": null,
         "username": "Andrea",
         "visibleName": null,
         "bio": null
-      }, {
-        "id": 5,
-        "interests": null,
-        "location_latitude": null,
-        "location_longitude": null,
-        "passwordDigest": "mock-digest",
-        "picture": null,
-        "user_email": null,
-        "username": "Austin",
-        "visibleName": null,
-        "bio": null
-      }]
+      }
     }
   },
   "database-users": [{

@@ -172,12 +172,15 @@ describe('API for Users', __app(app, function(H) {
 
   //tests that we can access a user who is not a friend, and we
   //cannot see their email
-  it.skip('handles GET /api/users/2/see_notfriends_email', function(done) {
+  it.skip('handles GET /api/users/:id/profile_details', function(done) {
     var fixture = 'users/2/see_notfriends_email';
     H.setupDatabase(User, fixture, 'database-users')
     .then(function() {
       return H.setupDatabase(Friendship, fixture,
         'database-friendships');
+    })
+    .then(function() {
+      // how do i fake logging in as user with ID 2?
     })
     .then(function(){
       return H.testAPI(fixture, { order: 'users.id' });
@@ -186,12 +189,15 @@ describe('API for Users', __app(app, function(H) {
   });
 
   //tests that we can see a user who is a friend, and we can see their email
-  it.skip('handles GET /api/users/2/see_friends_email', function(done) {
+  it.skip('handles GET /api/users/:id/profile_details', function(done) {
     var fixture = 'users/2/see_friends_email';
     H.setupDatabase(User, fixture, 'database-users')
     .then(function() {
       return H.setupDatabase(Friendship, fixture,
         'database-friendships');
+    })
+    .then(function() {
+      // how do i fake logging in as user with ID 2?
     })
     .then(function(){
       return H.testAPI(fixture, { order: 'users.id' });
