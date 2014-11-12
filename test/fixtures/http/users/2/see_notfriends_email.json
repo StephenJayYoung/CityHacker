@@ -6,25 +6,25 @@
   "response": {
     "json": {
       "users": [{
-        "id": 3,
+        "id": 1,
         "interests": null,
         "location_latitude": null,
         "location_longitude": null,
         "passwordDigest": "mock-digest",
         "picture": null,
         "user_email": null,
-        "username": "Leslie",
+        "username": "Andrea",
         "visibleName": null,
         "bio": null
       }, {
-        "id": 4,
+        "id": 5,
         "interests": null,
         "location_latitude": null,
         "location_longitude": null,
         "passwordDigest": "mock-digest",
         "picture": null,
         "user_email": null,
-        "username": "Kali",
+        "username": "Austin",
         "visibleName": null,
         "bio": null
       }]
