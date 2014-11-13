@@ -134,7 +134,7 @@ api.get('/users', function(req, res) {
 
 //Steps: 
 // 1. Access the friends json file - use req.params to do this
-// 2. return all of the info in that gile
+// 2. return all of the info in that file
 
 api.get('/users/:id/friends', function(req, res) {
   var params = req.params;  //this checks route params -- /user/:id/friends
@@ -222,15 +222,25 @@ api.use(admit.authorize);
 api.get('/users/:id/profile_details', function(req, res) {
   var loggedInUserID = req.auth.user.id;
   var requestedUserID = parseInt(req.params.id);
+  
+  User.where({ id: requestedUserID }).fetch()
+  .then(function(user) {
+    var response = user.toJSON();
+    response = _.omit(response, 'passwordDigest');
+
+
+var where = function(qb) {
+    qb.whereRaw('(("requestUser" = ? and "recipientUser" = ?) or ("requestUser" = ? and "recipientUser" = ?))', [loggedInUserID,requestedUserID, requestedUserID, loggedInUserID, true]);
+};
 
   console.log('I am logged in as user with id %d and details %j', loggedInUserID, req.auth.user);
   console.log('Am I friends with the user with id %d?', requestedUserID);
 
 
-  User.where({ id: requestedUserID }).fetch()
-  .then(function(user) {
-    var response = user.toJSON();
-    response = _.omit(response, 'passwordDigest');
+
+
+
+    response = _.omit(response, 'user_email');
     // TODO: if they're not friends, then remove the user email from the reponse
     res.send({ user: response });
   })

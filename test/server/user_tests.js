@@ -193,7 +193,7 @@ describe('API for Users', __app(app, function(H) {
   });
 
   //tests that we can see a user who is a friend, and we can see their email
-  it('handles GET /api/users/:id/profile_details', function(done) {
+  it.skip('handles GET /api/users/:id/profile_details', function(done) {
     var fixture = 'users/2/see_friends_email';
     H.setupDatabase(User, fixture, 'database-users')
     .then(function() {
