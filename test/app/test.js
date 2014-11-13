@@ -74,12 +74,13 @@ describe('app', function() {
       });
     });
 
-    it.skip('allows client to update their profile', function() {
+    it.only('allows client to update their profile', function() {
 
       var putFixture = stubAPI('users/put');
       var getFixture = stubAPI('users/get');
       var nameBody = putFixture.request.json.user.visibleName;
       var email = putFixture.request.json.user.user_email;
+      var interests = putFixture.request.json.user.interests;
 
       visit('/profile');
 
@@ -91,6 +92,7 @@ describe('app', function() {
 
       fillIn('input.visibleName', nameBody);
       fillIn('input.user_email', email);
+      fillIn('input.interests', interests);
       click('button.submit.updateUserProfile');
 
       andThen(function(){
@@ -101,7 +103,7 @@ describe('app', function() {
         console.log(putFixture.request.json);
         expect(putRequest.method).to.eql(putFixture.request.method);
         expect(putJSON).to.eql(putFixture.request.json);
-        expect(server.requests.length).to.eql(2);
+        expect(server.requests.length).to.eql(3);
       });
     });
 
