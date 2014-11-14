@@ -83,14 +83,14 @@ api.get('/users/:id', function(req, res) {
     res.send({ error: e });
  });
 });
-
+//helper for creating error messages
 var standardCatch = function(req, res) {
   return function(e) {
     res.status(e.statusCode || 500);
     res.send({ error: e.message });
   };
 };
-
+// helper for creating error messages
 var throwWithStatus = function(status, message) {
   var e = new Error(message);
   e.statusCode = status;
