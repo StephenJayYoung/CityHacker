@@ -84,21 +84,32 @@ api.get('/users/:id', function(req, res) {
  });
 });
 
+var standardCatch = function(req, res) {
+  return function(e) {
+    res.status(e.statusCode || 500);
+    res.send({ error: e.message });
+  };
+};
+
+var throwWithStatus = function(status, message) {
+  var e = new Error(message);
+  e.statusCode = status;
+  throw e;
+};
+
 api.put('/users/:id', function(req, res) {
   var params = req.params;
   var id = parseInt(params.id);
   return User.where({ id: id }).fetch()
   .then(function(user) {
+    if (!user) { throwWithStatus(404, 'Not found'); }
     user.set(_.omit(req.body.user, 'password'));
     return user.save();
   })
   .then(function(user) {
     res.send({ user: sanitizeUser(user.toJSON()) });
   })
-  .catch(function(e) {
-    res.status(500);
-    res.send({ error: e });
- });
+  .catch(standardCatch(req, res));
 });
 
 api.get('/users', function(req, res) {

@@ -16,8 +16,9 @@
     }
   },
   "response": {
+    "statusCode": 404,
     "json": {
-      "error": {}
+      "error": "Not found"
     }
   },
   "database-users": [{
