@@ -234,7 +234,7 @@ api.get('/users/:id/profile_details', function(req, res) {
   };
 
 //this part below is right. will need to add a promise after it.
-   Friendship.query(findFriendship).fetchAll()
+   Friendship.query(findFriendship).fetchAll();
   //TODO: make this work! Steps:
   //1. Search for a friendship (done in top part)
   //2. If we get one, note that
