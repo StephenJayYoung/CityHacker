@@ -41,6 +41,10 @@ describe('API for errors', __app(app, function(H) {
    function(done) {
     H.setupDatabase(User, 'users/error', 'database-users')
     .then(function() { return H.testAPI('users/error'); })
+    .then(function() {
+      return H.testDatabaseContents(User, 'users/error',
+        'database-users-result');
+    })
     .done(done, done);
     // adds or changes visible name, interests, location, email, and pictures
   });

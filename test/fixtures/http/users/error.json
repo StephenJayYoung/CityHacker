@@ -31,14 +31,14 @@
   }],
   "database-users-result": [{
     "id": 2,
-    "interests": "cats",
+    "interests": null,
     "location_latitude": null,
     "location_longitude": null,
     "passwordDigest": "not-real-digest",
     "picture": null,
-    "user_email": "flopsy@milo.com",
-    "username": "Sir Flops Alot",
-    "visibleName": "Awesome Milo", 
+    "user_email": null,
+    "username": "Milo",
+    "visibleName": null,
     "bio": null
   }, {
     "id": 3,
@@ -49,7 +49,7 @@
     "picture": null,
     "user_email": null,
     "username": "Tobi",
-    "visibleName": null, 
+    "visibleName": null,
     "bio": null
   }]
 }
