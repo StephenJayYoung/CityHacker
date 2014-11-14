@@ -222,41 +222,27 @@ api.use(admit.authorize);
 api.get('/users/:id/profile_details', function(req, res) {
   var loggedInUserID = req.auth.user.id;
   var requestedUserID = parseInt(req.params.id);
+  var usersAreFriends = false;
 
-  User.where({ id: requestedUserID }).fetch()
+  var configureFriendshipQuery = function(qb) {
+    qb.whereRaw('(("requestUser" = ? and "recipientUser" = ?) or ' +
+      '("requestUser" = ? and "recipientUser" = ?)) and accepted = ?',
+    [loggedInUserID,requestedUserID, requestedUserID, loggedInUserID, true]);
+  };
+
+  Friendship.query(configureFriendshipQuery).fetchAll()
+  .then(function(friendships) {
+    usersAreFriends = (friendships.length >= 1);
+  })
+  .then(function() {
+    return User.where({ id: requestedUserID }).fetch();
+  })
   .then(function(user) {
     var response = user.toJSON();
     response = _.omit(response, 'passwordDigest');
-
-//This is going to return the friendship data if users are friends
-  var findFriendship = function(qb) {
-    qb.whereRaw('(("requestUser" = ? and "recipientUser" = ?) or ("requestUser" = ? and "recipientUser" = ?))', [loggedInUserID,requestedUserID, requestedUserID, loggedInUserID, true]);
-  };
-
-//this part below is right. will need to add a promise after it.
-   Friendship.query(findFriendship).fetchAll();
-  //TODO: make this work! Steps:
-  //1. Search for a friendship (done in top part)
-  //2. If we get one, note that
-  //3. Search for the user
-  //4. If the users were not friends, omit the email
-  //5. Send back the user
-  //
-
-  //   .then(function(friendship)
-  //   if friendship = true;
-  //   return friendship();
-  // }));
-  // .then(function(user){
-  //   if friendship = false;
-  //   return = _.omit(response, 'user_email');
-  //   res.send({ user: response });
-  // })
-
-
-///
-    response = _.omit(response, 'user_email');
-    // TODO: if they're not friends, then remove the user email from the reponse
+    if (!usersAreFriends) {
+      response = _.omit(response, 'user_email');
+    }
     res.send({ user: response });
   })
   .catch(function(e) {
