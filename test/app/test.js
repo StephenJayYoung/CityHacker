@@ -74,7 +74,7 @@ describe('app', function() {
       });
     });
 
-    it.only('allows client to update their profile', function() {
+    it('allows client to update their profile', function() {
 
       var putFixture = stubAPI('users/put');
       var getFixture = stubAPI('users/get');
@@ -99,11 +99,9 @@ describe('app', function() {
         var putRequest = server.requests[1];
         var putJSON = JSON.parse(putRequest.requestBody);
         expect(putRequest.url).to.eql(putFixture.request.url);
-        console.log(putJSON);
-        console.log(putFixture.request.json);
         expect(putRequest.method).to.eql(putFixture.request.method);
         expect(putJSON).to.eql(putFixture.request.json);
-        expect(server.requests.length).to.eql(3);
+        expect(server.requests.length).to.eql(2);
       });
     });
 
