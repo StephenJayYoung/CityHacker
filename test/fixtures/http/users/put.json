@@ -4,7 +4,7 @@
     "method": "PUT",
     "json": {
       "user": {
-        "interests": null,
+        "interests": "cats",
         "location_latitude": null,
         "location_longitude": null,
         "picture": null,
@@ -19,7 +19,7 @@
     "json": {
       "user": {
         "id": 1,
-        "interests": null,
+        "interests": "cats",
         "location_latitude": null,
         "location_longitude": null,
         "picture": null,
@@ -40,7 +40,7 @@
   }],
   "database-users-result": [{
     "id": 1,
-    "interests": null,
+    "interests": "cats",
     "location_latitude": null,
     "location_longitude": null,
     "passwordDigest": "not-real-digest",
