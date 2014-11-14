@@ -12,7 +12,7 @@ var models = require('../../server/models'),
   knex = models.knex;
 
 describe('API for errors', __app(app, function(H) {
-//creates a random id and replaces them all with fake id
+//creates a random id and replaces them all with fake id for friendship
   beforeEach(function() {
     sinon.stub(uuid, 'v4').returns('random-9384');
   });
