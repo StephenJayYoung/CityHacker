@@ -129,8 +129,9 @@ describe('app', function() {
         expect(find('input.interests').val()).to.eql('carrots, lettuce, obstacle courses');
       });
 
-      it.skip('fills in the user bio', function() {
-        expect(find('input.bio').val()).to.eql('my bio');
+      it('fills in the user bio', function() {
+        //console.log(stubAPI('users/get-full-profile-info'));
+        expect(find('textarea.bio').val()).to.eql('my bio');
       });
 
     });
@@ -187,6 +188,10 @@ describe('app', function() {
 
       it('will display Interests as part of user info', function(){
         expect(find('input.interests').length).to.equal(1);
+      });
+
+      it.skip('will display Gravitar image', function(){
+        expect(find('gravatar-image.photo').length).to.equal(1);
       });
     });
 

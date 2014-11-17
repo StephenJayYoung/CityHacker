@@ -93,7 +93,8 @@ App.User = DS.Model.extend({
   user_email: DS.attr('string'),
   username: DS.attr('string'),
   password: DS.attr('string'),
-  visibleName: DS.attr('string')
+  visibleName: DS.attr('string'),
+  bio: DS.attr('string')
 });
 
 App.LoginRoute = Ember.Route.extend({
