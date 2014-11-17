@@ -7,7 +7,7 @@
   "license": "MIT",
   "dependencies": {
     "MD5": "^1.2.1",
-    "admit-one": "^0.3.0",
+    "admit-one": "^0.3.1",
     "admit-one-bookshelf": "^0.3.0",
     "bluebird": "^2.3.10",
     "body-parser": "^1.3.0",
