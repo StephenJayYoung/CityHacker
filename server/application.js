@@ -180,7 +180,7 @@ api.get('/users/:id/friends', function(req, res) {
     return User.query(whereIDInUserIDs).fetchAll();
   })
   .then(function(users) {
-    res.json({users: users.toJSON() });
+    res.json({users: users.toJSON().map(prepareUser) });
   });
 });
 
