@@ -192,6 +192,24 @@ describe('API for Users', __app(app, function(H) {
     .done(done, done);
   });
 
+  //tests that we can access a user who is not a friend (since we're not logged in),
+  //and we cannot see their email
+  it.skip('handles GET /api/users/:id/profile_details when not logged in', function(done) {
+    var fixture = 'users/2/see_notfriends_email';
+    H.setupDatabase(User, fixture, 'database-users')
+    .then(function() {
+      return H.setupDatabase(Friendship, fixture,
+        'database-friendships');
+    })
+    // no token being created here, so the user is not logged in. the fixture still
+    // defines the token in the header, but the backend won't consider this user
+    // as authenticated.
+    .then(function(){
+      return H.testAPI(fixture);
+    })
+    .done(done, done);
+  });
+
   //tests that we can see a user who is a friend, and we can see their email
   it('handles GET /api/users/:id/profile_details', function(done) {
     var fixture = 'users/2/see_friends_email';

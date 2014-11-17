@@ -223,9 +223,9 @@ api.put('/users/:id/friendships', function(req, res) {
   });
 });
 
-api.use(admit.authorize);
-
-api.get('/users/:id/profile_details', function(req, res) {
+api.get('/users/:id/profile_details', admit.extract, function(req, res) {
+  console.log(req.auth.user);
+  
   var loggedInUserID = req.auth.user.id;
   var requestedUserID = parseInt(req.params.id);
   var usersAreFriends = false;
@@ -256,6 +256,10 @@ api.get('/users/:id/profile_details', function(req, res) {
     res.send({ error: e });
   });
 });
+
+
+api.use(admit.authorize);
+
 
 
 api.delete('/sessions/current', admit.invalidate, function(req, res) {
