@@ -72,7 +72,9 @@ GLOBAL.__app = function(app, fn) {
         headers: headers
       })
       .then(function(args) {
+        var response = args[0];
         var body = args[1];
+        var statusCode = response.statusCode;
 
         if (opts.order) {
           var keys = opts.order.split('.');
@@ -82,6 +84,9 @@ GLOBAL.__app = function(app, fn) {
         }
 
         expect(body).to.eql(fixture.response.json);
+        expect(statusCode).to
+          .eql(fixture.response.statusCode || 200,
+            'API response statusCode is incorrect.');
       });
     };
 
