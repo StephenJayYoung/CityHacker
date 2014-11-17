@@ -8,13 +8,12 @@ var methodOverride = require('method-override');
 var compression = require('compression');
 var uuid = require('node-uuid');
 var favicon = require('serve-favicon');
+var md5 = require('MD5');
 var config = require('./config');
 var _ = require('lodash');
 var models = require('./models'),
   User = models.User,
   Friendship = models.Friendship;
-
-
 var app = express();
 var api = express.Router();
 var resources = express();
@@ -45,8 +44,15 @@ app.use(methodOverride());
 var api = express.Router();
 
 // Removes password and email from User Info
-var sanitizeUser = function(user) {
-  return _.omit(user, 'passwordDigest', 'user_email');
+var prepareUser = function(user) {
+  var email = user.user_email;
+  user = _.omit(user, 'passwordDigest', 'user_email');
+  if (email) {
+    user = _.extend(user, {
+      picture: 'http://www.gravatar.com/avatar/' + md5(email)
+    });
+  }
+  return user;
 };
 
 api.post('/users', admit.create, function(req, res) {
@@ -76,7 +82,7 @@ api.get('/users/:id', function(req, res) {
   var id = parseInt(params.id);
   User.where({ id: id }).fetch()
   .then(function(user) {
-    res.send({ user: sanitizeUser(user.toJSON()) });
+    res.send({ user: prepareUser(user.toJSON()) });
   })
   .catch(function(e) {
     res.status(500);
@@ -93,7 +99,7 @@ api.put('/users/:id', function(req, res) {
     return user.save();
   })
   .then(function(user) {
-    res.send({ user: sanitizeUser(user.toJSON()) });
+    res.send({ user: prepareUser(user.toJSON()) });
   })
   .catch(function(e) {
     res.status(500);
@@ -119,7 +125,7 @@ api.get('/users', function(req, res) {
   return collection.fetchAll()
   .then(function(users) {
     var usersWithoutPasswords = users.toJSON()
-    .map(sanitizeUser);
+    .map(prepareUser);
     res.send({ users: usersWithoutPasswords });
   })
   .catch(function(e) {
