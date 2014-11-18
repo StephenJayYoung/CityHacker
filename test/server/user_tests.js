@@ -2,7 +2,6 @@
 
 // NODE_ENV=test ./node_modules/.bin/knex migrate:latest
 
-//var expect = require('chai').expect;
 var sinon = require('sinon');
 var uuid = require('node-uuid');
 var app = require('../../server/application');

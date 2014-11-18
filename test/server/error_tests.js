@@ -1,6 +1,5 @@
 'use strict';
 
-// var expect = require('chai').expect;
 var sinon = require('sinon');
 var uuid = require('node-uuid');
 var app = require('../../server/application');
