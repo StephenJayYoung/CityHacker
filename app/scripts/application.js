@@ -62,7 +62,6 @@ App.GravatarImageComponent = Ember.Component.extend({
   gravatarUrl: function() {
     var picture = this.get('picture'),
         size = this.get('size');
-    console.log('generating a picture of ', picture);
     return picture + '?s=' + size;
   }.property('picture', 'size')
 });
