@@ -269,7 +269,7 @@ api.get('/users/:id/profile_details', admit.extract, function(req, res) {
 
   else {
 //put the stuff from if user is not logged in here.
-    res.send('blah')
+    res.send('blah');
   }
 
 

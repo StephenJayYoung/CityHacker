@@ -1,14 +1,14 @@
 'use strict';
 
-var expect = require('chai').expect;
+// var expect = require('chai').expect;
 var sinon = require('sinon');
 var uuid = require('node-uuid');
 var app = require('../../server/application');
 
 var models = require('../../server/models'),
   User = models.User,
-  Friendship = models.Friendship,
-  Token = models.Token,
+  // Friendship = models.Friendship,
+  // Token = models.Token,
   knex = models.knex;
 
 describe('API for errors', __app(app, function(H) {
