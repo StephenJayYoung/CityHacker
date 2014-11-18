@@ -194,7 +194,7 @@ describe('API for Users', __app(app, function(H) {
 
   //tests that we can access a user who is not a friend (since we're not logged in),
   //and we cannot see their email
-  it('handles GET /api/users/:id/profile_details when not logged in', function(done) {
+  it.skip('handles GET /api/users/:id/profile_details when not logged in', function(done) {
     var fixture = 'users/2/see_notfriends_email';
     H.setupDatabase(User, fixture, 'database-users')
     .then(function() {

@@ -224,37 +224,46 @@ api.put('/users/:id/friendships', function(req, res) {
 });
 
 api.get('/users/:id/profile_details', admit.extract, function(req, res) {
-  console.log(req.auth.user);
-  
-  var loggedInUserID = req.auth.user.id;
-  var requestedUserID = parseInt(req.params.id);
-  var usersAreFriends = false;
 
-  var configureFriendshipQuery = function(qb) {
-    qb.whereRaw('(("requestUser" = ? and "recipientUser" = ?) or ' +
-      '("requestUser" = ? and "recipientUser" = ?)) and accepted = ?',
-    [loggedInUserID,requestedUserID, requestedUserID, loggedInUserID, true]);
-  };
 
-  Friendship.query(configureFriendshipQuery).fetchAll()
-  .then(function(friendships) {
-    usersAreFriends = (friendships.length >= 1);
-  })
-  .then(function() {
-    return User.where({ id: requestedUserID }).fetch();
-  })
-  .then(function(user) {
-    var response = user.toJSON();
-    response = _.omit(response, 'passwordDigest');
-    if (!usersAreFriends) {
-      response = _.omit(response, 'user_email');
-    }
-    res.send({ user: response });
-  })
-  .catch(function(e) {
-    res.status(500);
-    res.send({ error: e });
-  });
+  if (req.auth.user) {
+    var loggedInUserID = req.auth.user.id;
+    var requestedUserID = parseInt(req.params.id);
+    var usersAreFriends = false;
+
+    var configureFriendshipQuery = function(qb) {
+      qb.whereRaw('(("requestUser" = ? and "recipientUser" = ?) or ' +
+        '("requestUser" = ? and "recipientUser" = ?)) and accepted = ?',
+      [loggedInUserID,requestedUserID, requestedUserID, loggedInUserID, true]);
+    };
+
+    Friendship.query(configureFriendshipQuery).fetchAll()
+    .then(function(friendships) {
+      usersAreFriends = (friendships.length >= 1);
+    })
+    .then(function() {
+      return User.where({ id: requestedUserID }).fetch();
+    })
+    .then(function(user) {
+      var response = user.toJSON();
+      response = _.omit(response, 'passwordDigest');
+      if (!usersAreFriends) {
+        response = _.omit(response, 'user_email');
+      }
+      res.send({ user: response });
+    })
+    .catch(function(e) {
+      res.status(500);
+      res.send({ error: e });
+    });
+  }
+
+  else {
+//put the stuff from if user is not logged in here.
+    res.send('blah')
+  }
+
+
 });
 
 
