@@ -222,6 +222,14 @@ describe('app', function() {
       });
 
       //---------------------------------------------------------
+      // The cityhackers page displays all user info
+      // On a click, the modal pops up
+      // The modal displays all the user info
+      // The modal has a button for add friend
+      // The cityhackers page shows people who are already friends
+      // The cityhackers page doesn't offer for you to meet yourself
+
+      //---------------------------------------------------------
 
     });
   });
