@@ -2,7 +2,6 @@
 
 // NODE_ENV=test ./node_modules/.bin/knex migrate:latest
 
-var expect = require('chai').expect;
 var sinon = require('sinon');
 var uuid = require('node-uuid');
 var app = require('../../server/application');
@@ -37,10 +36,6 @@ describe('API for Users', __app(app, function(H) {
       return knex.raw('alter sequence users_id_seq restart');
     })
     .then(function() { done(); }, done);
-  });
-
-  it('has one passing test', function() {
-    expect(app).to.exist;
   });
 
   it('handles PUT /api/users/1', function(done) {

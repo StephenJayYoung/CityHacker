@@ -215,11 +215,30 @@ describe('app', function() {
         expect(find('em.interests').length).to.equal(6);
       });
 
+      it.skip('has shows all user info in modal', function(){
+        click('a.img-circle');
+        andThen(function(){
+          expect(find('div.modal fade in').length).to.equal(1);
+          expect(find('center.photo').length).to.equal(1);
+          expect(find('h3.visableName').length).to.equal(1);
+          expect(find('em.interests').length).to.equal(1);
+          expect(find('em.interests').length).to.equal(1);
+        })
+      });
+
       //click('button.submit.addFriend' for user steve);
       andThen(function(){
         // get request for friendship steve's recipientUser key will equal 1
         expect().to.equal();
       });
+
+      //---------------------------------------------------------
+      // The cityhackers page displays all user info
+      // On a click, the modal pops up
+      // The modal displays all the user info
+      // The modal has a button for add friend
+      // The cityhackers page shows people who are already friends
+      // The cityhackers page doesn't offer for you to meet yourself
 
       //---------------------------------------------------------
 

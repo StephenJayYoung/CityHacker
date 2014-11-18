@@ -11,7 +11,7 @@
         "location_longitude": 81,
         "username": "Andrea",
         "interests": null,
-        "picture": null,
+        "picture":  "http://www.gravatar.com/avatar/d41d8cd98f00b204e9800998ecf8427e",
         "visibleName": null,
         "bio": null,
         "visibleName": null
@@ -22,7 +22,7 @@
         "location_longitude": 121,
         "username": "Steve",
         "interests": null,
-        "picture": null,
+        "picture":  "http://www.gravatar.com/avatar/d41d8cd98f00b204e9800998ecf8427e",
         "visibleName": null,
         "bio": null
       },
@@ -32,7 +32,7 @@
         "location_longitude": 121,
         "username": "Leslie",
         "interests": null,
-        "picture": null,
+        "picture":  "http://www.gravatar.com/avatar/d41d8cd98f00b204e9800998ecf8427e",
         "visibleName": null,
         "bio": null
       },
@@ -42,7 +42,7 @@
         "location_longitude": 122,
         "username": "Kali",
         "interests": null,
-        "picture": null,
+        "picture":  "http://www.gravatar.com/avatar/d41d8cd98f00b204e9800998ecf8427e",
         "visibleName": null,
         "bio": null
       },
@@ -52,7 +52,7 @@
         "location_longitude": 122,
         "username": "Austin",
         "interests": null,
-        "picture": null,
+        "picture":  "http://www.gravatar.com/avatar/d41d8cd98f00b204e9800998ecf8427e",
         "visibleName": null,
         "bio": null
       },
@@ -62,7 +62,7 @@
         "location_longitude": 221,
         "username": "Whitney",
         "interests": null,
-        "picture": null,
+        "picture":  "http://www.gravatar.com/avatar/d41d8cd98f00b204e9800998ecf8427e",
         "visibleName": null,
         "bio": null
       }]

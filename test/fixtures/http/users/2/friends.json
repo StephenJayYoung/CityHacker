@@ -10,7 +10,7 @@
         "interests": null,
         "location_latitude": null,
         "location_longitude": null,
-        "picture": null,
+        "picture":  "http://www.gravatar.com/avatar/d41d8cd98f00b204e9800998ecf8427e",
         "username": "Leslie",
         "visibleName": null,
         "bio": null
@@ -19,7 +19,7 @@
         "interests": null,
         "location_latitude": null,
         "location_longitude": null,
-        "picture": null,
+        "picture":  "http://www.gravatar.com/avatar/d41d8cd98f00b204e9800998ecf8427e",
         "username": "Kali",
         "visibleName": null,
         "bio": null

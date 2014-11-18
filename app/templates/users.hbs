@@ -8,14 +8,13 @@
 <div class="container users">
     <div class="span3 well">
         <div><center>
-            <a href="#aboutModal" data-toggle="modal" data-target="#myModal">{{gravatar-image picture=picture width="140" height="140" class="img-circle" }}</a>
+            <a href="#aboutModal" data-toggle="modal" {{bind-attr data-target=modalTarget}}>{{gravatar-image picture=picture width="140" height="140" class="img-circle" }}</a>
             <h3 class="visableName">{{visibleName}}</h3>
             <em class="interests">{{interests}} in Portland, OR</em>
         </center></div>
-        <p>
     </div>
     <!-- Modal -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal fade" {{bind-attr id=modalID}} tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">

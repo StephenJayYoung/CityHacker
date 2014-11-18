@@ -47,11 +47,9 @@ var api = express.Router();
 var prepareUser = function(user) {
   var email = user.user_email;
   user = _.omit(user, 'passwordDigest', 'user_email');
-  if (email) {
-    user = _.extend(user, {
-      picture: 'http://www.gravatar.com/avatar/' + md5(email)
-    });
-  }
+  user = _.extend(user, {
+    picture: 'http://www.gravatar.com/avatar/' + md5(email || '')
+  });
   return user;
 };
 
