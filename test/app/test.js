@@ -215,6 +215,17 @@ describe('app', function() {
         expect(find('em.interests').length).to.equal(6);
       });
 
+      it.skip('has shows all user info in modal', function(){
+        click('a.img-circle');
+        andThen(function(){
+          expect(find('div.modal fade in').length).to.equal(1);
+          expect(find('center.photo').length).to.equal(1);
+          expect(find('h3.visableName').length).to.equal(1);
+          expect(find('em.interests').length).to.equal(1);
+          expect(find('em.interests').length).to.equal(1);
+        })
+      });
+
       //click('button.submit.addFriend' for user steve);
       andThen(function(){
         // get request for friendship steve's recipientUser key will equal 1

@@ -62,6 +62,7 @@ App.GravatarImageComponent = Ember.Component.extend({
   gravatarUrl: function() {
     var picture = this.get('picture'),
         size = this.get('size');
+    console.log('generating a picture of ', picture);
     return picture + '?s=' + size;
   }.property('picture', 'size')
 });
@@ -75,6 +76,12 @@ App.UsersRoute = Ember.Route.extend({
 App.UserController = Ember.ObjectController.extend({
   // when button for each user is clicked send friend request
   // grey out when the request has been made.
+  modalID: function() {
+    return 'modal' + this.get('id');
+  }.property('id'),
+  modalTarget: function() {
+    return '#' + this.get('modalID');
+  }.property('modalID')
 });
 
 App.UsersController = Ember.ArrayController.extend({
