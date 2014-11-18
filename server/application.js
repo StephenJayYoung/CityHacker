@@ -235,12 +235,11 @@ api.put('/users/:id/friendships', function(req, res) {
 });
 
 api.get('/users/:id/profile_details', admit.extract, function(req, res) {
-
+  var requestedUserID = parseInt(req.params.id);
+  var usersAreFriends = false;
 
   if (req.auth.user) {
     var loggedInUserID = req.auth.user.id;
-    var requestedUserID = parseInt(req.params.id);
-    var usersAreFriends = false;
 
     var configureFriendshipQuery = function(qb) {
       qb.whereRaw('(("requestUser" = ? and "recipientUser" = ?) or ' +
@@ -270,11 +269,21 @@ api.get('/users/:id/profile_details', admit.extract, function(req, res) {
   }
 
   else {
-//put the stuff from if user is not logged in here.
-    res.send('blah')
+    // we now know in this else branch that the user is not logged in
+    User.where({ id: requestedUserID }).fetch()
+    .then(function(user) {
+      var response = user.toJSON();
+      response = _.omit(response, 'passwordDigest');
+      if (!usersAreFriends) {
+        response = _.omit(response, 'user_email');
+      }
+      res.send({ user: response });
+    })
+    .catch(function(e) {
+      res.status(500);
+      res.send({ error: e });
+    });
   }
-
-
 });
 
 
