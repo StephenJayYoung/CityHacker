@@ -8,7 +8,7 @@
 <div class="container users">
     <div class="span3 well">
         <div><center>
-            <a href="#aboutModal" data-toggle="modal" data-target="#myModal">{{gravatar-image email=user_email width="140" height="140" class="img-circle" }}</a>
+            <a href="#aboutModal" data-toggle="modal" data-target="#myModal">{{gravatar-image picture=picture width="140" height="140" class="img-circle" }}</a>
             <h3 class="visableName">{{visibleName}}</h3>
             <em class="interests">{{interests}} in Portland, OR</em>
         </center></div>
@@ -24,8 +24,8 @@
                     </div>
                 <div class="modal-body">
                     <center class="photo">
-                    {{gravatar-image email=user_email size="200"}}
-                    <h3 class="media-heading">{{visibleNdame}}<br><small>Portland, Oregon</small></h3>
+                    {{gravatar-image picture=picture size="200"}}
+                    <h3 class="media-heading">{{visibleName}}<br><small>Portland, Oregon</small></h3>
                     <span><strong>Interests:</strong></span>
                         {{#each interest in interestsList}}
                             <span class="label label-warning">{{interest}}</span>
