@@ -57,14 +57,13 @@ App.ProfileController = Ember.ObjectController.extend({
 
 App.GravatarImageComponent = Ember.Component.extend({
   size: 200,
-  email: '',
+  picture: '',
 
   gravatarUrl: function() {
-    var email = this.get('email'),
+    var picture = this.get('picture'),
         size = this.get('size');
-
-    return 'http://www.gravatar.com/avatar/' + md5(email) + '?s=' + size;
-  }.property('email', 'size')
+    return picture + '?s=' + size;
+  }.property('picture', 'size')
 });
 
 App.UsersRoute = Ember.Route.extend({
@@ -93,7 +92,8 @@ App.User = DS.Model.extend({
   user_email: DS.attr('string'),
   username: DS.attr('string'),
   password: DS.attr('string'),
-  visibleName: DS.attr('string')
+  visibleName: DS.attr('string'),
+  bio: DS.attr('string')
 });
 
 App.LoginRoute = Ember.Route.extend({
