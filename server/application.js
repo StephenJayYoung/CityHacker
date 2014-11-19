@@ -5,6 +5,7 @@ var path = require('path');
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
+var BPromise = require('bluebird');
 var compression = require('compression');
 var uuid = require('node-uuid');
 var favicon = require('serve-favicon');
@@ -235,8 +236,9 @@ api.put('/users/:id/friendships', function(req, res) {
 api.get('/users/:id/profile_details', admit.extract, function(req, res) {
   var requestedUserID = parseInt(req.params.id);
   var usersAreFriends = false;
+  var promise = BPromise.resolve();
 
-  if (req.auth.user) {
+  if (req.auth.user) {  //this is the same as if logged in
     var loggedInUserID = req.auth.user.id;
 
     var configureFriendshipQuery = function(qb) {
@@ -245,43 +247,32 @@ api.get('/users/:id/profile_details', admit.extract, function(req, res) {
       [loggedInUserID,requestedUserID, requestedUserID, loggedInUserID, true]);
     };
 
-    Friendship.query(configureFriendshipQuery).fetchAll()
+    promise = promise.then(function() {
+      return Friendship.query(configureFriendshipQuery).fetchAll();
+    })
     .then(function(friendships) {
+      // friendships is a bookshelf collection of all of the Friendship
+      // objects that we fetched when doing Friendship.query... above (within
+      // the previous `then`).
       usersAreFriends = (friendships.length >= 1);
-    })
-    .then(function() {
-      return User.where({ id: requestedUserID }).fetch();
-    })
-    .then(function(user) {
-      var response = user.toJSON();
-      response = _.omit(response, 'passwordDigest');
-      if (!usersAreFriends) {
-        response = _.omit(response, 'user_email');
-      }
-      res.send({ user: response });
-    })
-    .catch(function(e) {
-      res.status(500);
-      res.send({ error: e });
     });
   }
 
-  else {
-    // we now know in this else branch that the user is not logged in
-    User.where({ id: requestedUserID }).fetch()
-    .then(function(user) {
-      var response = user.toJSON();
-      response = _.omit(response, 'passwordDigest');
-      if (!usersAreFriends) {
-        response = _.omit(response, 'user_email');
-      }
-      res.send({ user: response });
-    })
-    .catch(function(e) {
-      res.status(500);
-      res.send({ error: e });
-    });
-  }
+  promise.then(function() {
+    return User.where({ id: requestedUserID }).fetch();
+  })
+  .then(function(user) {
+    var response = user.toJSON();
+    response = _.omit(response, 'passwordDigest');
+    if (!usersAreFriends) {
+      response = _.omit(response, 'user_email');
+    }
+    res.send({ user: response });
+  })
+  .catch(function(e) {
+    res.status(500);
+    res.send({ error: e });
+  });
 });
 
 
