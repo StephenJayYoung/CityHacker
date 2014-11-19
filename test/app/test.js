@@ -211,15 +211,15 @@ describe('app', function() {
       it('has a list of users', function(){
         expect(find('div.users').length).to.equal(6);
         expect(find('center.photo').length).to.equal(6);
-        expect(find('h3.visibleName').length).to.equal(6);
-        expect(find('em.interests').length).to.equal(6);
+        expect(find('h3.visibleNameFirst').length).to.equal(6);
+        // expect(find('em.interests').length).to.equal(6);
       });
 
-      it.only('has shows all user info in modal', function(){
-        expect(find('.modal .visibleName').length).to.equal(6);
+      it('has shows all user info in modal', function(){
+        expect(find('.modal .visibleNameSecond').length).to.equal(6);
         expect(find('.modal .bio').length).to.equal(6);
         // expect(find('.modal .photo').length).to.equal(6);
-        // expect(find('.modal .interests').length).to.equal(6);
+        // expect(find('.modal .modalInterests').length).to.equal(6);
       });
 
       //click('button.submit.addFriend' for user steve);

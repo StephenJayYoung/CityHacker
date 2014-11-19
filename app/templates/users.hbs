@@ -9,7 +9,7 @@
     <div class="span3 well">
         <div><center>
             <a href="#aboutModal" data-toggle="modal" {{bind-attr data-target=modalTarget}}>{{gravatar-image picture=picture width="140" height="140" class="img-circle" }}</a>
-            <h3 class="visibleName">{{visibleName}}</h3>
+            <h3 class="visibleNameFirst">{{visibleName}}</h3>
             <em class="interests">{{interests}} in Portland, OR</em>
         </center></div>
     </div>
@@ -24,10 +24,10 @@
                 <div class="modal-body">
                     <center class="photo">
                     {{gravatar-image picture=picture size="200"}}
-                    <h3 class="visibleName media-heading">{{visibleName}}<br><small>Portland, Oregon</small></h3>
+                    <h3 class="visibleNameSecond media-heading">{{visibleName}}<br><small>Portland, Oregon</small></h3>
                     <span><strong>Interests:</strong></span>
                         {{#each interest in interestsList}}
-                            <span class="interests label label-warning">{{interests}}</span>
+                            <span class="modalInterests label label-warning">{{interests}}</span>
                         {{/each}}
                         {{!-- TODO: can we get beautiful colors? --}}
                         {{!-- <span class="label label-warning">Freestyle Walker</span> --}}
