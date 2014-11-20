@@ -235,46 +235,46 @@ api.put('/users/:id/friendships', function(req, res) {
 
 api.get('/users/:id/profile_details', admit.extract, function(req, res) {
   var requestedUserID = parseInt(req.params.id);
+  var loggedInUserID = req.auth.user ? req.auth.user.id : undefined;
   var usersAreFriends = false;
-  var promise = BPromise.resolve();
-
-    /**
-     * [configureFriendshipsQuery description]
-     * @return {[object]} [shows all of the friendships that exist for a user]
-     */
-    var configureFriendshipQuery = function(qb) {
-      qb.whereRaw('(("requestUser" = ? and "recipientUser" = ?) or ' +
-        '("requestUser" = ? and "recipientUser" = ?)) and accepted = ?',
-      [loggedInUserID,requestedUserID, requestedUserID, loggedInUserID, true]);
-    };
-
-   /**
-   * [fetchFriendships description]
-   * @return {[object]} [fetches all of the friendships that exist]
-   */
-    var fetchFriendships = function() {
-      return Friendship.query(configureFriendshipQuery).fetchAll();
-    };
 
   /**
-   * [showUserFriendships description]
-   * @return {[object]} [show a specific users friendships]
+   * Shows all of the friendships that exist for a user.
+   * @return {[object]} []
    */
-    var showUserFriendships = function(friendships) {
-      usersAreFriends = (friendships.length >= 1);
-    };    
+  var configureFriendshipQuery = function(qb) {
+    qb.whereRaw('(("requestUser" = ? and "recipientUser" = ?) or ' +
+      '("requestUser" = ? and "recipientUser" = ?)) and accepted = ?',
+    [loggedInUserID,requestedUserID, requestedUserID, loggedInUserID, true]);
+  };
 
-      /**
+  /**
+   * Fetches all of the friendships that exist.
+   * @return {[object]} []
+   */
+  var fetchFriendships = function() {
+    return Friendship.query(configureFriendshipQuery).fetchAll();
+  };
+
+  /**
+   * Show a specific users friendships.
+   * @return {[object]} []
+   */
+  var showUserFriendships = function(friendships) {
+    usersAreFriends = (friendships.length >= 1);
+  };
+
+  /**
    * [returnRequestedUserID description]
    * @return {[type]} [description]
    */
   var returnRequestedUserID = function() {
-  return User.where({ id: requestedUserID }).fetch();
+    return User.where({ id: requestedUserID }).fetch();
   };
 
   /**
-   * [sendOrOmitEmail description]
-   * @return {[object]} [returns user info and email if friends. Does not return email (but does return user info) if not friends]
+   * Returns user info and email if friends. Does not return email (but does return user info) if not friends.
+   * @return {[object]} []
    */
   var sendOrOmitEmail = function(user) {
     var response = user.toJSON();
@@ -286,13 +286,15 @@ api.get('/users/:id/profile_details', admit.extract, function(req, res) {
   };
 
 
-  if (req.auth.user) {  //this is the same as if logged in
-    var loggedInUserID = req.auth.user.id;
-    promise = promise.then(fetchFriendships)
-    .then(showUserFriendships);
+  var promise = BPromise.resolve();
+  if (loggedInUserID) { // this is the same as if logged in
+    promise = promise
+      .then(fetchFriendships)
+      .then(showUserFriendships);
   }
-  promise.then(returnRequestedUserID)
-  .then(sendOrOmitEmail);
+  promise
+    .then(returnRequestedUserID)
+    .then(sendOrOmitEmail);
 });
 
 
