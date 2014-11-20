@@ -246,10 +246,12 @@ api.get('/users/:id/profile_details', admit.extract, function(req, res) {
         '("requestUser" = ? and "recipientUser" = ?)) and accepted = ?',
       [loggedInUserID,requestedUserID, requestedUserID, loggedInUserID, true]);
     };
-
-    promise = promise.then(function() {
+    
+    var fetchFriendships = function() {
       return Friendship.query(configureFriendshipQuery).fetchAll();
-    })
+    };
+
+    promise = promise.then(fetchFriendships)
     .then(function(friendships) {
       // friendships is a bookshelf collection of all of the Friendship
       // objects that we fetched when doing Friendship.query... above (within
