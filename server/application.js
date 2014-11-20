@@ -238,9 +238,6 @@ api.get('/users/:id/profile_details', admit.extract, function(req, res) {
   var usersAreFriends = false;
   var promise = BPromise.resolve();
 
-  if (req.auth.user) {  //this is the same as if logged in
-    var loggedInUserID = req.auth.user.id;
-
     /**
      * [configureFriendshipsQuery description]
      * @return {[object]} [shows all of the friendships that exist for a user]
@@ -259,19 +256,15 @@ api.get('/users/:id/profile_details', admit.extract, function(req, res) {
       return Friendship.query(configureFriendshipQuery).fetchAll();
     };
 
-   /**
+  /**
    * [showUserFriendships description]
    * @return {[object]} [show a specific users friendships]
    */
     var showUserFriendships = function(friendships) {
       usersAreFriends = (friendships.length >= 1);
-    };
+    };    
 
-    promise = promise.then(fetchFriendships)
-    .then(showUserFriendships);
-  }
-
-  /**
+      /**
    * [returnRequestedUserID description]
    * @return {[type]} [description]
    */
@@ -292,6 +285,12 @@ api.get('/users/:id/profile_details', admit.extract, function(req, res) {
     res.send({ user: response });
   };
 
+
+  if (req.auth.user) {  //this is the same as if logged in
+    var loggedInUserID = req.auth.user.id;
+    promise = promise.then(fetchFriendships)
+    .then(showUserFriendships);
+  }
   promise.then(returnRequestedUserID)
   .then(sendOrOmitEmail);
 });
