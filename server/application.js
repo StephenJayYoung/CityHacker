@@ -264,23 +264,21 @@ api.get('/users/:id/profile_details', admit.extract, function(req, res) {
     });
   }
 
-var returnRequestedUserID = function() {
+  var returnRequestedUserID = function() {
   return User.where({ id: requestedUserID }).fetch();
-};
+  };
 
-  promise.then(returnRequestedUserID)
-  .then(function(user) {
+  var sendOrOmitEmail = function(user) {
     var response = user.toJSON();
     response = _.omit(response, 'passwordDigest');
     if (!usersAreFriends) {
       response = _.omit(response, 'user_email');
     }
     res.send({ user: response });
-  })
-  .catch(function(e) {
-    res.status(500);
-    res.send({ error: e });
-  });
+  };
+
+  promise.then(returnRequestedUserID)
+  .then(sendOrOmitEmail);
 });
 
 
