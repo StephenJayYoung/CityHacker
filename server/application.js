@@ -246,22 +246,17 @@ api.get('/users/:id/profile_details', admit.extract, function(req, res) {
         '("requestUser" = ? and "recipientUser" = ?)) and accepted = ?',
       [loggedInUserID,requestedUserID, requestedUserID, loggedInUserID, true]);
     };
-    
+
     var fetchFriendships = function() {
       return Friendship.query(configureFriendshipQuery).fetchAll();
     };
 
-    var showUserFriendships = function(){
-
+    var showUserFriendships = function(friendships) {
+      usersAreFriends = (friendships.length >= 1);
     };
 
     promise = promise.then(fetchFriendships)
-    .then(function(friendships) {
-      // friendships is a bookshelf collection of all of the Friendship
-      // objects that we fetched when doing Friendship.query... above (within
-      // the previous `then`).
-      usersAreFriends = (friendships.length >= 1);
-    });
+    .then(showUserFriendships);
   }
 
   var returnRequestedUserID = function() {
