@@ -243,7 +243,7 @@ api.get('/users/:id/profile_details', admit.extract, function(req, res) {
 
     /**
      * [configureFriendshipsQuery description]
-     * @return {[type]} [description]
+     * @return {[object]} [shows all of the friendships that exist for a user]
      */
     var configureFriendshipQuery = function(qb) {
       qb.whereRaw('(("requestUser" = ? and "recipientUser" = ?) or ' +
@@ -253,7 +253,7 @@ api.get('/users/:id/profile_details', admit.extract, function(req, res) {
 
    /**
    * [fetchFriendships description]
-   * @return {[type]} [description]
+   * @return {[object]} [fetches all of the friendships that exist]
    */
     var fetchFriendships = function() {
       return Friendship.query(configureFriendshipQuery).fetchAll();
@@ -261,7 +261,7 @@ api.get('/users/:id/profile_details', admit.extract, function(req, res) {
 
    /**
    * [showUserFriendships description]
-   * @return {[type]} [description]
+   * @return {[object]} [show a specific users friendships]
    */
     var showUserFriendships = function(friendships) {
       usersAreFriends = (friendships.length >= 1);
@@ -270,7 +270,7 @@ api.get('/users/:id/profile_details', admit.extract, function(req, res) {
     promise = promise.then(fetchFriendships)
     .then(showUserFriendships);
   }
-  
+
   /**
    * [returnRequestedUserID description]
    * @return {[type]} [description]
@@ -281,7 +281,7 @@ api.get('/users/:id/profile_details', admit.extract, function(req, res) {
 
   /**
    * [sendOrOmitEmail description]
-   * @return {[type]} [description]
+   * @return {[object]} [returns user info and email if friends. Does not return email (but does return user info) if not friends]
    */
   var sendOrOmitEmail = function(user) {
     var response = user.toJSON();
