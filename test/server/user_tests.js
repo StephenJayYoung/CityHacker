@@ -38,6 +38,7 @@ describe('API for Users', __app(app, function(H) {
     .then(function() { done(); }, done);
   });
 
+  // TODO: for #62 update this test to log in a user
   it('handles PUT /api/users/1', function(done) {
     H.setupDatabase(User, 'users/put', 'database-users')
     .then(function() { return H.testAPI('users/put'); })
@@ -48,6 +49,9 @@ describe('API for Users', __app(app, function(H) {
     .done(done, done);
     // adds or changes visible name, interests, location, email, and pictures
   });
+
+  // TODO: for #62 add a new test to make sure that a logged in user cannot change anyone else's profile
+  // TODO: for #62 add a new test to make sure that an anonymous user cannot change anyone else's profile
 
   it('handles GET /api/users/2/friends', function(done) {
     var api = 'users/2/friends';
