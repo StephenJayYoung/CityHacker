@@ -45,7 +45,7 @@
     "location_latitude": null,
     "location_longitude": null,
     "passwordDigest": "not-real-digest",
-    "picture": "http://www.gravatar.com/avatar/6297edb6ede95ee35c257a0521f7ca1c",
+    "picture": null,
     "user_email": "flopsy@milo.com",
     "username": "Sir Flops Alot",
     "visibleName": "Awesome Milo", 

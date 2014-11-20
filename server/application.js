@@ -108,7 +108,7 @@ api.put('/users/:id', function(req, res) {
   return User.where({ id: id }).fetch()
   .then(function(user) {
     if (!user) { throwWithStatus(404, 'Not found'); }
-    user.set(_.omit(req.body.user, 'password'));
+    user.set(_.pick(req.body.user, 'username', 'interests', 'location_longitude', "location_longitude", "user_email", "visibleName", "bio"));
     return user.save();
   })
   .then(function(user) {
