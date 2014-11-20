@@ -103,6 +103,12 @@ describe('app', function() {
         expect(putJSON).to.eql(putFixture.request.json);
         expect(server.requests.length).to.eql(2);
       });
+
+      andThen(function(){
+        // the button shows you a div that says, "changes saved"
+        // TODO: come back and get this working
+        // expect('submitMessage').text.to.eql('changes saved');
+      });
     });
 
     // -------------------------------------------------------------
@@ -218,8 +224,8 @@ describe('app', function() {
       it('has shows all user info in modal', function(){
         expect(find('.modal .visibleNameSecond').length).to.equal(6);
         expect(find('.modal .bio').length).to.equal(6);
-        // expect(find('.modal .photo').length).to.equal(6);
-        // expect(find('.modal .modalInterests').length).to.equal(6);
+        expect(find('.modal img.photo[src*=gravatar]').length).to.equal(6);
+        expect(find('.modal .modalInterests').length).to.equal(5);
       });
 
       //click('button.submit.addFriend' for user steve);

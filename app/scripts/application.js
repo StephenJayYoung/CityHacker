@@ -34,6 +34,7 @@ App.ProfileRoute = Ember.Route.extend(Ember.AdmitOne.AuthenticatedRouteMixin, {
     var id = this.get('session').get('id');
     return this.store.find('user', id);
   }
+  //should include "changes saved"
 });
 
 
@@ -45,11 +46,13 @@ App.ProfileController = Ember.ObjectController.extend({
       this.set('error', undefined);
       this.get('model').save()
       .then(function() {
+        // show "changes saved"
       })
       .catch(function(error) {
         if (error.responseJSON) { error = error.responseJSON; }
         if (error.error) { error = error.error; }
         self.set('error', error);
+        // show "error" 
       });
     }
   }
@@ -78,9 +81,19 @@ App.UserController = Ember.ObjectController.extend({
   modalID: function() {
     return 'modal' + this.get('id');
   }.property('id'),
+
   modalTarget: function() {
     return '#' + this.get('modalID');
-  }.property('modalID')
+  }.property('modalID'),
+
+  interestsList: function() {
+    var interests = this.get('interests');
+    var list = [];
+    if (interests) {
+      list = interests.split(',').map(function(str) { return str.trim(); });
+    }
+    return list;
+  }.property('interests')
 });
 
 App.UsersController = Ember.ArrayController.extend({
