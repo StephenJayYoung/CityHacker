@@ -251,6 +251,10 @@ api.get('/users/:id/profile_details', admit.extract, function(req, res) {
       return Friendship.query(configureFriendshipQuery).fetchAll();
     };
 
+    var showUserFriendships = function(){
+
+    };
+
     promise = promise.then(fetchFriendships)
     .then(function(friendships) {
       // friendships is a bookshelf collection of all of the Friendship
@@ -260,9 +264,11 @@ api.get('/users/:id/profile_details', admit.extract, function(req, res) {
     });
   }
 
-  promise.then(function() {
-    return User.where({ id: requestedUserID }).fetch();
-  })
+var returnRequestedUserID = function() {
+  return User.where({ id: requestedUserID }).fetch();
+};
+
+  promise.then(returnRequestedUserID)
   .then(function(user) {
     var response = user.toJSON();
     response = _.omit(response, 'passwordDigest');
