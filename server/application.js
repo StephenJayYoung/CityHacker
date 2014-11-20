@@ -241,16 +241,28 @@ api.get('/users/:id/profile_details', admit.extract, function(req, res) {
   if (req.auth.user) {  //this is the same as if logged in
     var loggedInUserID = req.auth.user.id;
 
+    /**
+     * [configureFriendshipsQuery description]
+     * @return {[type]} [description]
+     */
     var configureFriendshipQuery = function(qb) {
       qb.whereRaw('(("requestUser" = ? and "recipientUser" = ?) or ' +
         '("requestUser" = ? and "recipientUser" = ?)) and accepted = ?',
       [loggedInUserID,requestedUserID, requestedUserID, loggedInUserID, true]);
     };
 
+   /**
+   * [fetchFriendships description]
+   * @return {[type]} [description]
+   */
     var fetchFriendships = function() {
       return Friendship.query(configureFriendshipQuery).fetchAll();
     };
 
+   /**
+   * [showUserFriendships description]
+   * @return {[type]} [description]
+   */
     var showUserFriendships = function(friendships) {
       usersAreFriends = (friendships.length >= 1);
     };
@@ -258,11 +270,19 @@ api.get('/users/:id/profile_details', admit.extract, function(req, res) {
     promise = promise.then(fetchFriendships)
     .then(showUserFriendships);
   }
-
+  
+  /**
+   * [returnRequestedUserID description]
+   * @return {[type]} [description]
+   */
   var returnRequestedUserID = function() {
   return User.where({ id: requestedUserID }).fetch();
   };
 
+  /**
+   * [sendOrOmitEmail description]
+   * @return {[type]} [description]
+   */
   var sendOrOmitEmail = function(user) {
     var response = user.toJSON();
     response = _.omit(response, 'passwordDigest');
