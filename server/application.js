@@ -240,6 +240,7 @@ api.get('/users/:id/profile_details', admit.extract, function(req, res) {
 
   /**
    * Shows all of the friendships that exist for a user.
+   *
    * @param {PUT_TYPE_HERE} qb - Describe this param.
    */
   var configureFriendshipQuery = function(qb) {
@@ -273,7 +274,7 @@ api.get('/users/:id/profile_details', admit.extract, function(req, res) {
    * [returnRequestedUserID description]
    * @return {PUT_TYPE_HERE} Describe this return value.
    */
-  var returnRequestedUserID = function() {
+  var fetchRequestedUser = function() {
     return User.where({ id: requestedUserID }).fetch();
   };
 
@@ -283,7 +284,7 @@ api.get('/users/:id/profile_details', admit.extract, function(req, res) {
    *
    * @param {PUT_TYPE_HERE} user - Describe this param.
    */
-  var sendOrOmitEmail = function(user) {
+  var sendResponse = function(user) {
     var response = user.toJSON();
     response = _.omit(response, 'passwordDigest');
     if (!usersAreFriends) {
@@ -300,8 +301,8 @@ api.get('/users/:id/profile_details', admit.extract, function(req, res) {
       .then(evalIfUsersAreFriends);
   }
   promise
-    .then(returnRequestedUserID)
-    .then(sendOrOmitEmail);
+    .then(fetchRequestedUser)
+    .then(sendResponse);
 });
 
 
