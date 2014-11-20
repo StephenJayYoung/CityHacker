@@ -240,7 +240,7 @@ api.get('/users/:id/profile_details', admit.extract, function(req, res) {
 
   /**
    * Shows all of the friendships that exist for a user.
-   * @return {[object]} []
+   * @param {PUT_TYPE_HERE} qb - Describe this param.
    */
   var configureFriendshipQuery = function(qb) {
     qb.whereRaw('(("requestUser" = ? and "recipientUser" = ?) or ' +
@@ -249,32 +249,39 @@ api.get('/users/:id/profile_details', admit.extract, function(req, res) {
   };
 
   /**
-   * Fetches all of the friendships that exist.
-   * @return {[object]} []
+   * Fetches all of the friendships that apply for the logged in user & the
+   * requested user.
+   *
+   * @return {NOT_AN_object} Describe this return value.
    */
   var fetchFriendships = function() {
     return Friendship.query(configureFriendshipQuery).fetchAll();
   };
 
   /**
-   * Show a specific users friendships.
-   * @return {[object]} []
+   * Evaluate if the logged in user & the requested user are friends.
+   *
+   * TODO: come back to this, more detail is needed.
+   *
+   * @param {PUT_TYPE_HERE} friendships - Describe this param.
    */
-  var showUserFriendships = function(friendships) {
+  var evalIfUsersAreFriends = function(friendships) {
     usersAreFriends = (friendships.length >= 1);
   };
 
   /**
    * [returnRequestedUserID description]
-   * @return {[type]} [description]
+   * @return {PUT_TYPE_HERE} Describe this return value.
    */
   var returnRequestedUserID = function() {
     return User.where({ id: requestedUserID }).fetch();
   };
 
   /**
-   * Returns user info and email if friends. Does not return email (but does return user info) if not friends.
-   * @return {[object]} []
+   * Returns user info and email if friends. Does not return email (but does
+   * return user info) if not friends.
+   *
+   * @param {PUT_TYPE_HERE} user - Describe this param.
    */
   var sendOrOmitEmail = function(user) {
     var response = user.toJSON();
@@ -290,7 +297,7 @@ api.get('/users/:id/profile_details', admit.extract, function(req, res) {
   if (loggedInUserID) { // this is the same as if logged in
     promise = promise
       .then(fetchFriendships)
-      .then(showUserFriendships);
+      .then(evalIfUsersAreFriends);
   }
   promise
     .then(returnRequestedUserID)
