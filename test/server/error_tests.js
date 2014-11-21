@@ -38,10 +38,23 @@ describe('API for errors', __app(app, function(H) {
 
   it('handles PUT /api/users/1 where there is an error',
    function(done) {
-    H.setupDatabase(User, 'users/error', 'database-users')
-    .then(function() { return H.testAPI('users/error'); })
+    H.setupDatabase(User, 'users/put-error', 'database-users')
+    .then(function() { return H.testAPI('users/put-error'); })
     .then(function() {
-      return H.testDatabaseContents(User, 'users/error',
+      return H.testDatabaseContents(User, 'users/put-error',
+        'database-users-result');
+    })
+    .done(done, done);
+    // adds or changes visible name, interests, location, email, and pictures
+  });
+  it('handles GET /api/users/1 where there is an error',
+   function(done) {
+    H.setupDatabase(User, 'users/get-error', 'database-users')
+    .then(function() { return H.testAPI('users/get-error'); })
+    .then(function() {
+      console.log(H.testDatabaseContents(User, 'users/get-error',
+        'database-users-result'));
+      return H.testDatabaseContents(User, 'users/get-error',
         'database-users-result');
     })
     .done(done, done);
