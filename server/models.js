@@ -7,6 +7,13 @@ var bookshelf = require('bookshelf')(knex);
 
 
 var User, Token, Friendship;
+
+/**
+ * The user model.
+ *
+ * @constructor User
+ * @extends {bookshelf.Model}
+ */
 User = bookshelf.Model.extend({
   tokens: function() {
     return this.hasMany(Token);

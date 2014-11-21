@@ -239,12 +239,17 @@ api.get('/users/:id/profile_details', admit.extract, function(req, res) {
   var usersAreFriends = false;
 
   /**
-   * Gives us all of the friendships that exist for a user in the database.
+   * Configures the query builder to get us all of the friendships that exist
+   * for a user in the database.
    *
-   * @param {method} qb - This queries the other users in the database and determines whether
-   * a friendship exists. A friendship exists if it satisfies the following: 1) requestedUser 
-   * has requested friendship, or 2) recipientUSer has recieved friend request, and 3) the friendship
-   * has been accepted.
+   * This configures the query builder to search for a friendship pertaining to
+   * both users in the database. A friendship exists if it satisfies the
+   * following:
+   *
+   *   1. `requestedUser` and `loggedInUser` are defined on the freiendship
+   *   1. The friendship has been accepted.
+   *
+   * @param {knex.QueryBuilder} qb - The query builder to configure.
    */
   var configureFriendshipQuery = function(qb) {
     qb.whereRaw('(("requestUser" = ? and "recipientUser" = ?) or ' +
@@ -279,7 +284,7 @@ api.get('/users/:id/profile_details', admit.extract, function(req, res) {
    * This will set the variable `usersAreFriends` after determing if the users
    * are friends.
    *
-   * @param {BookshelfCollection} friendships - The friendships to use to
+   * @param {FreindshipCollection} friendships - The friendships to use to
    * evaluate if users are friends.
    */
   var evalIfUsersAreFriends = function(friendships) {
@@ -299,7 +304,14 @@ api.get('/users/:id/profile_details', admit.extract, function(req, res) {
    * This returns the user info. It *will* return the user email if they are
    * friends. It will *not* return the user email if they are not friends.
    *
-   * @param {PUT_TYPE_HERE} user - Describe this param.
+   * If it is determined that the users are friends, this method will respond
+   * with the requested user's information. If it is determined that the users
+   * are not friends, this method will return the user's info, but will omit
+   * the `user_email`.
+   *
+   * It will always omit the `passwordDigest`.
+   *
+   * @param {User} user - The user to respond with.
    */
   var sendResponse = function(user) {
     var response = user.toJSON();
