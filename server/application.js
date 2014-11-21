@@ -253,11 +253,11 @@ api.get('/users/:id/profile_details', admit.extract, function(req, res) {
 
   /**
    * Fetches all of the friendships that apply for the logged in user & the
-   * requested user.
+   * requested user (as defined in `configureFriendshipQuery`). It accesses
+   * these friendships in the database and pulls them out, making them
+   * available for use in the next function.
    *
-   * @return {NOT_AN_object} This fetches all of the friendships
-   * (as defined in configureFriendshipQuery). It accesses these friendships in the
-   *  database and pulls them out, making them available for use in the next function.
+   * @return {Promise} A promise that resolves with the fetched friendships.
    */
   var fetchFriendships = function() {
     return Friendship.query(configureFriendshipQuery).fetchAll();
@@ -266,23 +266,29 @@ api.get('/users/:id/profile_details', admit.extract, function(req, res) {
   /**
    * Evaluate if the logged in user & the requested user are friends.
    *
-   * TODO: come back to this, more detail is needed.
+   * It assumes that `friendships` is the resolved value from
+   * `fetchFriendships`.
    *
-   * @param {array} friendships - This uses the argument "friendships"
-   * (which is defined in the database). The logged in user and requested user
-   * are friends if there are one or more items in the array. This is
-   * because, in order to have a friendship, the requirements for configureFriendshipQuery
-   * must be met. If these requirements are met, the array will be populated with one or more
-   * friend objects. This will overwritecd
-   *  the prior variable "usersAreFriends," and make it true.
+   * This uses `friendships` (which is pulled from the database). It assumes
+   * that `friendships` is a value that was fetched using the requirements from
+   * `configureFriendshipQuery`. Since that defines the requirements for
+   * frienship, this function determines that the logged in user and requested
+   * user are friends if there are one or more items in the collection.
+   *
+   * This will set the variable `usersAreFriends` after determing if the users
+   * are friends.
+   *
+   * @param {BookshelfCollection} friendships - The friendships to use to
+   * evaluate if users are friends.
    */
   var evalIfUsersAreFriends = function(friendships) {
     usersAreFriends = (friendships.length >= 1);
   };
 
   /**
-   * [returnRequestedUserID description]
-   * @return {object} This returns the requested users id ex: { id: 1 }.
+   * This fetches the requested users based on `requestedUserID`.
+   *
+   * @return {Promise}  A promise that resolves with the fetched user.
    */
   var fetchRequestedUser = function() {
     return User.where({ id: requestedUserID }).fetch();
