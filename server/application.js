@@ -204,7 +204,6 @@ api.post('/users/:id/friendships', function(req, res) {
 
 api.put('/users/:id/friendships', function(req, res) {
   var userID = parseInt(req.params.id);
-  console.log();
   return Friendship.where({ recipientUser: userID }).fetch()
   .then(function(friendship){
     friendship.set('accepted', true);

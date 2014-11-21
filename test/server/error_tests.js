@@ -52,8 +52,6 @@ describe('API for errors', __app(app, function(H) {
     H.setupDatabase(User, 'users/get-error', 'database-users')
     .then(function() { return H.testAPI('users/get-error'); })
     .then(function() {
-      console.log(H.testDatabaseContents(User, 'users/get-error',
-        'database-users-result'));
       return H.testDatabaseContents(User, 'users/get-error',
         'database-users-result');
     })
