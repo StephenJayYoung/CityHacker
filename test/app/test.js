@@ -105,6 +105,10 @@ describe('app', function() {
       });
 
       andThen(function(){
+        expect(server.requests[0].status).to.eql(200);
+        // expect('submitMessage').text.to.eql('changes saved');
+        // Saving a profile, API responds properly
+        // Failed to save, sends back error
         // the button shows you a div that says, "changes saved"
         // TODO: come back and get this working
         // expect('submitMessage').text.to.eql('changes saved');
