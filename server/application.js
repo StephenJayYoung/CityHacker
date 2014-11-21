@@ -270,10 +270,10 @@ api.get('/users/:id/profile_details', admit.extract, function(req, res) {
    *
    * @param {array} friendships - This uses the argument "friendships"
    * (which is defined in the database). The logged in user and requested user
-   * are friends if the item in the array is greater than or equal to one. This is
+   * are friends if there are one or more items in the array. This is
    * because, in order to have a friendship, the requirements for configureFriendshipQuery
    * must be met. If these requirements are met, the array will be populated with one or more
-   * friend object.
+   * friend object. This will reverse the prior variable "usersAreFriends," and make it true.
    */
   var evalIfUsersAreFriends = function(friendships) {
     usersAreFriends = (friendships.length >= 1);
