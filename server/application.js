@@ -241,7 +241,9 @@ api.get('/users/:id/profile_details', admit.extract, function(req, res) {
   /**
    * Shows all of the friendships that exist for a user.
    *
-   * @param {PUT_TYPE_HERE} qb - Describe this param.
+   * @param {PUT_TYPE_HERE} qb - This checks the users in the database. It
+   * defines friendships based on whether: 1) requestedUser has requested friendship,
+   * or 2) recipientUSer has recieved friend request, and 3) the friendship has been accepted
    */
   var configureFriendshipQuery = function(qb) {
     qb.whereRaw('(("requestUser" = ? and "recipientUser" = ?) or ' +
@@ -253,7 +255,9 @@ api.get('/users/:id/profile_details', admit.extract, function(req, res) {
    * Fetches all of the friendships that apply for the logged in user & the
    * requested user.
    *
-   * @return {NOT_AN_object} Describe this return value.
+   * @return {NOT_AN_object} This fetches all of the friendships
+   * (as defined in configureFriendshipQuery). It access these friendships in the
+   *  database and pulls them out, making them available for use in the next function.
    */
   var fetchFriendships = function() {
     return Friendship.query(configureFriendshipQuery).fetchAll();
@@ -279,8 +283,8 @@ api.get('/users/:id/profile_details', admit.extract, function(req, res) {
   };
 
   /**
-   * Returns user info and email if friends. Does not return email (but does
-   * return user info) if not friends.
+   * This returns the user info. It will return the user email
+   * if they are friends. It will not return the user email if they are not friends.
    *
    * @param {PUT_TYPE_HERE} user - Describe this param.
    */
