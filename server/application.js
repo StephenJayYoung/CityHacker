@@ -239,11 +239,12 @@ api.get('/users/:id/profile_details', admit.extract, function(req, res) {
   var usersAreFriends = false;
 
   /**
-   * Shows all of the friendships that exist for a user.
+   * Gives us all of the friendships that exist for a user in the database.
    *
-   * @param {PUT_TYPE_HERE} qb - This checks the users in the database. It
-   * defines friendships based on whether: 1) requestedUser has requested friendship,
-   * or 2) recipientUSer has recieved friend request, and 3) the friendship has been accepted
+   * @param {method} qb - This queries the other users in the database and determines whether
+   * a friendship exists. A friendship exists if it satisfies the following: 1) requestedUser 
+   * has requested friendship, or 2) recipientUSer has recieved friend request, and 3) the friendship
+   * has been accepted.
    */
   var configureFriendshipQuery = function(qb) {
     qb.whereRaw('(("requestUser" = ? and "recipientUser" = ?) or ' +
