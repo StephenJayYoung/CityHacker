@@ -256,7 +256,7 @@ api.get('/users/:id/profile_details', admit.extract, function(req, res) {
    * requested user.
    *
    * @return {NOT_AN_object} This fetches all of the friendships
-   * (as defined in configureFriendshipQuery). It access these friendships in the
+   * (as defined in configureFriendshipQuery). It accesses these friendships in the
    *  database and pulls them out, making them available for use in the next function.
    */
   var fetchFriendships = function() {
@@ -273,7 +273,7 @@ api.get('/users/:id/profile_details', admit.extract, function(req, res) {
    * are friends if there are one or more items in the array. This is
    * because, in order to have a friendship, the requirements for configureFriendshipQuery
    * must be met. If these requirements are met, the array will be populated with one or more
-   * friend object. This will reverse the prior variable "usersAreFriends," and make it true.
+   * friend objects. This will overwrite the prior variable "usersAreFriends," and make it true.
    */
   var evalIfUsersAreFriends = function(friendships) {
     usersAreFriends = (friendships.length >= 1);
