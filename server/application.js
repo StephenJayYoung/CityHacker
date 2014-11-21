@@ -273,7 +273,8 @@ api.get('/users/:id/profile_details', admit.extract, function(req, res) {
    * are friends if there are one or more items in the array. This is
    * because, in order to have a friendship, the requirements for configureFriendshipQuery
    * must be met. If these requirements are met, the array will be populated with one or more
-   * friend objects. This will overwrite the prior variable "usersAreFriends," and make it true.
+   * friend objects. This will overwritecd
+   *  the prior variable "usersAreFriends," and make it true.
    */
   var evalIfUsersAreFriends = function(friendships) {
     usersAreFriends = (friendships.length >= 1);
@@ -281,7 +282,7 @@ api.get('/users/:id/profile_details', admit.extract, function(req, res) {
 
   /**
    * [returnRequestedUserID description]
-   * @return {PUT_TYPE_HERE} Describe this return value.
+   * @return {object} This returns the requested users id ex: { id: 1 }.
    */
   var fetchRequestedUser = function() {
     return User.where({ id: requestedUserID }).fetch();
