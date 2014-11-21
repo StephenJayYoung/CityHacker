@@ -268,7 +268,12 @@ api.get('/users/:id/profile_details', admit.extract, function(req, res) {
    *
    * TODO: come back to this, more detail is needed.
    *
-   * @param {PUT_TYPE_HERE} friendships - Describe this param.
+   * @param {array} friendships - This uses the argument "friendships"
+   * (which is defined in the database). The logged in user and requested user
+   * are friends if the item in the array is greater than or equal to one. This is
+   * because, in order to have a friendship, the requirements for configureFriendshipQuery
+   * must be met. If these requirements are met, the array will be populated with one or more
+   * friend object.
    */
   var evalIfUsersAreFriends = function(friendships) {
     usersAreFriends = (friendships.length >= 1);
@@ -283,8 +288,8 @@ api.get('/users/:id/profile_details', admit.extract, function(req, res) {
   };
 
   /**
-   * This returns the user info. It will return the user email
-   * if they are friends. It will not return the user email if they are not friends.
+   * This returns the user info. It *will* return the user email if they are
+   * friends. It will *not* return the user email if they are not friends.
    *
    * @param {PUT_TYPE_HERE} user - Describe this param.
    */
