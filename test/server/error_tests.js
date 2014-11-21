@@ -60,4 +60,16 @@ describe('API for errors', __app(app, function(H) {
     .done(done, done);
     // adds or changes visible name, interests, location, email, and pictures
   });
+  it.skip('handles GET /api/users with location', function(done) {
+    H.setupDatabase(User, 'users/get-error', 'database-users')
+    .then(function(){
+      return H.testAPI('users/get-error');
+    })
+    .then(function(){
+      return H.testDatabaseContents(User,
+        'users/get-error',
+        'database-users');
+    })
+    .done(done, done);
+  });
 }));
