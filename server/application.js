@@ -74,20 +74,6 @@ api.post('/sessions', admit.authenticate, function(req, res) {
   res.json({ session: req.auth.user });
 });
 
-// Gets by User Id, removes password and email
-
-api.get('/users/:id', function(req, res) {
-  var params = req.params;
-  var id = parseInt(params.id);
-  User.where({ id: id }).fetch()
-  .then(function(user) {
-    res.send({ user: prepareUser(user.toJSON()) });
-  })
-  .catch(function(e) {
-    res.status(500);
-    res.send({ error: e });
- });
-});
 //helper for creating error status code
 var standardCatch = function(req, res) {
   return function(e) {
@@ -233,7 +219,7 @@ api.put('/users/:id/friendships', function(req, res) {
   });
 });
 
-api.get('/users/:id/profile_details', admit.extract, function(req, res) {
+api.get('/users/:id', admit.extract, function(req, res) {
   var requestedUserID = parseInt(req.params.id);
   var loggedInUserID = req.auth.user ? req.auth.user.id : undefined;
   var usersAreFriends = false;
@@ -315,9 +301,10 @@ api.get('/users/:id/profile_details', admit.extract, function(req, res) {
    */
   var sendResponse = function(user) {
     var response = user.toJSON();
-    response = _.omit(response, 'passwordDigest');
-    if (!usersAreFriends) {
-      response = _.omit(response, 'user_email');
+    var email = response.user_email;
+    response = prepareUser(response);
+    if (usersAreFriends) {
+      response.user_email = email;
     }
     res.send({ user: response });
   };

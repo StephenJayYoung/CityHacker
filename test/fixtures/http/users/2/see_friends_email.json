@@ -1,6 +1,6 @@
 {
   "request": {
-    "url": "/api/users/3/profile_details",
+    "url": "/api/users/3",
     "method": "GET",
     "headers": {
       "Authorization": "Token 8030d31402ae4ce3aad8eb4c4df547dc"
@@ -13,7 +13,7 @@
         "interests": null,
         "location_latitude": null,
         "location_longitude": null,
-        "picture": null,
+        "picture": "http://www.gravatar.com/avatar/fea86c11ae55267a9ec2cdf954d9cc97",
         "user_email": "leslie@getcityhacker.com",
         "username": "Leslie",
         "visibleName": null,
