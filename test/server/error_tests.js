@@ -6,8 +6,8 @@ var app = require('../../server/application');
 
 var models = require('../../server/models'),
   User = models.User,
-  Friendship = models.Friendship,
-  Token = models.Token,
+  // Friendship = models.Friendship,
+  // Token = models.Token,
   knex = models.knex;
 
 describe('API for errors', __app(app, function(H) {
@@ -52,24 +52,21 @@ describe('API for errors', __app(app, function(H) {
     H.setupDatabase(User, 'users/get-error', 'database-users')
     .then(function() { return H.testAPI('users/get-error'); })
     .then(function() {
-      console.log(H.testDatabaseContents(User, 'users/get-error',
-        'database-users-result'));
       return H.testDatabaseContents(User, 'users/get-error',
         'database-users-result');
     })
     .done(done, done);
     // adds or changes visible name, interests, location, email, and pictures
   });
-  it.skip('handles GET /api/users with location', function(done) {
-    H.setupDatabase(User, 'users/get-error', 'database-users')
-    .then(function(){
-      return H.testAPI('users/get-error');
-    })
-    .then(function(){
-      return H.testDatabaseContents(User,
-        'users/get-error',
-        'database-users');
+  it.skip('does not allow changes to a user that is not the one signed in.',
+   function(done) {
+    H.setupDatabase(User, 'users/user-no-token', 'database-users')
+    .then(function() { return H.testAPI('users/user-no-token'); })
+    .then(function() {
+      return H.testDatabaseContents(User, 'users/user-no-token',
+        'database-users-result');
     })
     .done(done, done);
+    // adds or changes visible name, interests, location, email, and pictures
   });
 }));
