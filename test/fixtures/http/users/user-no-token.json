@@ -22,7 +22,7 @@
     }
   },
   "database-users": [{
-    "id": 2,
+    "id": 1,
     "passwordDigest": "not-real-digest",
     "username": "Milo"
   }, {
@@ -31,7 +31,7 @@
     "username": "Tobi"
   }],
   "database-users-result": [{
-    "id": 2,
+    "id": 1,
     "interests": null,
     "location_latitude": null,
     "location_longitude": null,
