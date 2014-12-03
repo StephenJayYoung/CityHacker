@@ -7,11 +7,15 @@ body, h1, h2, h3, h4, h5, h6 {
 
 h2 {
   font-family: "Fjalla One";
-  font-weight: 400;
+  font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
+.hey {
+   font-weight: 700;
+   text-shadow: .5px .5px black;
+}
 // h2 {
 //   font-color: #4cb84f;
 // }
@@ -41,9 +45,9 @@ ul
 
 .navbar {
   background-color: black;
-  text-decoration: none;
   font-weight: bold;
 }
+
 
 .avatar{
   -webkit-border-radius: 50%;
