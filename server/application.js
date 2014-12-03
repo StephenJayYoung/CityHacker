@@ -5,16 +5,16 @@ var path = require('path');
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
+var BPromise = require('bluebird');
 var compression = require('compression');
 var uuid = require('node-uuid');
 var favicon = require('serve-favicon');
+var md5 = require('MD5');
 var config = require('./config');
 var _ = require('lodash');
 var models = require('./models'),
   User = models.User,
   Friendship = models.Friendship;
-
-
 var app = express();
 var api = express.Router();
 var resources = express();
@@ -45,8 +45,13 @@ app.use(methodOverride());
 var api = express.Router();
 
 // Removes password and email from User Info
-var sanitizeUser = function(user) {
-  return _.omit(user, 'passwordDigest', 'user_email');
+var prepareUser = function(user) {
+  var email = user.user_email;
+  user = _.omit(user, 'passwordDigest', 'user_email');
+  user = _.extend(user, {
+    picture: 'http://www.gravatar.com/avatar/' + md5(email || '')
+  });
+  return user;
 };
 
 api.post('/users', admit.create, function(req, res) {
@@ -69,20 +74,6 @@ api.post('/sessions', admit.authenticate, function(req, res) {
   res.json({ session: req.auth.user });
 });
 
-// Gets by User Id, removes password and email
-
-api.get('/users/:id', function(req, res) {
-  var params = req.params;
-  var id = parseInt(params.id);
-  User.where({ id: id }).fetch()
-  .then(function(user) {
-    res.send({ user: sanitizeUser(user.toJSON()) });
-  })
-  .catch(function(e) {
-    res.status(500);
-    res.send({ error: e });
- });
-});
 //helper for creating error status code
 var standardCatch = function(req, res) {
   return function(e) {
@@ -103,11 +94,11 @@ api.put('/users/:id', function(req, res) {
   return User.where({ id: id }).fetch()
   .then(function(user) {
     if (!user) { throwWithStatus(404, 'Not found'); }
-    user.set(_.omit(req.body.user, 'password'));
+    user.set(_.pick(req.body.user, 'username', 'interests', 'location_longitude', 'location_longitude', 'user_email', 'visibleName', 'bio'));
     return user.save();
   })
   .then(function(user) {
-    res.send({ user: sanitizeUser(user.toJSON()) });
+    res.send({ user: prepareUser(user.toJSON()) });
   })
   .catch(standardCatch(req, res));
 });
@@ -130,7 +121,7 @@ api.get('/users', function(req, res) {
   return collection.fetchAll()
   .then(function(users) {
     var usersWithoutPasswords = users.toJSON()
-    .map(sanitizeUser);
+    .map(prepareUser);
     res.send({ users: usersWithoutPasswords });
   })
   .catch(function(e) {
@@ -185,7 +176,7 @@ api.get('/users/:id/friends', function(req, res) {
     return User.query(whereIDInUserIDs).fetchAll();
   })
   .then(function(users) {
-    res.json({users: users.toJSON() });
+    res.json({users: users.toJSON().map(prepareUser) });
   });
 });
 
@@ -213,7 +204,6 @@ api.post('/users/:id/friendships', function(req, res) {
 
 api.put('/users/:id/friendships', function(req, res) {
   var userID = parseInt(req.params.id);
-  console.log();
   return Friendship.where({ recipientUser: userID }).fetch()
   .then(function(friendship){
     friendship.set('accepted', true);
@@ -228,38 +218,111 @@ api.put('/users/:id/friendships', function(req, res) {
   });
 });
 
+api.get('/users/:id', admit.extract, function(req, res) {
+  var requestedUserID = parseInt(req.params.id);
+  var loggedInUserID = req.auth.user ? req.auth.user.id : undefined;
+  var usersAreFriends = false;
+
+  /**
+   * Configures the query builder to get us all of the friendships that exist
+   * for a user in the database.
+   *
+   * This configures the query builder to search for a friendship pertaining to
+   * both users in the database. A friendship exists if it satisfies the
+   * following:
+   *
+   *   1. `requestedUser` and `loggedInUser` are defined on the freiendship
+   *   1. The friendship has been accepted.
+   *
+   * @param {knex.QueryBuilder} qb - The query builder to configure.
+   */
+  var configureFriendshipQuery = function(qb) {
+    qb.whereRaw('(("requestUser" = ? and "recipientUser" = ?) or ' +
+      '("requestUser" = ? and "recipientUser" = ?)) and accepted = ?',
+    [loggedInUserID,requestedUserID, requestedUserID, loggedInUserID, true]);
+  };
+
+  /**
+   * Fetches all of the friendships that apply for the logged in user & the
+   * requested user (as defined in `configureFriendshipQuery`). It accesses
+   * these friendships in the database and pulls them out, making them
+   * available for use in the next function.
+   *
+   * @return {Promise} A promise that resolves with the fetched friendships.
+   */
+  var fetchFriendships = function() {
+    return Friendship.query(configureFriendshipQuery).fetchAll();
+  };
+
+  /**
+   * Evaluate if the logged in user & the requested user are friends.
+   *
+   * It assumes that `friendships` is the resolved value from
+   * `fetchFriendships`.
+   *
+   * This uses `friendships` (which is pulled from the database). It assumes
+   * that `friendships` is a value that was fetched using the requirements from
+   * `configureFriendshipQuery`. Since that defines the requirements for
+   * frienship, this function determines that the logged in user and requested
+   * user are friends if there are one or more items in the collection.
+   *
+   * This will set the variable `usersAreFriends` after determing if the users
+   * are friends.
+   *
+   * @param {FreindshipCollection} friendships - The friendships to use to
+   * evaluate if users are friends.
+   */
+  var evalIfUsersAreFriends = function(friendships) {
+    usersAreFriends = (friendships.length >= 1);
+  };
+
+  /**
+   * This fetches the requested users based on `requestedUserID`.
+   *
+   * @return {Promise}  A promise that resolves with the fetched user.
+   */
+  var fetchRequestedUser = function() {
+    return User.where({ id: requestedUserID }).fetch();
+  };
+
+  /**
+   * This returns the user info. It *will* return the user email if they are
+   * friends. It will *not* return the user email if they are not friends.
+   *
+   * If it is determined that the users are friends, this method will respond
+   * with the requested user's information. If it is determined that the users
+   * are not friends, this method will return the user's info, but will omit
+   * the `user_email`.
+   *
+   * It will always omit the `passwordDigest`.
+   *
+   * @param {User} user - The user to respond with.
+   */
+  var sendResponse = function(user) {
+    var response = user.toJSON();
+    var email = response.user_email;
+    response = prepareUser(response);
+    if (usersAreFriends) {
+      response.user_email = email;
+    }
+    res.send({ user: response });
+  };
+
+
+  var promise = BPromise.resolve();
+  if (loggedInUserID) { // this is the same as if logged in
+    promise = promise
+      .then(fetchFriendships)
+      .then(evalIfUsersAreFriends);
+  }
+  promise
+    .then(fetchRequestedUser)
+    .then(sendResponse);
+});
+
+
 api.use(admit.authorize);
 
-api.get('/users/:id/profile_details', function(req, res) {
-  var loggedInUserID = req.auth.user.id;
-  var requestedUserID = parseInt(req.params.id);
-  
-  User.where({ id: requestedUserID }).fetch()
-  .then(function(user) {
-    var response = user.toJSON();
-    response = _.omit(response, 'passwordDigest');
-
-
-var where = function(qb) {
-    qb.whereRaw('(("requestUser" = ? and "recipientUser" = ?) or ("requestUser" = ? and "recipientUser" = ?))', [loggedInUserID,requestedUserID, requestedUserID, loggedInUserID, true]);
-};
-
-  console.log('I am logged in as user with id %d and details %j', loggedInUserID, req.auth.user);
-  console.log('Am I friends with the user with id %d?', requestedUserID);
-
-
-
-
-
-    response = _.omit(response, 'user_email');
-    // TODO: if they're not friends, then remove the user email from the reponse
-    res.send({ user: response });
-  })
-  .catch(function(e) {
-    res.status(500);
-    res.send({ error: e });
-  });
-});
 
 
 api.delete('/sessions/current', admit.invalidate, function(req, res) {

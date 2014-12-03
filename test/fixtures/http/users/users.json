@@ -10,21 +10,20 @@
         "location_latitude": 34,
         "location_longitude": 81,
         "username": "Andrea",
-        "interests": null,
-        "picture": null,
-        "visibleName": null,
-        "bio": null,
-        "visibleName": null
+        "interests": "gaming, gaming, gaming",
+        "picture":  "http://www.gravatar.com/avatar/d41d8cd98f00b204e9800998ecf8427e",
+        "visibleName": "A Game",
+        "bio": "Andrea's bio"
       },
       {
         "id": 2,
         "location_latitude": 38,
         "location_longitude": 121,
         "username": "Steve",
-        "interests": null,
-        "picture": null,
-        "visibleName": null,
-        "bio": null
+        "interests": "running, running",
+        "picture": "http://www.gravatar.com/avatar/d41d8cd98f00b204e9800998ecf8427e",
+        "visibleName": "Old Steve",
+        "bio": "Steve's bio"
       },
       {
         "id": 3,
@@ -32,7 +31,7 @@
         "location_longitude": 121,
         "username": "Leslie",
         "interests": null,
-        "picture": null,
+        "picture":  "http://www.gravatar.com/avatar/d41d8cd98f00b204e9800998ecf8427e",
         "visibleName": null,
         "bio": null
       },
@@ -42,7 +41,7 @@
         "location_longitude": 122,
         "username": "Kali",
         "interests": null,
-        "picture": null,
+        "picture":  "http://www.gravatar.com/avatar/d41d8cd98f00b204e9800998ecf8427e",
         "visibleName": null,
         "bio": null
       },
@@ -52,7 +51,7 @@
         "location_longitude": 122,
         "username": "Austin",
         "interests": null,
-        "picture": null,
+        "picture":  "http://www.gravatar.com/avatar/d41d8cd98f00b204e9800998ecf8427e",
         "visibleName": null,
         "bio": null
       },
@@ -62,7 +61,7 @@
         "location_longitude": 221,
         "username": "Whitney",
         "interests": null,
-        "picture": null,
+        "picture":  "http://www.gravatar.com/avatar/d41d8cd98f00b204e9800998ecf8427e",
         "visibleName": null,
         "bio": null
       }]
@@ -72,26 +71,26 @@
     "id": 1,
     "location_latitude": 34,
     "location_longitude": 81,
-    "passwordDigest": "mock-digest",
     "username": "Andrea",
-    "interests": null,
-    "picture": null,
-    "user_email": null,
-    "visibleName": null,
-    "bio": null
-  },
-  {
+    "interests": "gaming, gaming, gaming",
+    "picture":  "http://www.gravatar.com/avatar/d41d8cd98f00b204e9800998ecf8427e",
+    "visibleName": "A Game",
+    "bio": "Andrea's bio",
+    "passwordDigest": "mock-digest",
+    "user_email": null
+    },
+    {
     "id": 2,
     "location_latitude": 38,
     "location_longitude": 121,
-    "passwordDigest": "mock-digest",
     "username": "Steve",
-    "interests": null,
-    "picture": null,
-    "user_email": null,
-    "visibleName": null,
-    "bio": null
-  },
+    "interests": "running, running",
+    "picture":  "http://www.gravatar.com/avatar/d41d8cd98f00b204e9800998ecf8427e",
+    "visibleName": "Old Steve",
+    "bio": "Steve's bio",
+    "passwordDigest": "mock-digest",
+    "user_email": null
+},
   {
     "id": 3,
     "location_latitude": 45,

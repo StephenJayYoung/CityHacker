@@ -103,6 +103,16 @@ describe('app', function() {
         expect(putJSON).to.eql(putFixture.request.json);
         expect(server.requests.length).to.eql(2);
       });
+
+      andThen(function(){
+        expect(server.requests[0].status).to.eql(200);
+        // expect('submitMessage').text.to.eql('changes saved');
+        // Saving a profile, API responds properly
+        // Failed to save, sends back error
+        // the button shows you a div that says, "changes saved"
+        // TODO: come back and get this working
+        // expect('submitMessage').text.to.eql('changes saved');
+      });
     });
 
     // -------------------------------------------------------------
@@ -129,8 +139,9 @@ describe('app', function() {
         expect(find('input.interests').val()).to.eql('carrots, lettuce, obstacle courses');
       });
 
-      it.skip('fills in the user bio', function() {
-        expect(find('input.bio').val()).to.eql('my bio');
+      it('fills in the user bio', function() {
+        //console.log(stubAPI('users/get-full-profile-info'));
+        expect(find('textarea.bio').val()).to.eql('my bio');
       });
 
     });
@@ -188,6 +199,10 @@ describe('app', function() {
       it('will display Interests as part of user info', function(){
         expect(find('input.interests').length).to.equal(1);
       });
+
+      it('will display Gravitar image', function(){
+        expect(find('img.photo').length).to.equal(1);
+      });
     });
 
     //---------------------------------------------------------
@@ -206,8 +221,15 @@ describe('app', function() {
       it('has a list of users', function(){
         expect(find('div.users').length).to.equal(6);
         expect(find('center.photo').length).to.equal(6);
-        expect(find('h3.visableName').length).to.equal(6);
-        expect(find('em.interests').length).to.equal(6);
+        expect(find('h3.visibleNameFirst').length).to.equal(6);
+        // expect(find('em.interests').length).to.equal(6);
+      });
+
+      it('has shows all user info in modal', function(){
+        expect(find('.modal .visibleNameSecond').length).to.equal(6);
+        expect(find('.modal .bio').length).to.equal(6);
+        expect(find('.modal img.photo[src*=gravatar]').length).to.equal(6);
+        expect(find('.modal .modalInterests').length).to.equal(5);
       });
 
       //click('button.submit.addFriend' for user steve);
@@ -215,6 +237,14 @@ describe('app', function() {
         // get request for friendship steve's recipientUser key will equal 1
         expect().to.equal();
       });
+
+      //---------------------------------------------------------
+      // The cityhackers page displays all user info
+      // On a click, the modal pops up
+      // The modal displays all the user info
+      // The modal has a button for add friend
+      // The cityhackers page shows people who are already friends
+      // The cityhackers page doesn't offer for you to meet yourself
 
       //---------------------------------------------------------
 

@@ -1,17 +1,22 @@
 
 {{!-- This is the Bootsnipp http://bootsnipp.com/snippets/featured/310-user-profile-in-modal-window --}}
+<h2><center>Look at all these cool people you can be friends with!</center></h2>
+<div class="col-lg-8">
+</div>
+<hr>
 {{#each}}
 <div class="container users">
     <div class="span3 well">
+        <span class="label label-info">Friend</span>
+{{!--         <span class="label">Default</span> --}}
         <div><center>
-            <a href="#aboutModal" data-toggle="modal" data-target="#myModal">{{gravatar-image email=user_email width="140" height="140" class="img-circle" }}</a>
-            <h3 class="visableName">{{visibleName}}</h3>
+            <a href="#aboutModal" data-toggle="modal" {{bind-attr data-target=modalTarget}}>{{gravatar-image picture=picture width="140" height="140" class="img-circle" }}</a>
+            <h3 class="visibleNameFirst">{{visibleName}}</h3>
             <em class="interests">{{interests}} in Portland, OR</em>
         </center></div>
-        <p>
     </div>
     <!-- Modal -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal fade" {{bind-attr id=modalID}} tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -20,11 +25,11 @@
                     </div>
                 <div class="modal-body">
                     <center class="photo">
-                    {{gravatar-image email=user_email size="200"}}
-                    <h3 class="media-heading">{{visibleNdame}}<br><small>Portland, Oregon</small></h3>
+                    {{gravatar-image picture=picture size="200"}}
+                    <h3 class="visibleNameSecond media-heading">{{visibleName}}<br><small>Portland, Oregon</small></h3>
                     <span><strong>Interests:</strong></span>
                         {{#each interest in interestsList}}
-                            <span class="label label-warning">{{interest}}</span>
+                            <span class="modalInterests label label-warning">{{interest}}</span>
                         {{/each}}
                         {{!-- TODO: can we get beautiful colors? --}}
                         {{!-- <span class="label label-warning">Freestyle Walker</span> --}}
@@ -33,8 +38,8 @@
                     </center>
                     <hr>
                     <center>
-                    <p class="text-left"><strong>Bio: </strong><br>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sem dui, tempor sit amet commodo a, vulputate vel tellus.</p>
+                    <p class="bio text-left"><strong>Bio:</strong><br>
+                        {{bio}}
                     <br>
                     </center>
                 </div>

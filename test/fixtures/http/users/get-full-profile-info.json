@@ -14,7 +14,7 @@
         "interests": "carrots, lettuce, obstacle courses",
         "location_latitude": null,
         "location_longitude": null,
-        "picture": "https://www.facebook.com/photo.php?fbid=10201220881791302&set=t.19705901&type=3&theater",
+        "picture": "https://some-gravatar-url",
         "bio": "my bio"
       }
     }
@@ -25,7 +25,7 @@
     "location_latitude": null,
     "location_longitude": null,
     "passwordDigest": "not-real-digest",
-    "picture": "https://www.facebook.com/photo.php?fbid=10151756655498645&set=t.19705901&type=3&theater",
+    "picture": null,
     "user_email": "q@gmail.com",
     "username": "Q",
     "visibleName": "PumpQuin",
@@ -36,7 +36,7 @@
     "location_latitude": null,
     "location_longitude": null,
     "passwordDigest": "not-real-digest",
-    "picture": "https://www.facebook.com/photo.php?fbid=10100794377997118&set=t.19705901&type=3&theater",
+    "picture": null,
     "user_email": "qik@gmail.com",
     "username": "QKiger",
     "visibleName": "Quintessential",

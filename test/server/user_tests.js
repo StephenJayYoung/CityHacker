@@ -2,7 +2,6 @@
 
 // NODE_ENV=test ./node_modules/.bin/knex migrate:latest
 
-var expect = require('chai').expect;
 var sinon = require('sinon');
 var uuid = require('node-uuid');
 var app = require('../../server/application');
@@ -39,10 +38,7 @@ describe('API for Users', __app(app, function(H) {
     .then(function() { done(); }, done);
   });
 
-  it('has one passing test', function() {
-    expect(app).to.exist;
-  });
-
+  // TODO: for #62 update this test to log in a user
   it('handles PUT /api/users/1', function(done) {
     H.setupDatabase(User, 'users/put', 'database-users')
     .then(function() { return H.testAPI('users/put'); })
@@ -53,6 +49,9 @@ describe('API for Users', __app(app, function(H) {
     .done(done, done);
     // adds or changes visible name, interests, location, email, and pictures
   });
+
+  // TODO: for #62 add a new test to make sure that a logged in user cannot change anyone else's profile
+  // TODO: for #62 add a new test to make sure that an anonymous user cannot change anyone else's profile
 
   it('handles GET /api/users/2/friends', function(done) {
     var api = 'users/2/friends';
@@ -176,7 +175,7 @@ describe('API for Users', __app(app, function(H) {
 
   //tests that we can access a user who is not a friend, and we
   //cannot see their email
-  it.skip('handles GET /api/users/:id/profile_details', function(done) {
+  it('handles GET /api/users/:id', function(done) {
     var fixture = 'users/2/see_notfriends_email';
     H.setupDatabase(User, fixture, 'database-users')
     .then(function() {
@@ -192,8 +191,26 @@ describe('API for Users', __app(app, function(H) {
     .done(done, done);
   });
 
+  //tests that we can access a user who is not a friend (since we're not logged in),
+  //and we cannot see their email
+  it('handles GET /api/users/:id when not logged in', function(done) {
+    var fixture = 'users/2/see_notfriends_email';
+    H.setupDatabase(User, fixture, 'database-users')
+    .then(function() {
+      return H.setupDatabase(Friendship, fixture,
+        'database-friendships');
+    })
+    // no token being created here, so the user is not logged in. the fixture still
+    // defines the token in the header, but the backend won't consider this user
+    // as authenticated.
+    .then(function(){
+      return H.testAPI(fixture);
+    })
+    .done(done, done);
+  });
+
   //tests that we can see a user who is a friend, and we can see their email
-  it.skip('handles GET /api/users/:id/profile_details', function(done) {
+  it('handles GET /api/users/:id', function(done) {
     var fixture = 'users/2/see_friends_email';
     H.setupDatabase(User, fixture, 'database-users')
     .then(function() {
