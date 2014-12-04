@@ -134,7 +134,7 @@ api.get('/users', function(req, res) {
 //will need to return a friendship where it accesses a 2 from requestuser or recipientuser
 //and also returns a true. It should log this return in the console.
 
-//Steps: 
+//Steps:
 // 1. Access the friends json file - use req.params to do this
 // 2. return all of the info in that file
 
