@@ -1,0 +1,87 @@
+{
+  "request": {
+    "url": "/api/users/2",
+    "method": "GET",
+    "headers": {
+      "Authorization": "Token 8030d31402ae4ce3aad8eb4c4df547dc"
+    }
+  },
+  "response": {
+    "json": {
+      "user": {
+        "id": 2,
+        "interests": null,
+        "location_latitude": null,
+        "location_longitude": null,
+        "picture": "http://www.gravatar.com/avatar/fea86c11ae55267a9ec2cdf954d9cc97",
+        "user_email": "steve@getcityhacker.com",
+        "username": "Steve",
+        "visibleName": null,
+        "bio": null
+      }
+    }
+  },
+  "database-users": [{
+    "id": 1,
+    "passwordDigest": "mock-digest",
+    "username": "Andrea"
+  },
+  {
+    "id": 2,
+    "passwordDigest": "mock-digest",
+    "username": "Steve",
+    "user_email": "steve@getcityhacker.com"
+  },
+  {
+    "id": 3,
+    "passwordDigest": "mock-digest",
+    "username": "Leslie",
+    "user_email": "leslie@getcityhacker.com"
+  },
+  {
+    "id": 4,
+    "passwordDigest": "mock-digest",
+    "username": "Kali"
+  },
+  {
+    "id": 5,
+    "passwordDigest": "mock-digest",
+    "username": "Austin"
+  }],
+  "database-tokens": [{
+    "id": 1,
+    "user_id": 2,
+    "value": "f6b6ab8fb3b12abe8c24d95b2199c42c63d7b299"
+  }],
+  "database-friendships": [{
+    "id": 1,
+    "requestUser": 2,
+    "recipientUser": 3,
+    "acceptID": "something-random-3928",
+    "accepted": true
+  }, {
+  	"id": 2,
+    "requestUser": 2,
+    "recipientUser": 1,
+    "acceptID": "something-random-9384",
+    "accepted": false
+  }, {
+    "id": 3,
+    "requestUser": 2,
+    "recipientUser": 4,
+    "acceptID": "something-random-2134",
+    "accepted": true
+	}, {
+    "id": 4,
+    "requestUser": 3,
+    "recipientUser": 4,
+    "acceptID": "something-random-2134",
+    "accepted": true
+  }, {
+    "id": 5,
+    "requestUser": 5,
+    "recipientUser": 2,
+    "acceptID": "something-random-4539",
+    "accepted": false
+  }]
+}

@@ -226,6 +226,22 @@ describe('API for Users', __app(app, function(H) {
     .done(done, done);
   });
 
+  //tests that we can see ourself, and we can see our email
+  it.skip('handles GET /api/users/:id', function(done) {
+    var fixture = 'users/2/see_ourself';
+    H.setupDatabase(User, fixture, 'database-users')
+    .then(function() {
+      return H.setupDatabase(Friendship, fixture,
+        'database-friendships');
+    })
+    .then(function() {
+      return H.setupDatabase(Token, fixture, 'database-tokens');
+    })
+    .then(function(){
+      return H.testAPI(fixture);
+    })
+    .done(done, done);
+  });
 
 
 
