@@ -13,6 +13,7 @@ App.Router.map(function() {
   this.route('profile');
   this.route('gmapAPI');
   this.route('picture');
+  this.route('about');
 });
 
 App.Router.reopen({

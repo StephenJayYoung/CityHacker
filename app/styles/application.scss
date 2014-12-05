@@ -12,20 +12,6 @@ h2 {
   text-transform: uppercase;
 }
 
-.header-and-logo {
-float: left;
-font-weight: 568;
-}
-
-.cityHackerLogo {
-background-size: 10px 32px;
-float: left;
-display: block;
-width: 60px;
-height: 60px;
-// padding: 1em; 1 em 1 em;
-}
-
 .hey {
    font-weight: 500;
    text-shadow: .5px .5px black;
@@ -50,9 +36,9 @@ height: 60px;
 // }
 
 a {
-  color: #ffffff;
-  text-decoration: none;
-  // font-weight: bold;
+color: #ffffff;
+text-decoration: none;
+font-weight: bold;
 }
 
 ul
@@ -64,9 +50,15 @@ ul
   background-color: black;
 }
 
+.header-and-logo {
+float: left;
+font-weight: 568;
+}
 
-.avatar{
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  border-radius: 50%;
+.cityHackerLogo {
+float: left;
+display: block;
+width: 60px;
+height: 60px;
+// padding: 1em; 1 em 1 em;
 }
