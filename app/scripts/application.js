@@ -33,7 +33,7 @@ App.ProfileRoute = Ember.Route.extend(Ember.AdmitOne.AuthenticatedRouteMixin, {
     // in the test ouput.
     // App._findGmapLocation();
     var id = this.get('session').get('id');
-    return this.store.find('user', id);
+    return this.store.find('user', id); // does a GET /api/users/:id
   }
   //should include "changes saved"
 });
@@ -45,7 +45,7 @@ App.ProfileController = Ember.ObjectController.extend({
       var self = this;
 
       this.set('error', undefined);
-      this.get('model').save()
+      this.get('model').save() // does a PUT /api/users/:id
       .then(function() {
         // show "changes saved"
       })
