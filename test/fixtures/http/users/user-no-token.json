@@ -16,9 +16,9 @@
     }
   },
   "response": {
-    "statusCode": 401 ,
+    "statusCode": 403,
     "json": {
-      "error": "Unauthorized"
+      "error": "Forbidden"
     }
   },
   "database-users": [{
