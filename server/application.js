@@ -54,6 +54,7 @@ var prepareUser = function(user) {
   return user;
 };
 
+//need to add prepareUSer to this so api
 api.post('/users', admit.create, function(req, res) {
   var requestUser = req.body.user;
   var responseUser = req.auth.user;
