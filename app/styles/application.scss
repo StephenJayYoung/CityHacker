@@ -7,11 +7,17 @@ body, h1, h2, h3, h4, h5, h6 {
 
 h2 {
   font-family: "Fjalla One";
-  font-weight: 400;
+  font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
+.hey {
+   font-weight: 500;
+   text-shadow: .5px .5px black;
+   color: black;
+   font-size: 275%;
+}
 // h2 {
 //   font-color: #4cb84f;
 // }
@@ -30,8 +36,9 @@ h2 {
 // }
 
 a {
-color: #3D352A;
+color: #ffffff;
 text-decoration: none;
+font-weight: bold;
 }
 
 ul
@@ -39,8 +46,19 @@ ul
     list-style-type: none;
 }
 
-.avatar{
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  border-radius: 50%;
+.navbar {
+  background-color: black;
+}
+
+.header-and-logo {
+float: left;
+font-weight: 568;
+}
+
+.cityHackerLogo {
+float: left;
+display: block;
+width: 60px;
+height: 60px;
+// padding: 1em; 1 em 1 em;
 }

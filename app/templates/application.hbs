@@ -2,8 +2,9 @@
 
 <div class="navbar">
  	{{#link-to 'index' class='home navbar-brand'}}Home{{/link-to}}
+ 	{{#link-to 'about' class='about navbar-brand'}}About{{/link-to}}
 	{{#if session.isAuthenticated }}
-  {{#link-to 'profile' class='profile navbar-brand'}}Profile {{ session.username }}{{/link-to}}
+  {{#link-to 'profile' class='profile navbar-brand'}}Profile: {{ session.username }}{{/link-to}}
  	{{#link-to 'users' class='users navbar-brand'}}CityHackers{{/link-to}}
  	{{#link-to 'logout' class='logout navbar-brand'}}Logout{{/link-to}}
 	{{else}}
