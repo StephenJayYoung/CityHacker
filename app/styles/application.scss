@@ -51,11 +51,30 @@ ul
 
 .navbar {
   background-color: black;
+  margin-bottom: 0;
 }
 
 
 
+.jumbotron {  
+  height: 45vh;
+  background-image: url("../media/images/CityHackerHeaderImage2.jpg");
+  background-size: cover;
+  background-position: center bottom;
+}
+
+
+#headerContent {
+  float: left;
+  margin-left: 20px;
+    width: 280px;
+  padding: 10px;
+  height: 10vh;
+  background-color: rgba(255,255,255,.5);
+}
+
 .header-text {
+  vertical-align: middle;
 float: left;
 color: white;
 }
@@ -68,18 +87,7 @@ height: 75%
 .cityHackerLogo {
 float: left;
 position: static;
+margin-left: 15px;
 width: 60px;
 height: 60px;
-}
-
-.jumbotron {  
-  height: 60vh;
-  background-image: url("../media/images/CityHackerHeaderImage2.jpg");
-  background-size: cover;
-  background-position: center bottom;
-}
-
-#headerContent {
-  height: 10vh;
-  background-color: rgba(255,255,255,.5);
 }
