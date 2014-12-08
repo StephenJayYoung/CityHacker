@@ -20,6 +20,7 @@ h2 {
 }
 
 
+
 // h2 {
 //   font-color: #4cb84f;
 // }
@@ -52,8 +53,11 @@ ul
   background-color: black;
 }
 
+
+
 .header-text {
 float: left;
+color: white;
 }
 
 .headerImage{
@@ -66,4 +70,16 @@ float: left;
 position: static;
 width: 60px;
 height: 60px;
+}
+
+.jumbotron {  
+  height: 60vh;
+  background-image: url("../media/images/CityHackerHeaderImage2.jpg");
+  background-size: cover;
+  background-position: center bottom;
+}
+
+#headerContent {
+  height: 10vh;
+  background-color: rgba(255,255,255,.5);
 }
