@@ -20,6 +20,7 @@ h2 {
 }
 
 
+
 // h2 {
 //   font-color: #4cb84f;
 // }
@@ -50,10 +51,31 @@ ul
 
 .navbar {
   background-color: black;
+  margin-bottom: 0;
+}
+
+
+
+.jumbotron {  
+  height: 50vh;
+  background-image: url("../media/images/CityHackerHeaderImage2.jpg");
+  background-size: cover;
+  background-position: center bottom;
+}
+
+
+#headerContent {
+  float: left;
+  margin: 20px 10%;
+  width: 80%;
+  padding: 10px;
+  background-color: rgba(255,255,255,.65);
 }
 
 .header-text {
-float: left;
+  vertical-align: middle;
+  float: left;
+  color: white;
 }
 
 .headerImage{
@@ -64,6 +86,20 @@ height: 75%
 .cityHackerLogo {
 float: left;
 position: static;
+margin-left: 15px;
 width: 60px;
 height: 60px;
+}
+
+#doMore {
+  text-align: center;
+  clear: both;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#getStarted  {
+  position: relative;
+margin-left: 50%;
+margin-right: 50%;
 }
