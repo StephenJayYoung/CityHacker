@@ -65,6 +65,7 @@ ul
 
 #headerLogoText {
   color: black;
+  font-weight: 350px; 
 }
 
 #headerContent {
@@ -101,8 +102,11 @@ height: 60px;
   margin-right: auto;
 }
 
+.doMoreText {
+  color: black;
+}
+
 #getStarted  {
-  position: relative;
   margin-left: 50%;
   margin-right: 50%;
 }
