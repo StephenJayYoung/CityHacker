@@ -54,14 +54,16 @@ var prepareUser = function(user) {
   return user;
 };
 
-//need to add prepareUSer to this so api
+
 api.post('/users', admit.create, function(req, res) {
   var requestUser = req.body.user;
   var responseUser = req.auth.user;
   var dbUser = req.auth.db.user;
   responseUser.user_email = requestUser.user_email;
-  dbUser.set('user_email', requestUser.user_email);
-  dbUser.save().then(function() {
+  responseUser.picture = 'http://www.gravatar.com/avatar/' + md5(requestUser.user_email || '');
+  dbUser.save()
+  .then(function() {
+    dbUser.set('user_email', requestUser.user_email);
     res.json({ user: responseUser });
   })
   .catch(function(e) {
