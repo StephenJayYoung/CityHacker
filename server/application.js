@@ -60,10 +60,10 @@ api.post('/users', admit.create, function(req, res) {
   var responseUser = req.auth.user;
   var dbUser = req.auth.db.user;
   responseUser.user_email = requestUser.user_email;
-  dbUser.set('user_email', requestUser.user_email);
-  dbUser.set('picture', 'http://www.gravatar.com/avatar/' + md5(responseUser.user_email || ''));
+  responseUser.picture = 'http://www.gravatar.com/avatar/' + md5(requestUser.user_email || '');
   dbUser.save()
   .then(function() {
+    dbUser.set('user_email', requestUser.user_email);
     res.json({ user: responseUser });
   })
   .catch(function(e) {
