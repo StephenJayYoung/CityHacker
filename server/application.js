@@ -54,6 +54,14 @@ var prepareUser = function(user) {
   return user;
 };
 
+var prepareUserFriendship = function(user) {
+  var email = user.user_email;
+  user = _.omit(user, 'passwordDigest');
+  user = _.extend(user, {
+    picture: 'http://www.gravatar.com/avatar/' + md5(email || '')
+  });
+  return user;
+};
 
 api.post('/users', admit.create, function(req, res) {
   var requestUser = req.body.user;
@@ -303,10 +311,11 @@ api.get('/users/:id', admit.extract, function(req, res) {
    */
   var sendResponse = function(user) {
     var response = user.toJSON();
-    var email = response.user_email;
-    response = prepareUser(response);
     if (usersAreFriends) {
-      response.user_email = email;
+      response = prepareUserFriendship(response);
+    }
+    else {
+      response = prepareUser(response);
     }
     res.send({ user: response });
   };
