@@ -1,6 +1,14 @@
-<form {{action 'authenticate' on='submit'}}>
-  {{input type="Username" required="true" autofocus="true" placeholder="Username" value=username}}
-  {{input type="password" required="true" autofocus="true" placeholder="Password" value=password}}
-  <button type="submit">Log in</button>
-  {{#if error}}<div>Error: {{error}}.</div>{{/if}}
-</form>
+<br>
+<br>
+<br>
+<div class="row loginPage">
+  <span class="spanPadding">
+    Thanks for using GetCityHacker.com! May your inbox be filled with awesome invites.
+  </span>
+  <form {{action 'authenticate' on='submit'}}>
+    {{input type="Username" required="true" autofocus="true" placeholder="Username" value=username}}
+    {{input type="password" required="true" autofocus="true" placeholder="Password" value=password}}
+    <button type="submit">Log in</button>
+    {{#if error}}<div>Error: {{error}}.</div>{{/if}}
+  </form>
+</div landingPage>
