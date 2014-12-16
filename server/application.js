@@ -54,7 +54,7 @@ var prepareUser = function(user) {
   return user;
 };
 
-var prepareUserFriendship = function(user) {
+var prepareUserWithEmail = function(user) {
   var email = user.user_email;
   user = _.omit(user, 'passwordDigest');
   user = _.extend(user, {
@@ -312,7 +312,7 @@ api.get('/users/:id', admit.extract, function(req, res) {
   var sendResponse = function(user) {
     var response = user.toJSON();
     if (usersAreFriends) {
-      response = prepareUserFriendship(response);
+      response = prepareUserWithEmail(response);
     }
     else {
       response = prepareUser(response);
