@@ -25,7 +25,6 @@ h2 {
 
 .landingText {
   display:block;
-  width: 80%
 }
 
 .footer {
@@ -35,11 +34,11 @@ h2 {
   background-color: black;
 }
 
-// .getStarted {
-//   display: inline-block;
-//   vertical-align: middle;
-//   line-height: normal;
-// }
+.getStarted {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal;
+}
 
 .loginPage {
   display:block;
@@ -74,7 +73,7 @@ font-weight: bold;
 
 ul
 {
-    list-style-type: none;
+  list-style-type: none;
 }
 
 .navbar {
@@ -93,7 +92,7 @@ ul
 
 #headerLogoText {
   color: black;
-  font-weight: 350px; 
+  font-weight: 350px;
 }
 
 #headerContent {
