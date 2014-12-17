@@ -296,9 +296,7 @@ api.get('/users/:id', admit.extract, function(req, res) {
     return User.where({ id: requestedUserID }).fetch();
   };
 
-  // var userIsSignedIn = function(qb) {
-  //   qb.whereRaw();
-  // };
+  
   /**
    * This returns the user info. It *will* return the user email if they are
    * friends. It will *not* return the user email if they are not friends.
@@ -318,10 +316,6 @@ api.get('/users/:id', admit.extract, function(req, res) {
     if (usersAreFriends) {
       response = prepareUserWithEmail(response);
     }
-    // if (userIsSignedIn)
-    // {
-    //   response = prepareUserWithEmail(response);
-    // }
     else {
       response = prepareUser(response);
     }
