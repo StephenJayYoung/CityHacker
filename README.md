@@ -1,6 +1,6 @@
 # CityHacker
 
-City Hacker can best be described as web app that connects people based on common locations and interests. It uses Node and many Node libraries, PostgreSQL, Express, and Bookshelf for the back-end. An Ember framework and Bootstrap for the front-end.
+City Hacker can best be described as web app that connects people based on common locations and interests. It uses Node and many Node libraries, PostgreSQL, Express, and Bookshelf for the back-end, and an Ember framework and Bootstrap for the front-end.
 
 [![Build status][travis-image]][travis-url] [![Code Climate][codeclimate-image]][codeclimate-url] [![Coverage Status][coverage-image]][coverage-url] [![Dependencies][david-image]][david-url] [![devDependencies][david-dev-image]][david-dev-url]
 
