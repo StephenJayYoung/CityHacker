@@ -40,7 +40,6 @@ App.ProfileController = Ember.ObjectController.extend({
       this.set('error', undefined);
       this.get('model').save() // does a PUT /api/users/:id
       .then(function() {
-        // show "changes saved"
       })
       .catch(function(error) {
         if (error.responseJSON) { error = error.responseJSON; }
