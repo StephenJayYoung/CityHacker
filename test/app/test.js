@@ -200,8 +200,8 @@ describe('app', function() {
         expect(find('input.interests').length).to.equal(1);
       });
 
-      it.skip('will display Gravitar image', function(){
-        expect(find('img.photo').length).to.equal(1);
+      it('will display Gravitar image', function(){
+        expect(find('.picture').length).to.equal(1);
       });
     });
 
