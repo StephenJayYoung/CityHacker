@@ -1,0 +1,59 @@
+{
+  "request": {
+    "url": "/api/users/1",
+    "method": "PUT",
+    "json": {
+      "user": {
+        "interests": "cats",
+        "location_latitude": null,
+        "location_longitude": null,
+        "picture": null,
+        "password": null,
+        "user_email": "flopsy@milo.com",
+        "username": "Sir Flops Alot",
+        "visibleName": "Awesome Milo"
+      }
+    }
+  },
+  "response": {
+    "statusCode": 403,
+    "json": {
+      "error": "Forbidden"
+    }
+  },
+  "database-users": [{
+    "id": 1,
+    "passwordDigest": "not-real-digest",
+    "username": "Milo"
+  }, {
+    "id": 3,
+    "passwordDigest": "not-real-digest",
+    "username": "Tobi"
+  }],
+  "database-users-result": [{
+    "id": 1,
+    "interests": null,
+    "location_latitude": null,
+    "location_longitude": null,
+    "passwordDigest": "not-real-digest",
+    "picture": null,
+    "user_email": null,
+    "username": "Milo",
+    "visibleName": null,
+    "bio": null
+  }, {
+    "id": 3,
+    "interests": null,
+    "location_latitude": null,
+    "location_longitude": null,
+    "passwordDigest": "not-real-digest",
+    "picture": null,
+    "user_email": null,
+    "username": "Tobi",
+    "visibleName": null,
+    "bio": null
+  }]
+}
+
+
+
