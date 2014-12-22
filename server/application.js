@@ -253,13 +253,6 @@ api.get('/users/:id', admit.extract, function(req, res) {
     [loggedInUserID,requestedUserID, requestedUserID, loggedInUserID, true]);
   };
 
-  var configureSignIn = function(qb) {};
-  
-
-
-  var evalUserIsLoggedin = function() {
-    console.log();
-  };
   /**
    * Fetches all of the friendships that apply for the logged in user & the
    * requested user (as defined in `configureFriendshipQuery`). It accesses
@@ -303,7 +296,12 @@ api.get('/users/:id', admit.extract, function(req, res) {
     return User.where({ id: requestedUserID }).fetch();
   };
 
-  
+  var configureSignIn = function(qb) {
+  };
+
+  var evalUserIsLoggedin = function() {
+    return User.query(configureSignIn).fetchAll();
+  };
   /**
    * This returns the user info. It *will* return the user email if they are
    * friends. It will *not* return the user email if they are not friends.
@@ -333,6 +331,7 @@ api.get('/users/:id', admit.extract, function(req, res) {
   if (loggedInUserID) { // this is the same as if logged in
     promise = promise
       .then(fetchFriendships)
+      .then(evalUserIsLoggedin)
       .then(evalIfUsersAreFriends)
       .then(evalUserIsLoggedin);
   }
