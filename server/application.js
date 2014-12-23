@@ -233,6 +233,7 @@ api.get('/users/:id', admit.extract, function(req, res) {
   var requestedUserID = parseInt(req.params.id);
   var loggedInUserID = req.auth.user ? req.auth.user.id : undefined;
   var usersAreFriends = false;
+  var userIsLoggedIn = false;
 
   /**
    * Configures the query builder to get us all of the friendships that exist
@@ -296,7 +297,7 @@ api.get('/users/:id', admit.extract, function(req, res) {
     return User.where({ id: requestedUserID }).fetch();
   };
 
-  var configureSignIn = function(qb) {
+  var configureSignIn = function() {
   };
 
   var evalUserIsLoggedin = function() {
@@ -317,10 +318,15 @@ api.get('/users/:id', admit.extract, function(req, res) {
    */
   var sendResponse = function(user) {
     var response = user.toJSON();
+    if (userIsLoggedIn) {
+      console.log('user is logged in');
+    }
     if (usersAreFriends) {
+      console.log('users are friends');
       response = prepareUserWithEmail(response);
     }
     else {
+      console.log(' users Are not yet friends');
       response = prepareUser(response);
     }
     res.send({ user: response });
@@ -331,11 +337,11 @@ api.get('/users/:id', admit.extract, function(req, res) {
   if (loggedInUserID) { // this is the same as if logged in
     promise = promise
       .then(fetchFriendships)
-      .then(evalUserIsLoggedin)
       .then(evalIfUsersAreFriends)
       .then(evalUserIsLoggedin);
   }
   promise
+    .then(evalUserIsLoggedin)
     .then(fetchRequestedUser)
     .then(sendResponse);
 });
