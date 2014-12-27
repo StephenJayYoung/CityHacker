@@ -297,7 +297,8 @@ api.get('/users/:id', admit.extract, function(req, res) {
     return User.where({ id: requestedUserID }).fetch();
   };
 
-  var configureSignIn = function() {
+  var configureSignIn = function(qb) {
+  //  qb.whereRaw([]);
   };
 
   var evalUserIsLoggedin = function() {
