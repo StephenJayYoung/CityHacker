@@ -21,7 +21,7 @@
       "error": "Forbidden"
     }
   },
-  "tokens": [{
+  "database-tokens": [{
     "id": 1,
     "user_id": 2,
     "value": "f6b6ab8fb3b12abe8c24d95b2199c42c63d7b299"
