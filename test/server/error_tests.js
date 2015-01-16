@@ -61,9 +61,9 @@ describe('API for errors', __app(app, function(H) {
   it.skip('does not allow changes to a user that is not the one signed in.',
    function(done) {
     H.setupDatabase(User, 'users/user-no-token', 'database-users')
-    .then(function() {
-      return H.setupDatabase(Token, fixture, 'database-tokens');
-    })
+    // .then(function() {
+    //   return H.setupDatabase(Token, fixture, 'database-tokens');
+    // })
     .then(function() { return H.testAPI('users/user-no-token'); })
 
     .then(function() {
