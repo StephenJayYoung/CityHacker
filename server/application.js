@@ -234,7 +234,8 @@ api.get('/users/:id', admit.extract, function(req, res) {
   var loggedInUserID = req.auth.user ? req.auth.user.id : undefined;
   var usersAreFriends = false;
   var userIsLoggedIn = false;
-
+  console.log(requestedUserID);
+  console.log(loggedInUserID);
   /**
    * Configures the query builder to get us all of the friendships that exist
    * for a user in the database.
