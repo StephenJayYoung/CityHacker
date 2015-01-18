@@ -1,1 +1,49 @@
-post.json
+{
+  "request": {
+    "url": "/api/users",
+    "method": "POST",
+    "json": {
+      "user": {
+        "password": "not-real-digest",
+        "user_email": "flopsy@milo.com",
+        "username": "Sir Flops Alot",
+      }
+    }
+  },
+  "response": {
+    "json": {
+      "user": {
+        "id": 1,
+        "interests": null,
+        "location_latitude": null,
+        "location_longitude": null,
+        "picture": null,
+        "password": "not-real-digest",
+        "user_email": "flopsy@milo.com",
+        "username": "Sir Flops Alot",
+        "visibleName": null,
+        "bio": null
+      }
+    }
+  },
+  "database-users": [{
+    "id": 1,
+    "passwordDigest": "not-real-digest",
+    "username": "Milo"
+  }],
+  "database-users-result": [{
+    "id": 1,
+    "interests": "cats",
+    "location_latitude": null,
+    "location_longitude": null,
+    "passwordDigest": "not-real-digest",
+    "picture": null,
+    "user_email": "flopsy@milo.com",
+    "username": "Sir Flops Alot",
+    "visibleName": "Awesome Milo", 
+    "bio": null
+  }]
+}
+
+
+

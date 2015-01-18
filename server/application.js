@@ -301,7 +301,7 @@ api.get('/users/:id', admit.extract, function(req, res) {
     return User.where({ id: requestedUserID }).fetch();
   };
 
-  var configureSignIn = function(qb) {
+  var configureSignIn = function() {
   //  qb.whereRaw([]);
   };
 
