@@ -67,7 +67,7 @@ api.post('/users', admit.create, function(req, res) {
   var requestUser = req.body.user;
   var responseUser = req.auth.user;
   var loggedInUserID = req.auth.user ? req.auth.user.id : undefined;
-  console.log(loggedInUserID)
+  console.log(loggedInUserID);
   var dbUser = req.auth.db.user;
   responseUser.user_email = requestUser.user_email;
   responseUser.picture = 'http://www.gravatar.com/avatar/' + md5(requestUser.user_email || '');
@@ -83,6 +83,7 @@ api.post('/users', admit.create, function(req, res) {
 });
 
 api.post('/sessions', admit.authenticate, function(req, res) {
+  console.log(req.auth);
   // user accessible via req.auth
   res.json({ session: req.auth.user });
 });
