@@ -83,7 +83,6 @@ api.post('/users', admit.create, function(req, res) {
 });
 
 api.post('/sessions', admit.authenticate, function(req, res) {
-  console.log(req.auth);
   // user accessible via req.auth
   res.json({ session: req.auth.user });
 });
@@ -102,8 +101,9 @@ var throwWithStatus = function(status, message) {
   throw e;
 };
 
-api.put('/users/:id', function(req, res) {
+api.put('/users/:id', admit.authenticate, function(req, res) {
   var params = req.params;
+  console.log(req);
   var id = parseInt(params.id);
   return User.where({ id: id }).fetch()
   .then(function(user) {
@@ -236,9 +236,6 @@ api.get('/users/:id', admit.extract, function(req, res) {
   var requestedUserID = parseInt(req.params.id);
   var loggedInUserID = req.auth.user ? req.auth.user.id : undefined;
   var usersAreFriends = false;
-  var userIsLoggedIn = false;
-  console.log(requestedUserID);
-  console.log(loggedInUserID);
   /**
    * Configures the query builder to get us all of the friendships that exist
    * for a user in the database.
@@ -323,7 +320,7 @@ api.get('/users/:id', admit.extract, function(req, res) {
    */
   var sendResponse = function(user) {
     var response = user.toJSON();
-    if (requestedUserID == loggedInUserID) {
+    if (requestedUserID === loggedInUserID) {
       console.log('user is logged in');
       response = prepareUserWithEmail(response);
     }

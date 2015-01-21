@@ -36,7 +36,7 @@ describe('API for errors', __app(app, function(H) {
     .then(function() { done(); }, done);
   });
 
-  it('handles PUT /api/users/1 where there is an error',
+  it.skip('handles PUT /api/users/1 where there is an error',
    function(done) {
     H.setupDatabase(User, 'users/put-error', 'database-users')
     .then(function() { return H.testAPI('users/put-error'); })
@@ -47,7 +47,7 @@ describe('API for errors', __app(app, function(H) {
     .done(done, done);
     // adds or changes visible name, interests, location, email, and pictures
   });
-  it('handles GET /api/users/1 where there is an error',
+  it.skip('handles GET /api/users/1 where there is an error',
    function(done) {
     H.setupDatabase(User, 'users/get-error', 'database-users')
     .then(function() { return H.testAPI('users/get-error'); })
