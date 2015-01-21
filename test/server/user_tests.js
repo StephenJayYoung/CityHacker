@@ -210,7 +210,7 @@ describe('API for Users', __app(app, function(H) {
   });
 
   //tests that we can see a user who is a friend, and we can see their email
-  it('handles GET /api/users/:id', function(done) {
+  it('handles GET /api/users/:id when friends', function(done) {
     var fixture = 'users/2/see_friends_email';
     H.setupDatabase(User, fixture, 'database-users')
     .then(function() {
@@ -227,7 +227,7 @@ describe('API for Users', __app(app, function(H) {
   });
 
   //tests that we can see ourself, and we can see our email
-  it.skip('handles GET /api/users/:id', function(done) {
+  it('handles GET /api/users/:id see self', function(done) {
     var fixture = 'users/2/see_ourself';
     H.setupDatabase(User, fixture, 'database-users')
     .then(function() {

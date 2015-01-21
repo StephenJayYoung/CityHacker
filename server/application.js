@@ -323,14 +323,15 @@ api.get('/users/:id', admit.extract, function(req, res) {
    */
   var sendResponse = function(user) {
     var response = user.toJSON();
-    if (userIsLoggedIn) {
+    if (requestedUserID == loggedInUserID) {
       console.log('user is logged in');
+      response = prepareUserWithEmail(response);
     }
-    if (usersAreFriends) {
+    else if (usersAreFriends) {
       console.log('users are friends');
       response = prepareUserWithEmail(response);
     }
-    else {
+    else if (!usersAreFriends) {
       console.log(' users Are not yet friends');
       response = prepareUser(response);
     }
