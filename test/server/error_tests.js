@@ -36,7 +36,7 @@ describe('API for errors', __app(app, function(H) {
     .then(function() { done(); }, done);
   });
 
-  it.skip('handles PUT /api/users/1 where there is an error',
+  it('handles PUT /api/users/1 where there is an error',
    function(done) {
     H.setupDatabase(User, 'users/put-error', 'database-users')
     .then(function() { return H.testAPI('users/put-error'); })
