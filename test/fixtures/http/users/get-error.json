@@ -16,9 +16,9 @@
     }
   },
   "response": {
-    "statusCode": 404,
+    "statusCode": 400,
     "json": {
-      "error": "Not found"
+      "error": "missing parameter session[username]"
     }
   },
   "database-users": [{
