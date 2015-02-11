@@ -16,9 +16,9 @@
     }
   },
   "response": {
-    "statusCode": 403,
+    "statusCode": 400,
     "json": {
-      "error": "Forbidden"
+      "error": "missing parameter session[username]"
     }
   },
   "database-tokens": [{
