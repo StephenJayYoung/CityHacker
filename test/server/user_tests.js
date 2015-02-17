@@ -39,7 +39,7 @@ describe('API for Users', __app(app, function(H) {
   });
 
   // TODO: for #62 update this test to log in a user
-  it.skip('handles PUT /api/users/1', function(done) {
+  it('handles PUT /api/users/1', function(done) {
     H.setupDatabase(User, 'users/put', 'database-users')
     .then(function() { return H.testAPI('users/put'); })
     .then(function() {
