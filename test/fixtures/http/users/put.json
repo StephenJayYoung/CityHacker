@@ -2,9 +2,6 @@
   "request": {
     "url": "/api/users/1",
     "method": "PUT",
-    "headers": {
-      "Authorization": "Token 8030d31402ae4ce3aad8eb4c4df547dc"
-    },
     "json": {
       "user": {
         "interests": "cats",
@@ -17,6 +14,9 @@
         "visibleName": "Awesome Milo",
          "bio": null
       }
+    },
+     "headers": {
+      "Authorization": "Token 8030d31402ae4ce3aad8eb4c4df547dc"
     }
   },
   "response": {
@@ -67,7 +67,7 @@
   }],
   "database-tokens": [{
     "id": 1,
-    "user_id": 2,
+    "user_id": 1,
     "value": "f6b6ab8fb3b12abe8c24d95b2199c42c63d7b299"
   }]
 }
