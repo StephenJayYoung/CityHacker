@@ -2,6 +2,9 @@
   "request": {
     "url": "/api/users/1",
     "method": "PUT",
+    "headers": {
+      "Authorization": "Token 8030d31402ae4ce3aad8eb4c4df547dc"
+    },
     "json": {
       "user": {
         "interests": "cats",
@@ -14,9 +17,6 @@
         "visibleName": "Awesome Milo",
          "bio": null
       }
-    },
-     "headers": {
-      "Authorization": "Token 8030d31402ae4ce3aad8eb4c4df547dc"
     }
   },
   "response": {
